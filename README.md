@@ -1,3 +1,6 @@
+
+#### WORK IN PROGRESS - THIS IS IN EARLY TESTING - USE WITH CAUTION ####
+
 # Cordova UXCam plugin
 
 ## Add UXCam plugin
