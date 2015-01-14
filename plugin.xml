@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.uxcam.cordova.plugin"
+        version="1.0.9">
+
+	<name>UXCam</name>
+	<description>Cordova plugin for UXCam</description>
+	<author>UXCam</author>
+	<license>Commercial</license>
+	<keywords>UXCam, Analytics, Screen capture, screen recording</keywords>
+	<engines>
+		<engine name="cordova" version=">=3.0.0" />
+	</engines>
+	<js-module src="www/UXCam.js" name="UXCam">
+		<clobbers target="UXCam" />
+	</js-module>
+
+	<!-- Android -->
+	<platform name="android">
+		<config-file target="config.xml" parent="/*">
+			<feature name="UXCam">
+				<param name="android-package" value="com.uxcam.UXCamPlugin"/>
+			</feature>
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<service android:name="com.uxcam.video.camera.RecorderService"/>
+			<service android:name="com.uxcam.service.HttpPostService"/>
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.READ_LOGS" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.RECORD_AUDIO" />
+			<uses-permission android:name="android.permission.CAMERA" />
+			<uses-permission android:name= "android.permission.SYSTEM_ALERT_WINDOW"/>
+		</config-file>
+
+		<source-file src="src/android/UXCam.jar" target-dir="libs" framework="true" />
+		<source-file src="src/android/UXCamPlugin.java" target-dir="src/com/uxcam" custom="true" />
+	</platform>
+
+	<!-- iOS -->
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+		  <feature name="UXCam">
+			  <param name="ios-package" value="CDVUXCam"/>
+		  </feature>
+		</config-file>
+
+		<!-- Source for our iOS plugin -->
+		<header-file src="src/ios/CDVUXCam.h"/>
+		<source-file src="src/ios/CDVUXCam.m"/>
+
+		<!-- Add in the UXCam framework -->
+		<framework src="src/ios/UXCam.framework" custom="true"/>
+		
+		<!-- and the system frameworks that UXCam depends on -->
+		<framework src="AVFoundation.framework" />
+		<framework src="CoreGraphics.framework" />
+		<framework src="CoreMedia.framework" />
+		<framework src="CoreVideo.framework" />
+		<framework src="MobileCoreServices.framework" />
+		<framework src="QuartzCore.framework" />
+		<framework src="SystemConfiguration.framework" />
+	</platform>
+  
+</plugin>
