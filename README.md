@@ -7,13 +7,16 @@
 
 STEP 1: INTEGRATE  WITH PHONEGAP
 
-  cordova plugin add https://github.com/uxcam/cordova-uxcam
+    cordova plugin add https://github.com/uxcam/cordova-uxcam
 
 or
 
-  phonegap plugin add https://github.com/uxcam/cordova-uxcam
+    phonegap plugin add https://github.com/uxcam/cordova-uxcam
   
-[ To remove the plugin: cordova/phonegap plugin remove com.uxcam.cordova.plugin ]
+
+To remove the plugin: 
+
+    cordova/phonegap plugin remove com.uxcam.cordova.plugin 
 
 
 Supported platforms: android, ios
