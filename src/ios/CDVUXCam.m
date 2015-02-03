@@ -26,10 +26,10 @@
 
 - (void)stopUXCamCameraVideo:(CDVInvokedUrlCommand*)command
 {
-	// RAG: This was in the Android plugin - but I don't see it maps to anything in iOS
-	CDVPluginResult* pluginResult = nil;
-	pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+	[UXCam ignoreCameraVideoRecording];
+	
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+								callbackId:command.callbackId];
 }
 
 - (void)stopApplicationAndUploadData:(CDVInvokedUrlCommand*)command
