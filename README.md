@@ -30,7 +30,7 @@ Call the startApplicationWithKey method on deviceready to start the UXCam sessio
 #### startApplicationWithKey
 Starts the UXCam session
 
-UXCam.startApplicationWithKey("App-key from https://www.uxcam.com to be placed here");
+UXCam.startApplicationWithKey("API-key from https://www.uxcam.com to be placed here - this is your user account API key and is the same for all projects");
 
 ---
 

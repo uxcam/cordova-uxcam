@@ -13,7 +13,7 @@
 	{
 		NSLog(@"UXCam: Starting UXCam with API Key: %@", apiKey);
 
-		[UXCam startApplicationWithKey:apiKey];
+		[UXCam startWithKey:apiKey];
 		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
 	}
 	else
