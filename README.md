@@ -1,5 +1,5 @@
 
-#### WORK IN PROGRESS - THIS IS IN EARLY TESTING - USE WITH CAUTION ####
+#### BETA RELEASE - USE WITH CARE ####
 
 # Cordova UXCam plugin
 
