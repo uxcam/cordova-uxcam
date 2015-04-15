@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="com.uxcam.cordova.plugin"
-        version="2.0.1">
+        version="2.1.0">
 
 	<name>UXCam</name>
 	<description>Cordova plugin for UXCam - enables the recording of your applications screen</description>

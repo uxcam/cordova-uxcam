@@ -4,7 +4,7 @@
 
 @implementation CDVUXCam
 
-- (void)start:(CDVInvokedUrlCommand*)command
+- (void)startWithKey:(CDVInvokedUrlCommand*)command
 {
 	CDVPluginResult* pluginResult = nil;
 	NSString* apiKey = [command.arguments objectAtIndex:0];

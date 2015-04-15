@@ -1,7 +1,14 @@
 
-#### BETA RELEASE - USE WITH CARE ####
-
 # Cordova UXCam plugin
+
+## Release Notes ##
+
+v2.1.0 - Changes the startup call from startApplicationWithKey to startWithKey for consistency with native SDKs
+
+v2.0.1 - Native SDKs updated to versions 2.0.1 to fix some problems
+
+v2.0.0 - First full release
+
 
 ## Add UXCam plugin
 
@@ -25,12 +32,12 @@ Supported platforms: android, ios
 
 STEP 2: START UXCAM
 
-Call the startApplicationWithKey method on deviceready to start the UXCam session:
+Call the startWithKey method on deviceready to start the UXCam session:
 
-#### startApplicationWithKey
+#### startWithKey
 Starts the UXCam session
 
-UXCam.startApplicationWithKey("API-key from https://www.uxcam.com to be placed here - this is your user account API key and is the same for all projects");
+UXCam.startWithKey("API-key from https://www.uxcam.com to be placed here - this is your user account API key and is the same for all projects");
 
 ---
 

@@ -2,7 +2,7 @@
 
 @interface CDVUXCam : CDVPlugin
 
-- (void)start:(CDVInvokedUrlCommand*)command;
+- (void)startWithKey:(CDVInvokedUrlCommand*)command;
 - (void)stopUXCamCameraVideo:(CDVInvokedUrlCommand*)command;
 - (void)stopApplicationAndUploadData:(CDVInvokedUrlCommand*)command;
 - (void)markUserAsFavorite:(CDVInvokedUrlCommand*)command;

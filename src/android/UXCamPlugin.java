@@ -17,7 +17,7 @@ public class UXCamPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callback) throws JSONException {
         try {
             Log.d("UXCamPlugin","action is "+action);
-            if ("start".equals(action)) {
+            if ("startWithKey".equals(action)) {
                 this.start(args);
             }else if("stopUXCamCameraVideo".equals(action)){
                 UXCam.stopUXCamCameraVideo(this.cordova.getActivity());
