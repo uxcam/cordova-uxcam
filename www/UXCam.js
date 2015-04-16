@@ -12,9 +12,9 @@ var exec = require('cordova/exec');
 
 var UXCam = function(){};
 
-UXCam.startApplicationWithKey = function(key, successCallback, errorCallback)
+UXCam.startWithKey = function(key, successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'start', [key]);
+  return exec(successCallback, errorCallback, 'UXCam', 'startWithKey', [key]);
 };
 
 UXCam.stopUXCamCameraVideo = function(successCallback, errorCallback)
