@@ -3,7 +3,7 @@
 
 ## Release Notes ##
 
-v2.1.0 - Changes the startup call from startApplicationWithKey to startWithKey for consistency with native SDKs
+v2.1.2 - Changes the startup call from startApplicationWithKey to startWithKey for consistency with native SDKs
 
 v2.0.1 - Native SDKs updated to versions 2.0.1 to fix some problems
 
