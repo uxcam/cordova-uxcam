@@ -3,7 +3,8 @@
 
 ## Release Notes ##
 
-v2.1.4 - Updating to iOS SDK to 2.02 which improves version reporting to the server
+v2.1.5 - Updating to iOS SDK 2.0.4 which fixes a bug with uploading icon images
+v2.1.4 - Updating to iOS SDK 2.0.2 which improves version reporting to the server
 v2.1.3 - Fixing some publishing problems with both SDKs
 v2.1.0 - Changes the startup call from startApplicationWithKey to startWithKey for consistency with native SDKs
 
