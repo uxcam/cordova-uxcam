@@ -3,6 +3,7 @@
 
 ## Release Notes ##
 
+v2.1.6 - Updating to Android SDK 2.0.4 fixing an issue on Android OS 5.0+
 v2.1.5 - Updating to iOS SDK 2.0.4 which fixes a bug with uploading icon images
 v2.1.4 - Updating to iOS SDK 2.0.2 which improves version reporting to the server
 v2.1.3 - Fixing some publishing problems with both SDKs
