@@ -67,10 +67,10 @@ Parameters
 screenName: The name of the screen as required.
 
 
-#### tagUserName
+#### tagUsersName
 UXCam uses a unique number to tag a device. You can tag a device allowing you to search for it on the dashboard and review their session further.
 
-UXCam.tagUserName(“User name”);
+UXCam.tagUsesrName(“User name”);
 Parameters 
 userName: The name of the tag of device
 
