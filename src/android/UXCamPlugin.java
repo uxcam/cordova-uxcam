@@ -49,6 +49,10 @@ public class UXCamPlugin extends CordovaPlugin {
                 }
                 UXCam.addTag(eventName);
             }
+            else if("occludeSensitiveScreen".equals(action)){
+                boolean occludeSensitiveScreen = args.getBoolean(0);
+                UXCam.occludeSensitiveScreen(occludeSensitiveScreen);
+            }
             else {
                 callback.error("Unknown UXCam API called: " + action);
                 return false;
