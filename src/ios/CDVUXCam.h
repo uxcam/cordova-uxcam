@@ -10,4 +10,6 @@
 - (void)tagScreenName:(CDVInvokedUrlCommand*)command;
 - (void)addTag:(CDVInvokedUrlCommand*)command;
 
+- (void)occludeSensitiveScreen:(CDVInvokedUrlCommand*)command;
+
 @end

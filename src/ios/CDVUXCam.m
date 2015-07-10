@@ -7,13 +7,20 @@
 - (void)startWithKey:(CDVInvokedUrlCommand*)command
 {
 	CDVPluginResult* pluginResult = nil;
-	NSString* apiKey = [command.arguments objectAtIndex:0];
+	NSString* apiKey = command.arguments[0];
 	
 	if (apiKey.length > 0)
 	{
-		NSLog(@"UXCam: Starting UXCam with API Key: %@", apiKey);
+		NSString* appVariantIdentifier = nil;
+		if (command.arguments.count>1)
+		{
+			appVariantIdentifier = command.arguments[1];
+			appVariantIdentifier = appVariantIdentifier.length>0 ? appVariantIdentifier : nil;
+		}
+		
+		NSLog(@"UXCam: Starting UXCam with API Key: %@ App Variant id: %@", apiKey, appVariantIdentifier ?: @"nil");
 
-		[UXCam startWithKey:apiKey];
+		[UXCam startWithKey:apiKey appVariantIdentifier:appVariantIdentifier];
 		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
 	}
 	else
@@ -51,7 +58,7 @@
 - (void)tagUsersName:(CDVInvokedUrlCommand*)command
 {
 	CDVPluginResult* pluginResult = nil;
-	NSString* userName = [command.arguments objectAtIndex:0];
+	NSString* userName = command.arguments[0];
 	if (userName.length>0)
 	{
 		[UXCam tagUsersName:userName additionalData:nil];
@@ -69,7 +76,7 @@
 - (void)tagScreenName:(CDVInvokedUrlCommand*)command
 {
 	CDVPluginResult* pluginResult = nil;
-	NSString* screenName = [command.arguments objectAtIndex:0];
+	NSString* screenName = command.arguments[0];
 	if (screenName.length>0)
 	{
 		[UXCam tagScreenName:screenName];
@@ -87,7 +94,7 @@
 - (void)addTag:(CDVInvokedUrlCommand*)command
 {
 	CDVPluginResult* pluginResult = nil;
-	NSString* tag = [command.arguments objectAtIndex:0];
+	NSString* tag = command.arguments[0];
 	if (tag.length>0)
 	{
 		[UXCam addTag:tag];
@@ -100,6 +107,16 @@
 	}
 	
 	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)occludeSensitiveScreen:(CDVInvokedUrlCommand*)command
+{
+	BOOL hideScreen = [command.arguments[0] boolValue];
+	
+	[UXCam occludeSensitiveScreen:hideScreen];
+	
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+								callbackId:command.callbackId];
 }
 
 @end

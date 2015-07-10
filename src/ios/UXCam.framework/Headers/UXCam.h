@@ -3,7 +3,7 @@
 //
 //  Copyright (c) 2013-2015 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 2.0.4
+//  UXCam SDK VERSION: 2.1.0
 //
 
 #import <Foundation/Foundation.h>
@@ -14,14 +14,34 @@
 */
 @interface UXCam : NSObject
 
-
 /**
 	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
-	This will start the UXCam application, ping the server, get the settings configurations and start capturing the data according to the configuration.
+	This will start the UXCam system, get the settings configurations from our server and start capturing the data according to the configuration.
  
 	@brief Start the UXCam session
 	@param userAPIKey The key to identify your UXCam account - find it in the UXCam dashboard for your account at http://newdashboard.uxcam.com/user/settings
- */
+	@param appVariantIdentifier This string is added to the app bundle ID and name to differentiate builds of the same app on the UXCam dashboard - useful for seperating Debug and Release builds - pass nil for default values
+	@param completiongBlock This block will be called once the app settings have been checked against the UXCam server - the parameter will be TRUE if recording has started
+*/
++ (void) startWithKey:(NSString*)userAPIKey appVariantIdentifier:(NSString*)appVariant completionBlock:(void (^)(BOOL started))block;
+
+/**
+	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
+	This will start the UXCam system, get the settings configurations from our server and start capturing the data according to the configuration.
+ 
+	@brief Start the UXCam session
+	@param userAPIKey The key to identify your UXCam account - find it in the UXCam dashboard for your account at http://newdashboard.uxcam.com/user/settings
+	@param appVariantIdentifier This string is added to the app bundle ID and name to differentiate builds of the same app on the UXCam dashboard - useful for seperating Debug and Release builds - pass nil for default values
+*/
++ (void) startWithKey:(NSString*)userAPIKey appVariantIdentifier:(NSString*)appVariant;
+
+/**
+	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
+	This will start the UXCam system, get the settings configurations from our server and start capturing the data according to the configuration.
+ 
+	@brief Start the UXCam session
+	@param userAPIKey The key to identify your UXCam account - find it in the UXCam dashboard for your account at http://newdashboard.uxcam.com/user/settings
+*/
 + (void) startWithKey:(NSString*)userAPIKey;
 
 /**
@@ -41,12 +61,14 @@
 
 /**
 	Returns the current recording status
+
 	@return YES if the session is being recorded
 */
 + (BOOL) isRecording;
 
 /**
 	Overrides any attempt to record the camera video that the application settings ask for.
+ 
 	@note You should call this if you application makes use of either device camera and might have the camera video settings enabled.
 	Otherwise the UXCam video recordings can become corrupted as UXCam and your application contest the use of the camera data.
 */
@@ -58,6 +80,16 @@
 	@param sensitiveView The view to occlude in the screen recording
 */
 + (void) occludeSensitiveView:(UIView *)sensitiveView;
+
+/**
+	Hide / un-hide the whole screen from the recording
+ 
+	@note Call this when you want to hide the whole screen from being recorded - useful in situations where you don't have access to the exact view to occlude
+	Once turned on with a TRUE parameter it will continue to hide the screen until called with FALSE
+ 
+	@param hideScreen Set TRUE to hide the screen from the recording, FALSE to start recording the screen contents again
+*/
++ (void) occludeSensitiveScreen:(BOOL)hideScreen;
 
 /**
 	UXCam normally captures the view controller name automatically but in cases where it this is not sufficient (such as in OpenGL applications)
@@ -90,6 +122,24 @@
 	@note This flag is cleared after each upload of data, so if you wish to mark a user as a favorite across multiple sesssions you will need to call this once in each session
 */
 + (void) markUserAsFavorite;
+
+/**
+ *  Returns a URL path for showing all the current users sessions
+ *
+ *	@note This can be used for tying in the current user with other analytics systems
+ *
+ *  @return url path for user session or nil if no verified session is active
+ */
++ (NSString*) urlForCurrentUser;
+
+/**
+ *  Returns a URL path that shows the current session when it compeletes
+ *
+ *	@note This can be used for tying in the current session with other analytics systems
+ *
+ *  @return url path for current session or nil if no verified session is active
+ */
++ (NSString*) urlForCurrentSession;
 
 #pragma mark - Deprecated methods - these will be removed on the next major version number update
 
