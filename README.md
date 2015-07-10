@@ -3,6 +3,8 @@
 
 ## Release Notes ##
 
+v2.2.0 - Updating to iOS SDK 2.1.0 - adds occludeSensitiveScreen and startWithKeyAndAppVariant methods
+
 v2.1.6 - Updating to Android SDK 2.0.4 fixing an issue on Android OS 5.0+
 v2.1.5 - Updating to iOS SDK 2.0.4 which fixes a bug with uploading icon images
 v2.1.4 - Updating to iOS SDK 2.0.2 which improves version reporting to the server
@@ -47,6 +49,12 @@ UXCam.startWithKey("API-key from https://www.uxcam.com to be placed here - this 
 
 ### OPTIONAL METHODS
 
+#### startWithKeyAndAppVariant
+Starts the UXCam session and sets a variant identifier for the app to differentiate builds of the same app on the dashboard.
+
+UXCam.startWithKeyAndAppVariant("API-Key", "App variant identifier: appended to the bundle ID and app name in the dashboard");
+
+
 #### stopApplicationAndUploadData 
 Stops the UXCam application and sends captured data to the server. Use this to start sending the data on UXCam server without waiting for the app going into the background.
 
@@ -87,6 +95,12 @@ Insert a general tag into the timeline - stores the tag with the timestamp when 
 UXCam.addTag(“Tag”);
 Parameters 
 Tag: The name of the tag
+
+#### occludeSensitiveScreen
+Hide / un-hide the screen from being recorded. Call once with 'true' to start hiding the screen and later with 'false' to record normal contents again.
+Useful to hide sensitive entry fields that you would not want to record the contents of.
+
+UXCam.occludeSensitiveScreen(bool hideScreen);
 
 ---
 
