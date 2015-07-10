@@ -66,12 +66,25 @@ public class UXCamPlugin extends CordovaPlugin {
     }
 
     private void start(JSONArray args) throws IllegalArgumentException, JSONException {
-        String key = args.getString(0);
-        if (key == null || key.length() == 0) {
-            throw new IllegalArgumentException("missing api key");
+        String key = "";
+        String buildIdentifier = "";
+        if (args.length() == 1){
+            key = args.getString(0);
+            if (key == null || key.length() == 0) {
+                throw new IllegalArgumentException("missing api key");
+            }
+            UXCam.startApplicationWithKeyForCordova(this.cordova.getActivity(), key);
         }
-
-        UXCam.startApplicationWithKeyForCordova(this.cordova.getActivity(), key);
+        else if (args.length() == 2){
+            key = args.getString(0);
+            buildIdentifier = args.getString(1);
+            if (key == null || key.length() == 0 || buildIdentifier == null || buildIdentifier.length() == 0) {
+                throw new IllegalArgumentException("missing api key or buildIdentifier");
+            }
+            UXCam.startApplicationWithKeyForCordova(this.cordova.getActivity(), key, buildIdentifier);
+        }else{
+            throw new IllegalArgumentException("unsupported number of arguments");
+        }
     }
 
 }
