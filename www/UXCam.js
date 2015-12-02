@@ -57,4 +57,20 @@ UXCam.occludeSensitiveScreen = function(occludeSensitiveScreen, successCallback,
   return exec(successCallback, errorCallback, 'UXCam', 'occludeSensitiveScreen', [occludeSensitiveScreen]);
 };
 
+UXCam.addVerificationListener = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'addVerificationListener', []);
+};
+
+UXCam.urlForCurrentUser = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'urlForCurrentUser', []);
+};
+
+UXCam.urlForCurrentSession = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'urlForCurrentSession', []);
+};
+
 module.exports = UXCam;
+

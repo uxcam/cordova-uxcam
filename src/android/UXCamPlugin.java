@@ -1,8 +1,5 @@
 package com.uxcam;
 
-import java.util.Map;
-import java.util.HashMap;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -19,6 +16,7 @@ public class UXCamPlugin extends CordovaPlugin {
             Log.d("UXCamPlugin","action is "+action);
             if ("startWithKey".equals(action)) {
                 this.start(args);
+                return true;
             }else if("stopUXCamCameraVideo".equals(action)){
                 UXCam.stopUXCamCameraVideo(this.cordova.getActivity());
             }
@@ -53,6 +51,22 @@ public class UXCamPlugin extends CordovaPlugin {
                 boolean occludeSensitiveScreen = args.getBoolean(0);
                 UXCam.occludeSensitiveScreen(occludeSensitiveScreen);
             }
+            else if("addVerificationListener".equals(action)){
+                String url = UXCam.urlForCurrentUser();
+                if (url.contains("null")){
+                    addListener(callback);
+                    return true;
+                }
+                callback.success(url);
+            }
+            else if("urlForCurrentUser".equals(action)){
+                String url = UXCam.urlForCurrentUser();
+                callback.success(url);
+            }
+            else if("urlForCurrentSession".equals(action)){
+                String url = UXCam.urlForCurrentSession();
+                callback.success(url);
+            }
             else {
                 callback.error("Unknown UXCam API called: " + action);
                 return false;
@@ -65,15 +79,16 @@ public class UXCamPlugin extends CordovaPlugin {
         }
     }
 
-    private void start(JSONArray args) throws IllegalArgumentException, JSONException {
-        String key = "";
-        String buildIdentifier = "";
+    private void start(final JSONArray args) throws IllegalArgumentException, JSONException {
+        String key;
+        String buildIdentifier;
         if (args.length() == 1){
             key = args.getString(0);
             if (key == null || key.length() == 0) {
                 throw new IllegalArgumentException("missing api key");
             }
             UXCam.startApplicationWithKeyForCordova(this.cordova.getActivity(), key);
+
         }
         else if (args.length() == 2){
             key = args.getString(0);
@@ -82,9 +97,23 @@ public class UXCamPlugin extends CordovaPlugin {
                 throw new IllegalArgumentException("missing api key or buildIdentifier");
             }
             UXCam.startApplicationWithKeyForCordova(this.cordova.getActivity(), key, buildIdentifier);
+
         }else{
             throw new IllegalArgumentException("unsupported number of arguments");
         }
     }
 
+    private void addListener(final CallbackContext callback) {
+        UXCam.addVerificationListener(new UXCam.OnVerificationListener() {
+            @Override
+            public void onVerificationSuccess() {
+                callback.success(UXCam.urlForCurrentUser());
+            }
+
+            @Override
+            public void onVerificationFailed(String errorMessage) {
+                callback.error(errorMessage);
+            }
+        });
+    }
 }
