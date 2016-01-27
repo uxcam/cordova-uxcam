@@ -3,6 +3,7 @@
 
 ## Release Notes ##
 
+v2.3.1 - Updating README to reflect change in name with the new plugin registry
 v2.3.0 - Updated to iOS SDK 2.5.0 and Android SDK 2.1.9
 
 v2.2.1 - Moving to the new 'npm' plugin publishing system
@@ -23,16 +24,16 @@ v2.0.0 - First full release
 
 STEP 1: INTEGRATE  WITH PHONEGAP
 
-    cordova plugin add com.uxcam.cordova.plugin
+    cordova plugin add cordova-uxcam
 
 or
 
-    phonegap plugin add com.uxcam.cordova.plugin
+    phonegap plugin add cordova-uxcam
   
 
 To remove the plugin: 
 
-    cordova/phonegap plugin remove com.uxcam.cordova.plugin 
+    cordova/phonegap plugin remove cordova-uxcam
 
 
 Supported platforms: android, ios
