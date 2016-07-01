@@ -52,6 +52,11 @@ UXCam.addTag = function(eventName, successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'addTag', [eventName]);
 };
 
+UXCam.addTagWithProperties = function(eventName, properties, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'addTagWithProperties', [eventName, properties]);
+};
+
 UXCam.occludeSensitiveScreen = function(occludeSensitiveScreen, successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'occludeSensitiveScreen', [occludeSensitiveScreen]);
