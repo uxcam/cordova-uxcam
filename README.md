@@ -3,6 +3,8 @@
 
 ## Release Notes ##
 
+v2.3.0 - Updated to iOS SDK 2.5.0 and Android SDK 2.1.9
+
 v2.2.1 - Moving to the new 'npm' plugin publishing system
 v2.2.0 - Updating to iOS SDK 2.1.0 - adds occludeSensitiveScreen and startWithKeyAndAppVariant methods
 
