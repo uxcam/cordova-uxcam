@@ -52,9 +52,30 @@ UXCam.addTag = function(eventName, successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'addTag', [eventName]);
 };
 
+UXCam.addTagWithProperties = function(eventName, properties, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'addTagWithProperties', [eventName, properties]);
+};
+
 UXCam.occludeSensitiveScreen = function(occludeSensitiveScreen, successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'occludeSensitiveScreen', [occludeSensitiveScreen]);
 };
 
+UXCam.addVerificationListener = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'addVerificationListener', []);
+};
+
+UXCam.urlForCurrentUser = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'urlForCurrentUser', []);
+};
+
+UXCam.urlForCurrentSession = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'urlForCurrentSession', []);
+};
+
 module.exports = UXCam;
+

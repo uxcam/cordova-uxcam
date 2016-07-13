@@ -3,6 +3,8 @@
 
 ## Release Notes ##
 
+v2.3.2 - Updating Android and iOS SDKs to latest versions (Jul 2016)
+v2.3.1 - Updating README to reflect change in name with the new plugin registry
 v2.3.0 - Updated to iOS SDK 2.5.0 and Android SDK 2.1.9
 
 v2.2.1 - Moving to the new 'npm' plugin publishing system
@@ -23,16 +25,16 @@ v2.0.0 - First full release
 
 STEP 1: INTEGRATE  WITH PHONEGAP
 
-    cordova plugin add com.uxcam.cordova.plugin
+    cordova plugin add cordova-uxcam
 
 or
 
-    phonegap plugin add com.uxcam.cordova.plugin
+    phonegap plugin add cordova-uxcam
   
 
 To remove the plugin: 
 
-    cordova/phonegap plugin remove com.uxcam.cordova.plugin 
+    cordova/phonegap plugin remove cordova-uxcam
 
 
 Supported platforms: android, ios
@@ -98,6 +100,15 @@ Insert a general tag into the timeline - stores the tag with the timestamp when 
 UXCam.addTag(“Tag”);
 Parameters 
 Tag: The name of the tag
+
+#### addTagWithProperties
+
+Insert a general tag into the timeline - stores the tag with the timestamp when it was added, along with the properties to associate with this instance of the tag. 
+
+UXCam.addTag(“Tag”, properties);
+Parameters 
+Tag: The name of the tag
+Properties: The properties: key/value data where the value is a number or a string 
 
 #### occludeSensitiveScreen
 Hide / un-hide the screen from being recorded. Call once with 'true' to start hiding the screen and later with 'false' to record normal contents again.
