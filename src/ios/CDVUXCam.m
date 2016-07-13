@@ -109,6 +109,26 @@
 	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (void)addTagWithProperties:(CDVInvokedUrlCommand*)command
+{
+	CDVPluginResult* pluginResult = nil;
+	NSString* tag = command.arguments[0];
+	NSDictionary* properties = command.arguments[1];
+	
+	if (tag.length>0 && [properties isKindOfClass:NSDictionary.class])
+	{
+		[UXCam addTag:tag withProperties:properties];
+		
+		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+	}
+	else
+	{
+		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+	}
+	
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 - (void)occludeSensitiveScreen:(CDVInvokedUrlCommand*)command
 {
 	BOOL hideScreen = [command.arguments[0] boolValue];

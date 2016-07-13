@@ -3,17 +3,11 @@
 //
 //  Copyright (c) 2013-2016 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 2.5.0
+//  UXCam SDK VERSION: 2.5.4
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
-//! Project version number for UXCam.
-FOUNDATION_EXPORT double UXCamVersionNumber;
-
-//! Project version string for UXCam.
-FOUNDATION_EXPORT const unsigned char UXCamVersionString[];
 
 /**
 *	UXCam SDK captures User experience data when a user uses an app, analyses this data on the cloud and provides insights to improve usability of the app.

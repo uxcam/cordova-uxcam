@@ -5,7 +5,7 @@ import org.json.JSONException;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
-
+import org.json.JSONObject;
 import android.util.Log;
 import com.uxcam.UXCam;
 
@@ -45,7 +45,20 @@ public class UXCamPlugin extends CordovaPlugin {
                 if (eventName == null || eventName.length() == 0) {
                     throw new IllegalArgumentException("missing event Name");
                 }
-                UXCam.addTag(eventName);
+                UXCam.addTagWithProperties(eventName);
+            }
+            else if("addTagWithProperties".equals(action)){
+                String eventName = args.getString(0);
+                JSONObject params = args.getJSONObject(1);
+
+                if (eventName == null || eventName.length() == 0) {
+                    throw new IllegalArgumentException("missing event Name");
+                }
+                if (params == null || params.length() == 0) {
+                    UXCam.addTagWithProperties(eventName);
+                }else{
+                    UXCam.addTagWithProperties(eventName, params);
+                }
             }
             else if("occludeSensitiveScreen".equals(action)){
                 boolean occludeSensitiveScreen = args.getBoolean(0);

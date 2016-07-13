@@ -8,13 +8,17 @@
 		<data>
 		sIR3rKpGuzy+KDvOoSsaRehn6G0=
 		</data>
+		<key>CHANGELOG.md</key>
+		<data>
+		sa7ZY99+GoWOpV+YBjfdHbmhpr0=
+		</data>
 		<key>Headers/UXCam.h</key>
 		<data>
-		eIUN0uSOBxeITtlnA9ZYuE+KM4g=
+		a6k9DR5aEFqvxCQlOyjYJXRieOY=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		1ot2HqBm+yePn8h8iLHwqKW483k=
+		UaQEH6ceuwuz0vJ6ZJz7lVdStsE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -24,17 +28,49 @@
 	<key>files2</key>
 	<dict>
 		<key>AFNetworking-LICENSE.txt</key>
-		<data>
-		sIR3rKpGuzy+KDvOoSsaRehn6G0=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			sIR3rKpGuzy+KDvOoSsaRehn6G0=
+			</data>
+			<key>hash2</key>
+			<data>
+			0fLJ9mvQpe5SwUBwkMrPLG+YIr2097Y6ZmpY7DYf/DA=
+			</data>
+		</dict>
+		<key>CHANGELOG.md</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			sa7ZY99+GoWOpV+YBjfdHbmhpr0=
+			</data>
+			<key>hash2</key>
+			<data>
+			mclM+N/oVskzBj+ovJt5s+cJfDc2ehPMtnvYTHkFBIk=
+			</data>
+		</dict>
 		<key>Headers/UXCam.h</key>
-		<data>
-		eIUN0uSOBxeITtlnA9ZYuE+KM4g=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			a6k9DR5aEFqvxCQlOyjYJXRieOY=
+			</data>
+			<key>hash2</key>
+			<data>
+			SOud84uN+t6reCMi8TOw4pbRCr16ht16mp1z6gbKGEY=
+			</data>
+		</dict>
 		<key>Modules/module.modulemap</key>
-		<data>
-		7ghoTR1JkYxLQSdwPoYYekyEwNs=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			7ghoTR1JkYxLQSdwPoYYekyEwNs=
+			</data>
+			<key>hash2</key>
+			<data>
+			7yVMMHXhwTYYm/Zi9lQrWpVplsYIeEYemq3Crcyfgxg=
+			</data>
+		</dict>
 	</dict>
 	<key>rules</key>
 	<dict>
