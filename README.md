@@ -3,6 +3,7 @@
 
 ## Release Notes ##
 
+v2.3.3 - Updating Android and iOS SDKs to latest versions (Sep 2016)
 v2.3.2 - Updating Android and iOS SDKs to latest versions (Jul 2016)
 v2.3.1 - Updating README to reflect change in name with the new plugin registry
 v2.3.0 - Updated to iOS SDK 2.5.0 and Android SDK 2.1.9
