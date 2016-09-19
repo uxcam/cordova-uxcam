@@ -16,7 +16,6 @@ public class UXCamPlugin extends CordovaPlugin {
             Log.d("UXCamPlugin","action is "+action);
             if ("startWithKey".equals(action)) {
                 this.start(args);
-                return true;
             }else if("stopUXCamCameraVideo".equals(action)){
                 UXCam.stopUXCamCameraVideo(this.cordova.getActivity());
             }
@@ -24,7 +23,7 @@ public class UXCamPlugin extends CordovaPlugin {
                 UXCam.stopApplicationAndUploadData();
             }
             else if("markUserAsFavorite".equals(action)){
-                UXCam.markUserAsFavorite();
+                UXCam.markSessionAsFavorite();
             }
             else if("tagUsersName".equals(action)){
                 String userName = args.getString(0);
