@@ -2,6 +2,11 @@
 
 ## Release Notes ##
 
+v2.5.6	- Fixing a problem with capturing Swift crashes
+		- Fixing a problem with 'NSCameraUsageDescription' when submitting apps from XCode8
+		- Adding support for more quality settings
+		- Optimising some code paths
+
 v2.5.5	- Fixing a bug that caused video problems on iOS8
 
 v2.5.4  - Improvements in gesture timeline

@@ -3,7 +3,7 @@
 //
 //  Copyright (c) 2013-2016 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 2.5.4
+//  UXCam SDK VERSION: 2.5.6
 //
 
 #import <Foundation/Foundation.h>
@@ -89,14 +89,6 @@
 	@return YES if the session is being recorded
 */
 + (BOOL) isRecording;
-
-/**
-	Overrides any attempt to record the camera video that the application settings ask for.
- 
-	@note You should call this if you application makes use of either device camera and might have the camera video settings enabled.
-	Otherwise the UXCam video recordings can become corrupted as UXCam and your application contest the use of the camera data.
-*/
-+ (void) ignoreCameraVideoRecording;
 
 /**
 	Hide a view that contains sensitive information or that you do not want recording on the screen video.
@@ -199,5 +191,13 @@
 + (void) markUserAsFavorite __attribute__((deprecated("from SDK 2.4.0 - use markSessionAsFavorite: from now functionality same, name is better")));
 
 + (void) tagUsersName:(NSString*)userName additionalData:(NSString*)additionalData __attribute__((deprecated("from SDK 2.4.0 - use tagUsersName: without the additionalData: paramater (which was never used)")));
+
+/**
+	Overrides any attempt to record the camera video that the application settings ask for.
+ 
+	@note You should call this if you application makes use of either device camera and might have the camera video settings enabled.
+	Otherwise the UXCam video recordings can become corrupted as UXCam and your application contest the use of the camera data.
+ */
++ (void) ignoreCameraVideoRecording __attribute__((deprecated("from SDK 2.5.6 - camera video recording hasn't been available for a long time so this has no use")));
 
 @end
