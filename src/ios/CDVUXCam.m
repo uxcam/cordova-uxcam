@@ -55,13 +55,23 @@
 								callbackId:command.callbackId];
 }
 
-- (void)tagUsersName:(CDVInvokedUrlCommand*)command
+- (void)setAutomaticScreenNameTagging:(CDVInvokedUrlCommand*)command
+{
+	BOOL enableAutomaticTagging = [command.arguments[0] boolValue];
+	
+	[UXCam SetAutomaticScreenNameTagging:enableAutomaticTagging];
+	
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+								callbackId:command.callbackId];
+}
+
+- (void)tagScreenName:(CDVInvokedUrlCommand*)command
 {
 	CDVPluginResult* pluginResult = nil;
-	NSString* userName = command.arguments[0];
-	if (userName.length>0)
+	NSString* screenName = command.arguments[0];
+	if (screenName.length>0)
 	{
-		[UXCam tagUsersName:userName additionalData:nil];
+		[UXCam tagScreenName:screenName];
 		
 		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
 	}
@@ -73,13 +83,13 @@
 	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void)tagScreenName:(CDVInvokedUrlCommand*)command
+- (void)tagUsersName:(CDVInvokedUrlCommand*)command
 {
 	CDVPluginResult* pluginResult = nil;
-	NSString* screenName = command.arguments[0];
-	if (screenName.length>0)
+	NSString* userName = command.arguments[0];
+	if (userName.length>0)
 	{
-		[UXCam tagScreenName:screenName];
+		[UXCam tagUsersName:userName additionalData:nil];
 		
 		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
 	}

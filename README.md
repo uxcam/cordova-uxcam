@@ -2,7 +2,8 @@
 # Cordova UXCam plugin
 
 ## Release Notes ##
-
+v2.3.4 - Updating Android and iOS SDKs to latest versions (Nov 2016)
+	   - Adds setAutomaticScreenNameTagging(bool enable) for iOS (does nothing on Android so far). Default is enabled.
 v2.3.3 - Updating Android and iOS SDKs to latest versions (Sep 2016)
 v2.3.2 - Updating Android and iOS SDKs to latest versions (Jul 2016)
 v2.3.1 - Updating README to reflect change in name with the new plugin registry

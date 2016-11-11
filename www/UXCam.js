@@ -37,14 +37,19 @@ UXCam.markUserAsFavorite = function(successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'markUserAsFavorite', []);
 };
 
-UXCam.tagUsersName = function(userName, successCallback, errorCallback)
+UXCam.setAutomaticScreenNameTagging = function(enableAutomaticNameTagging, successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'tagUsersName', [userName]);
+	return exec(successCallBack, errorCallBack, 'UXCam', 'setAutomaticScreenNameTagging' [enableAutomaticNameTagging]);
 };
 
 UXCam.tagScreenName = function(screenName, successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'tagScreenName', [screenName]);
+};
+
+UXCam.tagUsersName = function(userName, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'tagUsersName', [userName]);
 };
 
 UXCam.addTag = function(eventName, successCallback, errorCallback)
