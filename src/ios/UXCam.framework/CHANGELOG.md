@@ -2,6 +2,10 @@
 
 ## Release Notes ##
 
+v2.5.8	- Trapping nil value for screen name that would cause a crash 
+		- Adding SetAutomaticScreenNameTagging: to disable automatic screen name capture
+
+v2.5.7	- Capturing app version as well as build number for dashboard
 v2.5.6	- Fixing a problem with capturing Swift crashes
 		- Fixing a problem with 'NSCameraUsageDescription' when submitting apps from XCode8
 		- Adding support for more quality settings

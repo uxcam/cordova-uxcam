@@ -6,6 +6,7 @@
 - (void)stopUXCamCameraVideo:(CDVInvokedUrlCommand*)command;
 - (void)stopApplicationAndUploadData:(CDVInvokedUrlCommand*)command;
 - (void)markUserAsFavorite:(CDVInvokedUrlCommand*)command;
+- (void)setAutomaticScreenNameTagging:(CDVInvokedUrlCommand*)command;
 - (void)tagUsersName:(CDVInvokedUrlCommand*)command;
 - (void)tagScreenName:(CDVInvokedUrlCommand*)command;
 - (void)addTag:(CDVInvokedUrlCommand*)command;

@@ -32,7 +32,11 @@ public class UXCamPlugin extends CordovaPlugin {
                 }
                 UXCam.tagUsersName(userName);
             }
-            else if("tagScreenName".equals(action)){
+			else if("setAutomaticScreenNameTagging".equals(action))
+			{
+				
+			}
+			else if("tagScreenName".equals(action)){
                 String screenName = args.getString(0);
                 if (screenName == null || screenName.length() == 0) {
                     throw new IllegalArgumentException("missing screen Name");

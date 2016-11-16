@@ -3,11 +3,13 @@
 //
 //  Copyright (c) 2013-2016 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 2.5.6
+//  UXCam SDK VERSION: 2.5.8
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
 *	UXCam SDK captures User experience data when a user uses an app, analyses this data on the cloud and provides insights to improve usability of the app.
@@ -25,9 +27,9 @@
 	@param completiongBlock		This block will be called once the app settings have been checked against the UXCam server - the parameter will be TRUE if recording has started
  */
 + (void) startWithKey:(NSString*)userAPIKey
- appVariantIdentifier:(NSString*)appVariant
+ appVariantIdentifier:(nullable NSString*)appVariant
 	 multipleSessions:(BOOL)multiSession
-	  completionBlock:(void (^)(BOOL started))block;
+	  completionBlock:(nullable void (^)(BOOL started))block;
 
 /**
 	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
@@ -39,8 +41,8 @@
 	@param completiongBlock		This block will be called once the app settings have been checked against the UXCam server - the parameter will be TRUE if recording has started
 */
 + (void) startWithKey:(NSString*)userAPIKey
- appVariantIdentifier:(NSString*)appVariant
-	  completionBlock:(void (^)(BOOL started))block;
+ appVariantIdentifier:(NSString* _Nullable)appVariant
+	  completionBlock:(nullable void (^)(BOOL started))block;
 
 /**
 	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
@@ -51,7 +53,7 @@
 	@param appVariantIdentifier This string is added to the app bundle ID and name to differentiate builds of the same app on the UXCam dashboard - useful for seperating Debug and Release builds - pass nil for default values
 */
 + (void) startWithKey:(NSString*)userAPIKey
- appVariantIdentifier:(NSString*)appVariant;
+ appVariantIdentifier:(nullable NSString*)appVariant;
 
 /**
 	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
@@ -95,7 +97,7 @@
 
 	@param sensitiveView The view to occlude in the screen recording
 */
-+ (void) occludeSensitiveView:(UIView *)sensitiveView;
++ (void) occludeSensitiveView:(UIView*)sensitiveView;
 
 /**
 	Hide / un-hide the whole screen from the recording
@@ -107,9 +109,22 @@
 */
 + (void) occludeSensitiveScreen:(BOOL)hideScreen;
 
+
+/**
+	Enable / disable the automatic tagging of screen names
+	
+	@note By default UXCam will tag new screen names automatically. You can override this using the tagScreenName: method or use this method to disable the automatic tagging.
+ 
+	@param enable Set to TRUE to enable automatic screen name tagging (the default) or FALSE to disable it
+ 
+ */
++ (void) SetAutomaticScreenNameTagging:(BOOL)enable;
+
 /**
 	UXCam normally captures the view controller name automatically but in cases where it this is not sufficient (such as in OpenGL applications)
 	or where you would like to set a different unique name, use this function to set the name.
+ 
+	@note call this in [UIViewController viewDidAppear:] after the call to [super ...] or automatic screen name tagging will override your value
 
 	@param screenName Name to apply to the current screen in the session video
 */
@@ -138,7 +153,7 @@
  
 	@note Only NSNumber and NSString property types are supported to a maxiumum count of 100 and maximum size per entry of 1KiB
  */
-+ (void) addTag:(NSString*)tag withProperties:(NSDictionary*)properties;
++ (void) addTag:(NSString*)tag withProperties:(nullable NSDictionary*)properties;
 
 /**
 	You can mark a session specifically if certain condition are met making them a good user for further testing.
@@ -201,3 +216,5 @@
 + (void) ignoreCameraVideoRecording __attribute__((deprecated("from SDK 2.5.6 - camera video recording hasn't been available for a long time so this has no use")));
 
 @end
+
+NS_ASSUME_NONNULL_END

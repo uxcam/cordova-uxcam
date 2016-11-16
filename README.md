@@ -3,23 +3,22 @@
 
 ## Release Notes ##
 
-v2.3.3 - Updating Android and iOS SDKs to latest versions (Sep 2016)
-v2.3.2 - Updating Android and iOS SDKs to latest versions (Jul 2016)
-v2.3.1 - Updating README to reflect change in name with the new plugin registry
-v2.3.0 - Updated to iOS SDK 2.5.0 and Android SDK 2.1.9
-
-v2.2.1 - Moving to the new 'npm' plugin publishing system
-v2.2.0 - Updating to iOS SDK 2.1.0 - adds occludeSensitiveScreen and startWithKeyAndAppVariant methods
-
-v2.1.6 - Updating to Android SDK 2.0.4 fixing an issue on Android OS 5.0+
-v2.1.5 - Updating to iOS SDK 2.0.4 which fixes a bug with uploading icon images
-v2.1.4 - Updating to iOS SDK 2.0.2 which improves version reporting to the server
-v2.1.3 - Fixing some publishing problems with both SDKs
-v2.1.0 - Changes the startup call from startApplicationWithKey to startWithKey for consistency with native SDKs
-
-v2.0.1 - Native SDKs updated to versions 2.0.1 to fix some problems
-
-v2.0.0 - First full release
+Version	   | Changes
+-----------|--------
+2.3.4	| Updating Android and iOS SDKs to latest versions (Nov 2016). Adds setAutomaticScreenNameTagging(bool enable) for iOS (does nothing on Android so far). Default is enabled.
+2.3.3	| Updating Android and iOS SDKs to latest versions (Sep 2016)
+2.3.2	| Updating Android and iOS SDKs to latest versions (Jul 2016)
+2.3.1	| Updating README to reflect change in name with the new plugin registry
+2.3.0	| Updated to iOS SDK 2.5.0 and Android SDK 2.1.9
+2.2.1	| Moving to the new 'npm' plugin publishing system
+2.2.0	| Updating to iOS SDK 2.1.0 - adds occludeSensitiveScreen and startWithKeyAndAppVariant methods
+2.1.6	| Updating to Android SDK 2.0.4 fixing an issue on Android OS 5.0+
+2.1.5	| Updating to iOS SDK 2.0.4 which fixes a bug with uploading icon images
+2.1.4	| Updating to iOS SDK 2.0.2 which improves version reporting to the server
+2.1.3	| Fixing some publishing problems with both SDKs
+2.1.0	| Changes the startup call from startApplicationWithKey to startWithKey for consistency with native SDKs
+2.0.1	| Native SDKs updated to versions 2.0.1 to fix some problems
+2.0.0	| First full release
 
 
 ## Add UXCam plugin
