@@ -129,4 +129,11 @@ Symptom: Project builds fine when testing plugin installed from a local folder o
 
 To publish the project when you are happy with it: npm publish 'DIRECTORY NAME'
 See also the helpful information at: https://cordova.apache.org/announcements/2015/04/21/plugins-release-and-move-to-npm.html
+
+More detail on publishing:
+i) get it all working in a branch. Make sure the package.json and plugin.xml files have the version number updated
+ii) Make a tag on the git commit that is the final code for the version - tag of format vX.Y.Z
+iii) Merge the branch into master
+iv) Open a terminal in the top level folder - run ‘npm publish .’ to push it out - response should be '+ cordova-uxcam@X.Y.Z’ for whatever the new version
+
 -- 
