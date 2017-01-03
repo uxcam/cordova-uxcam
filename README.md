@@ -5,6 +5,7 @@
 
 Version	   | Changes
 -----------|--------
+2.3.6	| Updating Android SDK to latest versions (JAN 2016). setAutomaticScreenNameTagging API typo bug fixed
 2.3.4	| Updating Android and iOS SDKs to latest versions (Nov 2016). Adds setAutomaticScreenNameTagging(bool enable) for iOS (does nothing on Android so far). Default is enabled.
 2.3.3	| Updating Android and iOS SDKs to latest versions (Sep 2016)
 2.3.2	| Updating Android and iOS SDKs to latest versions (Jul 2016)
