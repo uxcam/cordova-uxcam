@@ -34,7 +34,7 @@ public class UXCamPlugin extends CordovaPlugin {
             }
 			else if("setAutomaticScreenNameTagging".equals(action))
 			{
-				
+				Log.d("UXCamPlugin","action "+action+" is not supported by UXCam Android");
 			}
 			else if("tagScreenName".equals(action)){
                 String screenName = args.getString(0);
@@ -84,7 +84,7 @@ public class UXCamPlugin extends CordovaPlugin {
                 callback.success(url);
             }
             else {
-                callback.error("Unknown UXCam API called: " + action);
+                callback.error("This API call is not supported by UXCam Android, API called: " + action);
                 return false;
             }
             callback.success(String.format("UXCam.%s(%s)", action, args.join(", ")));

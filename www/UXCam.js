@@ -39,7 +39,7 @@ UXCam.markUserAsFavorite = function(successCallback, errorCallback)
 
 UXCam.setAutomaticScreenNameTagging = function(enableAutomaticNameTagging, successCallback, errorCallback)
 {
-	return exec(successCallBack, errorCallBack, 'UXCam', 'setAutomaticScreenNameTagging' [enableAutomaticNameTagging]);
+	return exec(successCallback, errorCallback, 'UXCam', 'setAutomaticScreenNameTagging', [enableAutomaticNameTagging]);
 };
 
 UXCam.tagScreenName = function(screenName, successCallback, errorCallback)
