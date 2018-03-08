@@ -9,34 +9,27 @@
 	<author>UXCam</author>
 	<license>Commercial</license>
 	<keywords>UXCam, Analytics, Screen capture, screen recording</keywords>
-	<engines>
-		<engine name="cordova" version=">=3.0.0" />
-	</engines>
 	<js-module src="www/UXCam.js" name="UXCam">
 		<clobbers target="UXCam" />
 	</js-module>
 
 	<!-- Android -->
-	<platform name="android">
-		<config-file target="config.xml" parent="/*">
-			<feature name="UXCam">
-				<param name="android-package" value="com.uxcam.UXCamPlugin"/>
-			</feature>
-		</config-file>
-
-		<config-file target="AndroidManifest.xml" parent="/manifest/application">
-			<service android:name="com.uxcam.video.camera.RecorderService"/>
-			<service android:name="com.uxcam.service.HttpPostService"/>
-		</config-file>
-
-		<config-file target="AndroidManifest.xml" parent="/manifest">
-			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-			<uses-permission android:name="android.permission.INTERNET" />
-		</config-file>
-
-		<source-file src="src/android/UXCam.jar" target-dir="libs" framework="true" />
-		<source-file src="src/android/UXCamPlugin.java" target-dir="src/com/uxcam" custom="true" />
-	</platform>
+    <platform name="android">
+        <config-file target="app/src/main/config.xml" parent="/*">
+            <feature name="UXCam">
+                <param name="android-package" value="com.uxcam.UXCamPlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
+            <service android:name="com.uxcam.service.HttpPostService"/>
+        </config-file>
+        <source-file src="src/android/UXCam.jar" target-dir="app/libs" framework="true" mode="merge"/>
+        <source-file src="src/android/UXCamPlugin.java" target-dir="app/src/main/java/com/uxcam" custom="true"/>
+    </platform>
 
 	<!-- iOS -->
 	<platform name="ios">
