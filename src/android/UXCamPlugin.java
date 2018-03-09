@@ -8,6 +8,7 @@ import org.apache.cordova.CallbackContext;
 import org.json.JSONObject;
 import android.util.Log;
 import com.uxcam.UXCam;
+import com.uxcam.OnVerificationListener;
 
 public class UXCamPlugin extends CordovaPlugin {
     @Override
@@ -16,8 +17,6 @@ public class UXCamPlugin extends CordovaPlugin {
             Log.d("UXCamPlugin","action is "+action);
             if ("startWithKey".equals(action)) {
                 this.start(args);
-            }else if("stopUXCamCameraVideo".equals(action)){
-                UXCam.stopUXCamCameraVideo(this.cordova.getActivity());
             }
             else if("stopApplicationAndUploadData".equals(action)){
                 UXCam.stopApplicationAndUploadData();
@@ -120,7 +119,7 @@ public class UXCamPlugin extends CordovaPlugin {
     }
 
     private void addListener(final CallbackContext callback) {
-        UXCam.addVerificationListener(new UXCam.OnVerificationListener() {
+        UXCam.addVerificationListener(new OnVerificationListener() {
             @Override
             public void onVerificationSuccess() {
                 callback.success(UXCam.urlForCurrentUser());
