@@ -1,5 +1,5 @@
 {
-  "version": "2.3.4",
+  "version": "2.3.7",
   "name": "cordova-uxcam",
   "cordova_name": "UXCam",
   "description": "Cordova plugin for UXCam - enables the recording of your applications screen",
@@ -35,5 +35,8 @@
   "bugs": {
     "url": "https://github.com/uxcam/cordova-uxcam/issues"
   },
-  "homepage": "https://github.com/uxcam/cordova-uxcam#readme"
+  "homepage": "https://github.com/uxcam/cordova-uxcam#readme",
+  "dependencies": {
+    "npm": "^5.7.1"
+  }
 }
