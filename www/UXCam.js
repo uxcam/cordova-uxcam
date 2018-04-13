@@ -5,9 +5,7 @@
  *
  * Copyright(c) 2015 UXCam Inc.
  */
-
-'use strict';
-
+ 
 var exec = require('cordova/exec');
 
 var UXCam = function(){};

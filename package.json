@@ -21,7 +21,7 @@
     }
   ],
   "cordova": {
-    "id": "com.uxcam.cordova.plugin",
+    "id": "cordova-uxcam",
     "platforms": [
       "android",
       "ios"
