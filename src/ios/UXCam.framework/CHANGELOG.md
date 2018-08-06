@@ -1,9 +1,20 @@
 # UXCam iOS framework
 
+
 ## Release Notes ##
 
 Version | Changes
 ------- | ----------
+3.0.0-beta-6 | Beta version of SDK v3 
+3.0.0  	| Extensive refactoring of the internals of the SDK to support new features
+		| Added session filters for screen name, session duration, number of interactions
+		| Added support for offline session recording
+		| Added support for data-only sessions (screens visited, number of interactions, event timeline etc. without a screen video)
+		| Re-factored the UXCam API on iOS and Android to be more similar and iOS to better conform with standard naming practices
+		| Re-factored the event recording system to include user and session events as well as general timeline events
+		|
+2.5.18	| Adding `unOccludeSensitiveView` method
+		| Fixing a problem that exposed sensitives views for their first frame on screen in some circumstances
 2.5.17	| Fixing a problem with tag collection from multiple threads
 		| Fixing memory leaks when recording screens with video content
 2.5.16	| Fixing a 2.5.15 introduced bug with network reachability
@@ -12,7 +23,7 @@ Version | Changes
 		| [BETA] `allowShortBreakForAnotherApp` method - will pause the recording while the user goes out to another.
 		| [BETA] `StopRecordingScrollingOnStutterOS` method to work around iOS11.2 problems
 2.5.14	| Fixing a warning in iOS11
-2.5.13	| Adjusting the occlusion of views during animations
+2.5.13	| Adjusting the occlusion of sensitive views during animations
 2.5.12	| Adjusting the occlusion of secure and/or UITextFields to be less sensitive to screen construction order
 2.5.11	| Removed the default setting of `tagUsersName` from UIDevice.currentDevice.name - there is no default now
 2.5.10	| Fixing a problem with screen names not being registered if no events occured on that screen

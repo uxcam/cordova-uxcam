@@ -1,3 +1,4 @@
+cordova.define("cordova-uxcam.UXCam", function(require, exports, module) {
 /**
  * UXCam.js
  *
@@ -17,27 +18,22 @@ UXCam.startWithKey = function(key, successCallback, errorCallback)
 
 UXCam.startWithKeyAndAppVariant = function(key, appVariant, successCallback, errorCallback)
 {
-	return exec(successCallback, errorCallback, 'UXCam', 'startWithKey', [key, appVariant]);
+  return exec(successCallback, errorCallback, 'UXCam', 'startWithKey', [key, appVariant]);
 };
 
-UXCam.stopUXCamCameraVideo = function(successCallback, errorCallback)
+UXCam.startNewSession = function(successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'stopUXCamCameraVideo', []);
+  return exec(successCallback, errorCallback, 'UXCam', 'startNewSession', []);
 };
 
-UXCam.stopApplicationAndUploadData = function(successCallback, errorCallback)
+UXCam.stopSessionAndUploadData = function(successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'stopApplicationAndUploadData', []);
+  return exec(successCallback, errorCallback, 'UXCam', 'stopSessionAndUploadData', []);
 };
 
-UXCam.markUserAsFavorite = function(successCallback, errorCallback)
+UXCam.stopApplicationAndUploadData = function(occludeAllTextView, successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'markUserAsFavorite', []);
-};
-
-UXCam.setAutomaticScreenNameTagging = function(enableAutomaticNameTagging, successCallback, errorCallback)
-{
-	return exec(successCallback, errorCallback, 'UXCam', 'setAutomaticScreenNameTagging', [enableAutomaticNameTagging]);
+  return exec(successCallback, errorCallback, 'UXCam', 'occludeAllTextView', [occludeAllTextView]);
 };
 
 UXCam.tagScreenName = function(screenName, successCallback, errorCallback)
@@ -45,24 +41,129 @@ UXCam.tagScreenName = function(screenName, successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'tagScreenName', [screenName]);
 };
 
-UXCam.tagUsersName = function(userName, successCallback, errorCallback)
+UXCam.setAutomaticScreenNameTagging = function(automaticScreenNameTagging, successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'tagUsersName', [userName]);
+  return exec(successCallback, errorCallback, 'UXCam', 'setAutomaticScreenNameTagging', [automaticScreenNameTagging]);
 };
 
-UXCam.addTag = function(eventName, successCallback, errorCallback)
+UXCam.identify = function(name, successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'addTag', [eventName]);
+  return exec(successCallback, errorCallback, 'UXCam', 'identify', [name]);
 };
 
-UXCam.addTagWithProperties = function(eventName, properties, successCallback, errorCallback)
+UXCam.setUserProperty = function(key, value, successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'addTagWithProperties', [eventName, properties]);
+  return exec(successCallback, errorCallback, 'UXCam', 'setUserProperty', [key, value]);
+};
+
+UXCam.setSessionProperty = function(key, value, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'setSessionProperty', [key, value]);
+};
+
+UXCam.isRecording =  async function(successCallback, errorCallback)
+{
+    return exec(successCallback, errorCallback, 'UXCam', 'isRecording', []);
+};
+
+UXCam.pauseScreenRecording = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'pauseScreenRecording', []);
+};
+
+UXCam.resumeScreenRecording = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'resumeScreenRecording', []);
+};
+
+UXCam.optIn = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optIn', []);
+};
+
+UXCam.optOut = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optOut', []);
+};
+
+UXCam.optStatus = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optStatus', []);
+};
+
+UXCam.cancelCurrentSession = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'cancelCurrentSession', []);
+};
+
+UXCam.allowShortBreakForAnotherApp = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'allowShortBreakForAnotherApp', []);
+};
+
+UXCam.resumeShortBreakForAnotherApp = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'resumeShortBreakForAnotherApp', []);
+};
+
+UXCam.getMultiSessionRecord = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'getMultiSessionRecord', []);
+};
+
+UXCam.setMultiSessionRecord = function(mulitSession, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'setMultiSessionRecord', [mulitSession]);
+};
+
+UXCam.deletePendingUploads = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'deletePendingUploads', []);
+};
+
+UXCam.pendingSessionCount = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'pendingSessionCount', []);
+};
+
+UXCam.uploadPendingSession = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'uploadPendingSession', []);
+};
+
+UXCam.stopApplicationAndUploadData = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'stopApplicationAndUploadData', []);
+};
+
+UXCam.setAutomaticScreenNameTagging = function(enableAutomaticNameTagging, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'setAutomaticScreenNameTagging', [enableAutomaticNameTagging]);
+};
+
+UXCam.tagScreenName = function(screenName, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'tagScreenName', [screenName]);
+};
+
+UXCam.logEvent = function(eventName, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'logEvent', [eventName]);
+};
+
+UXCam.logEventWithProperties = function(eventName, properties, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'logEventWithProperties', [eventName, properties]);
 };
 
 UXCam.occludeSensitiveScreen = function(occludeSensitiveScreen, successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'occludeSensitiveScreen', [occludeSensitiveScreen]);
+};
+
+UXCam.occludeAllTextView = function(occludeAllTextView, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'occludeAllTextView', [occludeAllTextView]);
 };
 
 UXCam.addVerificationListener = function(successCallback, errorCallback)
@@ -82,3 +183,5 @@ UXCam.urlForCurrentSession = function(successCallback, errorCallback)
 
 module.exports = UXCam;
 
+
+});

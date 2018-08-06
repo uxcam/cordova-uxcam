@@ -3,15 +3,53 @@
 @interface CDVUXCam : CDVPlugin
 
 - (void)startWithKey:(CDVInvokedUrlCommand*)command;
-- (void)stopUXCamCameraVideo:(CDVInvokedUrlCommand*)command;
-- (void)stopApplicationAndUploadData:(CDVInvokedUrlCommand*)command;
-- (void)markUserAsFavorite:(CDVInvokedUrlCommand*)command;
-- (void)setAutomaticScreenNameTagging:(CDVInvokedUrlCommand*)command;
-- (void)tagUsersName:(CDVInvokedUrlCommand*)command;
-- (void)tagScreenName:(CDVInvokedUrlCommand*)command;
-- (void)addTag:(CDVInvokedUrlCommand*)command;
-- (void)addTagWithProperties:(CDVInvokedUrlCommand*)command;
+
+- (void)stopSessionAndUploadData:(CDVInvokedUrlCommand*)command;
+
+- (void)allowShortBreakForAnotherApp:(CDVInvokedUrlCommand*)command;
+
+- (void)startNewSession:(CDVInvokedUrlCommand*)command;
+
+- (void)cancelCurrentSession:(CDVInvokedUrlCommand*)command;
+
+- (void)isRecording:(CDVInvokedUrlCommand*)command;
+
+- (void)setMultiSessionRecord:(CDVInvokedUrlCommand*)command;
+
+- (void)getMultiSessionRecord:(CDVInvokedUrlCommand*)command;
+
+- (void)pauseScreenRecording:(CDVInvokedUrlCommand*)command;
+
+- (void)resumeScreenRecording:(CDVInvokedUrlCommand*)command;
+
+- (void)disableCrashHandling:(CDVInvokedUrlCommand*)command;
+
+- (void)pendingUploads:(CDVInvokedUrlCommand*)command;
+
+- (void)deletePendingUploads:(CDVInvokedUrlCommand*)command;
 
 - (void)occludeSensitiveScreen:(CDVInvokedUrlCommand*)command;
+
+- (void)occludeAllTextFields:(CDVInvokedUrlCommand*)command;
+
+- (void)setAutomaticScreenNameTagging:(CDVInvokedUrlCommand*)command;
+
+- (void)tagScreenName:(CDVInvokedUrlCommand*)command;
+
+- (void)setUserIdentity:(CDVInvokedUrlCommand*)command;
+
+- (void)logEvent:(CDVInvokedUrlCommand*)command;
+
+- (void)logEventWithProperties:(CDVInvokedUrlCommand*)command;
+
+- (void)urlForCurrentUser:(CDVInvokedUrlCommand*)command;
+
+- (void)urlForCurrentSession:(CDVInvokedUrlCommand*)command;
+
+- (void)optInStatus:(CDVInvokedUrlCommand*)command;
+
+- (void)optIn:(CDVInvokedUrlCommand*)command;
+
+- (void)optOut:(CDVInvokedUrlCommand*)command;
 
 @end
