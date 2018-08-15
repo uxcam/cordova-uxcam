@@ -17,7 +17,7 @@
             buildIdentifier = command.arguments[1];
             buildIdentifier = buildIdentifier.length>0 ? buildIdentifier : nil;
         }
-        
+        [UXCam pluginType:"cordova" version:"3.0.0-beta.1"];
         NSLog(@"UXCam: Starting UXCam with API Key: %@ App Variant id: %@", apiKey, buildIdentifier ?: @"nil");
         
         [UXCam startWithKey:apiKey buildIdentifier:buildIdentifier];

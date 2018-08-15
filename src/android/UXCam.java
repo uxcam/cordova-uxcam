@@ -118,6 +118,7 @@ public class UXCam extends CordovaPlugin {
     private void start(final JSONArray args) throws IllegalArgumentException, JSONException {
         String key;
         String buildIdentifier;
+        UXCam.pluginType("cordova", "3.0.0-beta.1");
         if (args.length() == 1) {
             key = args.getString(0);
             if (key == null || key.length() == 0) {
