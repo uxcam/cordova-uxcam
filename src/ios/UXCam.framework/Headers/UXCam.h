@@ -3,7 +3,7 @@
 //
 //  Copyright (c) 2013-2018 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.0.0-beta-6
+//  UXCam SDK VERSION: 3.0.0-beta-3
 //
 
 #import <Foundation/Foundation.h>
@@ -364,6 +364,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) stopRecordingScrollingOnStutterOS:(BOOL)stopScrollRecording;
 
 
+#pragma mark Internal use only methods
+/**
+ *	 Used to identify non-native platform systems
+ *   @note For internal use only
+ */
++ (void) pluginType:(NSString*)type version:(NSString*)versionNumber;
+
+
 #pragma mark - Deprecated methods
 /// Deprecated - will fall through to the new method `uploadingPendingSessions`
 + (void) UploadingPendingSessions:(void (^)(void))block __attribute__((deprecated("from SDK 3.0 - use - uploadingPendingSessions")));
@@ -396,7 +404,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) StopRecordingScrollingOnStutterOS:(BOOL)stopScrollRecording __attribute__((deprecated("use - stopRecordingScrollingOnStutterOS")));
 
 /// Deprecated - this will not do anything, and the method will be removed in future
-+ (void) markSessionAsFavorite __attribute__((deprecated("from SDK 3.0 - use events to add timeline/user properties")));
++ (void) markSessionAsFavorite __attribute__((deprecated("from SDK 3.0 - This method will be removed from next big release")));
 
 /// Deprecated - will fall through to the new method `stopSessionAndUploadData`
 + (void) stopApplicationAndUploadData __attribute__((deprecated("from SDK 3.0.0 - use stopSessionAndUploadData from now functionality same, name is better")));

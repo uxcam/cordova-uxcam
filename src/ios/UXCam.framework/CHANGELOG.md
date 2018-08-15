@@ -5,7 +5,7 @@
 
 Version | Changes
 ------- | ----------
-3.0.0-beta-6 | Beta version of SDK v3 
+3.0.0-beta-3 | Beta version of SDK v3 
 3.0.0  	| Extensive refactoring of the internals of the SDK to support new features
 		| Added session filters for screen name, session duration, number of interactions
 		| Added support for offline session recording
