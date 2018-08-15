@@ -3,8 +3,8 @@
 
 ## Release Notes ##
 
-Version	   | Changes
------------|--------
+Version	        | Changes
+----------------|--------
 3.0.0-beta.1    | SDK updated to use v3 beta version with all new APIs
 2.3.7	        | Updating Android and iOS SDKs to latest versions (MAR 2018)
 2.3.6	        | Updating Android SDK to latest versions (JAN 2017). setAutomaticScreenNameTagging API typo bug fixed
@@ -63,16 +63,10 @@ Starts the UXCam session and sets a variant identifier for the app to differenti
 UXCam.startWithKeyAndAppVariant("API-Key", "App variant identifier: appended to the bundle ID and app name in the dashboard");
 
 
-#### stopApplicationAndUploadData 
+#### stopSessionAndUploadData 
 Stops the UXCam application and sends captured data to the server. Use this to start sending the data on UXCam server without waiting for the app going into the background.
 
-UXCam.stopApplicationAndUploadData();
-
-
-#### stopUXCamCameraVideo
-Stops the faceCamera video recording if your application uses camera 
-
-UXCam.stopUXCamCameraVideo ();
+UXCam.stopSessionAndUploadData();
 
 
 #### tagScreenName
@@ -83,24 +77,32 @@ Parameters
 screenName: The name of the screen as required.
 
 
-#### tagUsersName
+#### setUserIdentity
 UXCam uses a unique number to tag a device. You can tag a device allowing you to search for it on the dashboard and review their session further.
 
-UXCam.tagUsersName(“User name”);
+UXCam.setUserIdentity(“User name”);
 Parameters 
 userName: The name of the tag of device
 
+#### setUserProperty
+Add a key/value property for this user
 
-#### markUserAsFavorite
-You can mark a user specifically if certain condition are met making them a good user for further testing. You can then filter these users and perform further test.
+setUserProperty(key, value)
+Parameters
+propertyName: Name of the property to attach to the user
+value: A value to associate with this property
 
-UXCam.markUserAsFavorite();
+#### setSessionProperty
+Add a single key/value property to this session
 
+setSessionProperty(key, value)
+propertyName: Name of the property to attach to the session recording
+value: A value to associate with this property
 
-#### addTag
+#### logEvent
 Insert a general tag into the timeline - stores the tag with the timestamp when it was added. 
 
-UXCam.addTag(“Tag”);
+UXCam.logEvent(“Tag”);
 Parameters 
 Tag: The name of the tag
 
@@ -108,7 +110,7 @@ Tag: The name of the tag
 
 Insert a general tag into the timeline - stores the tag with the timestamp when it was added, along with the properties to associate with this instance of the tag. 
 
-UXCam.addTag(“Tag”, properties);
+UXCam.logEventWithProperties(“Tag”, properties);
 Parameters 
 Tag: The name of the tag
 Properties: The properties: key/value data where the value is a number or a string 
@@ -118,6 +120,16 @@ Hide / un-hide the screen from being recorded. Call once with 'true' to start hi
 Useful to hide sensitive entry fields that you would not want to record the contents of.
 
 UXCam.occludeSensitiveScreen(bool hideScreen);
+
+#### optOut
+This will cancel any current session recording and opt this device out of future session recordings until optIn() is called
+
+UXCam.optOut()
+
+#### optIn
+This will opt this device back into session recordings
+
+UXCam.optIn()
 
 ---
 
