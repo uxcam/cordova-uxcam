@@ -1,4 +1,3 @@
-cordova.define("cordova-uxcam.UXCam", function(require, exports, module) {
 /**
  * UXCam.js
  *
@@ -46,9 +45,9 @@ UXCam.setAutomaticScreenNameTagging = function(automaticScreenNameTagging, succe
   return exec(successCallback, errorCallback, 'UXCam', 'setAutomaticScreenNameTagging', [automaticScreenNameTagging]);
 };
 
-UXCam.identify = function(name, successCallback, errorCallback)
+UXCam.setUserIdentity = function(name, successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'identify', [name]);
+  return exec(successCallback, errorCallback, 'UXCam', 'setUserIdentity', [name]);
 };
 
 UXCam.setUserProperty = function(key, value, successCallback, errorCallback)
@@ -182,6 +181,3 @@ UXCam.urlForCurrentSession = function(successCallback, errorCallback)
 };
 
 module.exports = UXCam;
-
-
-});
