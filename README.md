@@ -135,13 +135,6 @@ UXCam.optIn()
 
 ## Notes on Building a Plugin ##
 
-If making a plugin like this, or trying to update the framework note that there are currently problems publishing cordova plugins that have iOS custom frameworks in them.
-
-See the bug report: https://issues.apache.org/jira/browse/CB-6092 for details.
-
-Work around: Pull your custom framework apart and put the library file directly in the Name.framework folder and have the headers in a 'Headers' sub-folder: you can't publish the symbolic links that are normal in frameworks.
-Symptom: Project builds fine when testing plugin installed from a local folder or from a git URL - fails when installed by name from the plugin registry.
-
 To publish the project when you are happy with it: npm publish 'DIRECTORY NAME'
 See also the helpful information at: https://cordova.apache.org/announcements/2015/04/21/plugins-release-and-move-to-npm.html
 -- 
