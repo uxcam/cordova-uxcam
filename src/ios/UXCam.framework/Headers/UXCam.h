@@ -3,7 +3,7 @@
 //
 //  Copyright (c) 2013-2018 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.0.0-beta-3
+//  UXCam SDK VERSION: 3.0.3
 //
 
 #import <Foundation/Foundation.h>
@@ -12,8 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
-*	UXCam SDK captures User experience data when a user uses an app, analyses this data on the cloud and provides insights to improve usability of the app.
-*/
+ *	UXCam SDK captures User experience data when a user uses an app, analyses this data on the cloud and provides insights to improve usability of the app.
+ */
 
 @interface UXCam : NSObject
 
@@ -30,12 +30,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
- This will start the UXCam system, get the settings configurations from our server and start capturing the data according to the configuration.
- 
- @brief Start the UXCam session
- @param userAPIKey			The key to identify your UXCam account - find it in the UXCam dashboard for your account at https://dashboard.uxcam.com/user/settings
- @param buildIdentifier		This string is added to the app bundle ID and name to differentiate builds of the same app on the UXCam dashboard - useful for seperating Debug and Release builds - pass nil for default values
+ *	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
+ *	This will start the UXCam system, get the settings configurations from our server and start capturing the data according to the configuration.
+ *
+ *	@brief Start the UXCam session
+ *	@param userAPIKey			The key to identify your UXCam account - find it in the UXCam dashboard for your account at https://dashboard.uxcam.com/user/settings
+ *	@param buildIdentifier		This string is added to the app bundle ID and name to differentiate builds of the same app on the UXCam dashboard - useful for seperating Debug and Release builds - pass nil for default values
  */
 + (void) startWithKey:(NSString*)userAPIKey
 	  buildIdentifier:(nullable NSString*)buildIdentifier;
@@ -78,8 +78,8 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *	Use this to start sending the data on UXCam server without the app going into the background.
  *
-  *	@note This starts an asynchronous process and returns immediately.
-*/
+ *	@note This starts an asynchronous process and returns immediately.
+ */
 + (void) stopSessionAndUploadData;
 
 
@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
  *	This happens automatically when the app returns from background.
  *
  *	@note Any completion block registered during startWithKey: will be called as the session starts
-*/
+ */
 + (void) startNewSession;
 
 
@@ -117,7 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
  *	Cancels the recording of the current session and discards the data
  *
  * @note A new session will start as normal when the app nexts come out of the background (depending on the state of the MultiSessionRecord flag), or if you call @c startNewSession
-*/
+ */
 + (void) cancelCurrentSession;
 
 
@@ -134,18 +134,18 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *	@param recordMultipleSessions YES to record a new session automatically when the device comes out of the background. If NO then a single session is recorded, when stopped (either programmatically with @c stopApplicationAndUploadData or by the app going to the background) then no more sessions are recorded until @c startWithKey is called again).
  *	@note The default setting is to record a new session each time a device comes out of the background. This flag can be set to NO to stop that. You can also set this with the appropriate startWithKey: variant. (This will be reset each time startWithKey is called)
-*/
+ */
 + (void) setMultiSessionRecord:(BOOL)recordMultipleSessions;
 
 
 /**
  *	Get whether UXCam is set to automatically record a new session when the app resumes from the background
-*/
+ */
 + (BOOL) getMultiSessionRecord;
 
 
 /**
- * Pause the screen recording
+ *	Pause the screen recording
  */
 + (void) pauseScreenRecording;
 
@@ -166,9 +166,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
-	When called the NSLog output (stderr) will be redirected to a file and uploaded with the session details
-	@note There will be no console output while debugging after calling this
-*/
+ *	When called the NSLog output (stderr) will be redirected to a file and uploaded with the session details
+ *	@note There will be no console output while debugging after calling this
+ */
 + (void) captureLogOutput;
 
 
@@ -265,33 +265,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- UXCam uses a unique number to tag a device.
- You can set a user identity for a device allowing you to more easily search for it on the dashboard and review their sessions further.
- 
- @param userIdentity String to apply to this user (device) in this recording session
- @note Starting with SDK v2.5.11 there is no default for this value - to have the previous behaviour call @c [UXCam setUserIdentity:UIDevice.currentDevice.name];
+	UXCam uses a unique number to tag a device.
+	You can set a user identity for a device allowing you to more easily search for it on the dashboard and review their sessions further.
+
+	@param userIdentity String to apply to this user (device) in this recording session
+	@note Starting with SDK v2.5.11 there is no default for this value - to have the previous behaviour call @c [UXCam setUserIdentity:UIDevice.currentDevice.name];
  */
 + (void) setUserIdentity:(NSString*)userIdentity;
 
 
 /**
- Add a key/value property for this user
- 
- @param propertyName Name of the property to attach to the user
- @param value A value to associate with this property
- 
- @note Only NSNumber and NSString value types are supported to a maximum size per entry of 1KiB
+	Add a key/value property for this user
+
+	@param propertyName Name of the property to attach to the user
+	@param value A value to associate with this property
+
+	@note Only NSNumber and NSString value types are supported to a maximum size per entry of 1KiB
  */
 + (void) setUserProperty:(NSString*)propertyName value:(id)value;
 
 
 /**
- Add a single key/value property to this session
- 
- @param propertyName Name of the property to attach to the session recording
- @param value A value to associate with this property
- 
- @note Only NSNumber and NSString value types are supported to a maximum size per entry of 1KiB
+	Add a single key/value property to this session
+
+	@param propertyName Name of the property to attach to the session recording
+	@param value A value to associate with this property
+
+	@note Only NSNumber and NSString value types are supported to a maximum size per entry of 1KiB
  */
 + (void) setSessionProperty:(NSString*)propertyName value:(id)value;
 
@@ -340,7 +340,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *	This will cancel any current session recording and opt this device out of future session recordings until @c optIn is called
  *	@note The default is to opt-in to recordings, and the default will be reset if the user un-installs and re-installs the app
-*/
+ */
 + (void) optOut;
 
 
@@ -353,15 +353,18 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *	Returns the opt-in status of this device
  *	@return YES if the device is opted in to session recordings, NO otherwise
-*/
+ */
 + (BOOL) optInStatus;
 
 
-/**
- * [BETA] This is a workaround if you are having problems with stuttering scroll views in iOS11.2+
- * Default is FALSE, but set TRUE to stop UXCam screen recording scrolling views
+/***
+ * This is a workaround if you are having problems with stuttering scrolling views in iOS11.2+
+ * Default is TRUE - the system will spot the problem and enable a workaround, but set FALSE to disable this and behave in default manner
  */
 + (void) stopRecordingScrollingOnStutterOS:(BOOL)stopScrollRecording;
+
+
+
 
 
 #pragma mark Internal use only methods
@@ -372,39 +375,41 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) pluginType:(NSString*)type version:(NSString*)versionNumber;
 
 
+
+
 #pragma mark - Deprecated methods
 /// Deprecated - will fall through to the new method `uploadingPendingSessions`
-+ (void) UploadingPendingSessions:(void (^)(void))block __attribute__((deprecated("from SDK 3.0 - use - uploadingPendingSessions")));
++ (void) UploadingPendingSessions:(void (^)(void))block __attribute__((deprecated("from SDK 3.0 - use - uploadingPendingSessions"))) NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
 /// Deprecated - will fall through to the new method `captureLogOutput`
-+ (void) CaptureLogOutput __attribute__((deprecated("from SDK 3.0 - use - captureLogOutput")));
++ (void) CaptureLogOutput __attribute__((deprecated("from SDK 3.0 - use - captureLogOutput"))) NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
 /// Deprecated - will fall through to the new method `disableCrashHandling`
-+ (void)DisableCrashHandling:(BOOL)disable __attribute__((deprecated("from SDK 3.0 - use - disableCrashHandling")));
++ (void)DisableCrashHandling:(BOOL)disable __attribute__((deprecated("from SDK 3.0 - use - disableCrashHandling"))) NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
 /// Deprecated - will fall through to the new method `pendingUploads`
-+ (NSUInteger) PendingUploads __attribute__((deprecated("from SDK 3.0 - use - pendingUploads")));
++ (NSUInteger) PendingUploads __attribute__((deprecated("from SDK 3.0 - use - pendingUploads"))) NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
 /// Deprecated - will fall through to the new method `setMultiSessionRecord`
-+ (void) SetMultiSessionRecord:(BOOL)recordMultipleSessions __attribute__((deprecated("from SDK 3.0 - use - setMultiSessionRecord")));
++ (void) SetMultiSessionRecord:(BOOL)recordMultipleSessions __attribute__((deprecated("from SDK 3.0 - use - setMultiSessionRecord"))) NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
 /// Deprecated - will fall through to the new method `getMultiSessionRecord`
-+ (BOOL) GetMultiSessionRecord __attribute__((deprecated("from SDK 3.0 - use - getMultiSessionRecord")));
++ (BOOL) GetMultiSessionRecord __attribute__((deprecated("from SDK 3.0 - use - getMultiSessionRecord"))) NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
 /// Deprecated - will fall through to the new method `resumeScreenRecording`
-+ (void) ResumeScreenRecording __attribute__((deprecated("from SDK 3.0 - use - resumeScreenRecording")));
++ (void) ResumeScreenRecording __attribute__((deprecated("from SDK 3.0 - use - resumeScreenRecording"))) NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
 /// Deprecated - will fall through to the new method `pauseScreenRecording`
-+ (void) PauseScreenRecording __attribute__((deprecated("from SDK 3.0 - use - pauseScreenRecording")));
++ (void) PauseScreenRecording __attribute__((deprecated("from SDK 3.0 - use - pauseScreenRecording"))) NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
 /// Deprecated - will fall through to the new method `setAutomaticScreenNameTagging`
-+ (void) SetAutomaticScreenNameTagging:(BOOL)enable __attribute__((deprecated("from SDK 3.0 - use - setAutomaticScreenNameTagging")));
++ (void) SetAutomaticScreenNameTagging:(BOOL)enable __attribute__((deprecated("from SDK 3.0 - use - setAutomaticScreenNameTagging"))) NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
 /// Deprecated - will fall through to the new method `stopRecordingScrollingOnStutterOS`
-+ (void) StopRecordingScrollingOnStutterOS:(BOOL)stopScrollRecording __attribute__((deprecated("use - stopRecordingScrollingOnStutterOS")));
++ (void) StopRecordingScrollingOnStutterOS:(BOOL)stopScrollRecording __attribute__((deprecated("use - stopRecordingScrollingOnStutterOS")))  NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
 /// Deprecated - this will not do anything, and the method will be removed in future
-+ (void) markSessionAsFavorite __attribute__((deprecated("from SDK 3.0 - This method will be removed from next big release")));
++ (void) markSessionAsFavorite __attribute__((deprecated("from SDK 3.0 - This method will be removed from next major release")));
 
 /// Deprecated - will fall through to the new method `stopSessionAndUploadData`
 + (void) stopApplicationAndUploadData __attribute__((deprecated("from SDK 3.0.0 - use stopSessionAndUploadData from now functionality same, name is better")));
@@ -419,7 +424,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) PauseScreenRecording:(NSTimeInterval)pauseDuration __attribute__((deprecated("from SDK 3.0.0 - use PauseScreenRecording & ResumeScreenRecording from now")));
 
 /// Deprecated - use logEvent: instead
-+ (void) addTag:(NSString*)tag __attribute__((deprecated("from SDK 3.0.0 - use logEvent: now")));;
++ (void) addTag:(NSString*)tag __attribute__((deprecated("from SDK 3.0.0 - use logEvent: now")));
 
 /// Deprecated - use logEvent:withProperties: instead
 + (void) addTag:(NSString*)tag withProperties:(nullable NSDictionary<NSString*, id>*)properties __attribute__((deprecated("from SDK 3.0.0 - use logEvent:withProperties: now")));
@@ -434,7 +439,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) startWithKey:(NSString*)userAPIKey appVariantIdentifier:(nullable NSString*)appVariant	multipleSessions:(BOOL)multiSession completionBlock:(nullable void (^)(BOOL started))sessionStartedBlock __attribute__((deprecated("from SDK 3.0.0 - use startWithKey:buildIdentifier:multipleSessions:completionBlock: now")));
 
 /// Deprecated - use setUserIdentity: instead
-+ (void) tagUsersName:(NSString*)userName __attribute__((deprecated("from SDK 3.0.0 - use setUserIdentity: now")));;
++ (void) tagUsersName:(NSString*)userName __attribute__((deprecated("from SDK 3.0.0 - use setUserIdentity: now")));
 
 @end
 

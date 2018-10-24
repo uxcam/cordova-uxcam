@@ -3,15 +3,19 @@
 
 ## Release Notes ##
 
-Version | Changes
-------- | ----------
-3.0.0-beta-3 | Beta version of SDK v3 
+Version   | Changes
+---------- | ----------
+3.0.3	| Fix a session management issue
+3.0.2 	| Work around the iOS bug that causes excessive screen capture time on wide colour devices
+3.0.1	| Fixing some header file deprecations to avoid ambiguous method errors in Swift
+		| Improved handling of devices with low levels of available storage
 3.0.0  	| Extensive refactoring of the internals of the SDK to support new features
 		| Added session filters for screen name, session duration, number of interactions
 		| Added support for offline session recording
 		| Added support for data-only sessions (screens visited, number of interactions, event timeline etc. without a screen video)
 		| Re-factored the UXCam API on iOS and Android to be more similar and iOS to better conform with standard naming practices
 		| Re-factored the event recording system to include user and session events as well as general timeline events
+		| Note: Sep 2018: Several v3 features require dashboard support support that is coming soon - talk to support to get preview access 
 		|
 2.5.18	| Adding `unOccludeSensitiveView` method
 		| Fixing a problem that exposed sensitives views for their first frame on screen in some circumstances
