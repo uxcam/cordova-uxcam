@@ -5,6 +5,14 @@
 
 Version   | Changes
 ---------- | ----------
+3.0.6	| Add `occludeSensitiveViewWithoutGesture` and `occludeSensitiveScreen:hideGestures:` API methods
+		| Adjust work queues for event capture 
+		| Add nullable decoration to session and user url methods
+		| Adjust some internal timers to handle external time changes
+		| Fix an orientation regression with sessions that start in landscape orientation
+3.0.5	| Stop recording gestures when screen recording is paused or full screen is occluded
+		| Fix an issue on initial setup of data capture
+3.0.4	| Improvements to filter handling when account is low on sessions left to record
 3.0.3	| Fix a session management issue
 3.0.2 	| Work around the iOS bug that causes excessive screen capture time on wide colour devices
 3.0.1	| Fixing some header file deprecations to avoid ambiguous method errors in Swift
@@ -15,7 +23,7 @@ Version   | Changes
 		| Added support for data-only sessions (screens visited, number of interactions, event timeline etc. without a screen video)
 		| Re-factored the UXCam API on iOS and Android to be more similar and iOS to better conform with standard naming practices
 		| Re-factored the event recording system to include user and session events as well as general timeline events
-		| Note: Sep 2018: Several v3 features require dashboard support support that is coming soon - talk to support to get preview access 
+		| Note: Sep 2018: Several v3 features require using the new dashboard that is coming soon - talk to support to get preview access 
 		|
 2.5.18	| Adding `unOccludeSensitiveView` method
 		| Fixing a problem that exposed sensitives views for their first frame on screen in some circumstances

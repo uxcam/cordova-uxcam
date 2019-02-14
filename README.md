@@ -5,6 +5,8 @@
 
 Version	        | Changes
 ----------------|--------
+3.0.2           | SDK updated to use Android v3.0.6 and iOS v3.0.6
+3.0.1           | SDK updated to use Android v3.0.3 and iOS v3.0.5
 3.0.0           | SDK updated to use Android v3.0.1 and iOS v3.0.3
 3.0.0-beta.1    | SDK updated to use v3 beta version with all new APIs
 2.3.7	        | Updating Android and iOS SDKs to latest versions (MAR 2018)

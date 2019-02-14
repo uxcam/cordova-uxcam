@@ -1,9 +1,9 @@
 //
 //  UXCam.h
 //
-//  Copyright (c) 2013-2018 UXCam Ltd. All rights reserved.
+//  Copyright (c) 2013-2019 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.0.3
+//  UXCam SDK VERSION: 3.0.6
 //
 
 #import <Foundation/Foundation.h>
@@ -146,12 +146,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *	Pause the screen recording
+ *
+ *  @note With this method gestures are not captured will screen recording is paused. Use @c occludeSensitiveScreen:hideGestures: to control the capture of gestures when the screen is hidden.
  */
 + (void) pauseScreenRecording;
 
 
 /**
- *	Resumes a paused session - will cancel any remaining pause time and resume screen recording
+ *	Resumes a paused screen recording
  */
 + (void) resumeScreenRecording;
 
@@ -210,6 +212,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
+ 	Hide a view that contains sensitive information or that you do not want recording on the screen video.
+ 	Additionally for a view hidden using this method any gesture that starts in the views frame will not be captured.
+ 
+ 	@param sensitiveView The view to occlude in the screen recording
+*/
++ (void) occludeSensitiveViewWithoutGesture:(UIView*)sensitiveView;
+
+
+/**
  	Stop hiding a view that was previously hidden
  
  	@param view The view to show again in the screen recording
@@ -226,8 +237,22 @@ NS_ASSUME_NONNULL_BEGIN
 	Once turned on with a TRUE parameter it will continue to hide the screen until called with FALSE
  
 	@param hideScreen Set TRUE to hide the screen from the recording, FALSE to start recording the screen contents again
+ 
+ 	@note With this method gestures are not captured on the hidden screen. Use @c occludeSensitiveScreen:hideGestures: to control the capture of gestures when the screen is hidden.
 */
 + (void) occludeSensitiveScreen:(BOOL)hideScreen;
+
+
+/**
+ 	Hide / un-hide the whole screen from the recording and control whether gestures are till captured while the screen is hidden
+ 
+ 	Call this when you want to hide the whole screen from being recorded - useful in situations where you don't have access to the exact view to occlude
+ 	Once turned on with a hideScreen TRUE parameter it will continue to hide the screen until called with FALSE
+ 
+ 	@param hideScreen Set TRUE to hide the screen from the recording, FALSE to start recording the screen contents again
+ 	@param hideGestures Set TRUE to hide the gestures while the screen is hidden, FALSE to still capture gesture locations while the screen is hidden (has no effect when @c hideScreen is FALSE)
+ */
++ (void) occludeSensitiveScreen:(BOOL)hideScreen hideGestures:(BOOL)hideGestures;
 
 
 /**
@@ -321,9 +346,9 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *	@note This can be used for tying in the current user with other analytics systems
  *
- *  @return url path for user session or nil if no verified session is active
+ *  @return url path for all the users sessions or nil if no verified session is active
  */
-+ (NSString*) urlForCurrentUser;
++ (nullable NSString*) urlForCurrentUser;
 
 
 /**
@@ -333,7 +358,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return url path for current session or nil if no verified session is active
  */
-+ (NSString*) urlForCurrentSession;
++ (nullable NSString*) urlForCurrentSession;
 
 
 #pragma mark Methods for controlling if this device is opted out of session recordings

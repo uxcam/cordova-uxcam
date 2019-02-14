@@ -16,7 +16,7 @@ public class UXCam extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        Log.d("UXCamPlugin", "action is " + action + ", args" + args.toString());
+        Log.d("UXCamPlugin", "action is villain " + action + ", args" + args.toString());
         if ("startWithKey".equals(action)) {
             this.start(args);
         } else if ("startNewSession".equals(action)) {
@@ -79,9 +79,8 @@ public class UXCam extends CordovaPlugin {
         } else if ("cancelCurrentSession".equals(action)) {
             com.uxcam.UXCam.cancelCurrentSession();
         } else if ("allowShortBreakForAnotherApp".equals(action)) {
-            com.uxcam.UXCam.allowShortBreakForAnotherApp();
-        } else if ("resumeShortBreakForAnotherApp".equals(action)) {
-            com.uxcam.UXCam.resumeShortBreakForAnotherApp();
+            boolean allow = args.getBoolean(0);
+            com.uxcam.UXCam.allowShortBreakForAnotherApp(allow);
         } else if ("deletePendingUploads".equals(action)) {
             com.uxcam.UXCam.deletePendingUploads();
         } else if ("pendingSessionCount".equals(action)) {
@@ -97,10 +96,11 @@ public class UXCam extends CordovaPlugin {
         }
         else if ("addVerificationListener".equals(action)) {
             String url = com.uxcam.UXCam.urlForCurrentUser();
-            if (url == null || url.contains("null")) {
+            if (url == null || url.contains("null") || url == "") {
                 addListener(callbackContext);
                 return true;
             }
+            
             callbackContext.success(url);
         } else if ("urlForCurrentUser".equals(action)) {
             String url = com.uxcam.UXCam.urlForCurrentUser();
@@ -140,9 +140,11 @@ public class UXCam extends CordovaPlugin {
     }
 
     private void addListener(final CallbackContext callback) {
+        
         com.uxcam.UXCam.addVerificationListener(new com.uxcam.OnVerificationListener() {
             @Override
             public void onVerificationSuccess() {
+                
                 callback.success(com.uxcam.UXCam.urlForCurrentUser());
             }
 

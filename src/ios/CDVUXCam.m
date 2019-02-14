@@ -89,6 +89,17 @@
                                 callbackId:command.callbackId];
 }
 
+- (void)setUserProperty:(CDVInvokedUrlCommand*)command
+{
+    NSString* key = command.arguments[0];
+    NSString* value = command.arguments[1];
+    
+    [UXCam setUserProperty:key value:value];
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
 - (void)getMultiSessionRecord:(CDVInvokedUrlCommand*)command
 {
     BOOL status =  [UXCam getMultiSessionRecord];
@@ -289,6 +300,12 @@
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
                                 callbackId:command.callbackId];
 }
-
+- (void)addVerificationListener:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"UXCam: addVerificationListener is not supported by UXCam iOS.");
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
 @end
 
