@@ -5,6 +5,17 @@
 
 Version   | Changes
 ---------- | ----------
+3.1.3-beta| Added marker of keyboard location to the schematic recording
+		| Added an 'ultra low' video quality setting
+3.1.2 	| Fix to mobile data upload limits
+		| Fix for symbol conflict in internal copy of 3rd party library
+3.1.1	| Internal changes for performance and stability 
+3.1.0	| Change screen capture to schematic capture process
+		| Opt In changes to split out screen recording as specific option - **screen recording off by default** 
+		| Fix session video when starting up with occluded screen
+		| Add reasons why screen video hasn't been recorded
+		|  
+		|
 3.0.6	| Add `occludeSensitiveViewWithoutGesture` and `occludeSensitiveScreen:hideGestures:` API methods
 		| Adjust work queues for event capture 
 		| Add nullable decoration to session and user url methods
@@ -84,5 +95,3 @@ Version   | Changes
 2.0.2	| Fixing some version number values in the uploaded data
 2.0.1	| Removed unused data fields from uploaded data
 2.0.0	| Major re-engineering of the SDK in terms of backend used
-
-

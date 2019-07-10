@@ -1,5 +1,5 @@
 {
-  "version": "3.0.2",
+  "version": "3.0.0",
   "name": "cordova-uxcam",
   "cordova_name": "UXCam",
   "description": "Cordova plugin for UXCam - enables the recording of your applications screen",
@@ -37,6 +37,6 @@
   },
   "homepage": "https://github.com/uxcam/cordova-uxcam#readme",
   "dependencies": {
-    "npm": "^6.4.1"
+    "npm": "^5.7.1"
   }
 }

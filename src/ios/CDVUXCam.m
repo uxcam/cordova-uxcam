@@ -89,17 +89,6 @@
                                 callbackId:command.callbackId];
 }
 
-- (void)setUserProperty:(CDVInvokedUrlCommand*)command
-{
-    NSString* key = command.arguments[0];
-    NSString* value = command.arguments[1];
-    
-    [UXCam setUserProperty:key value:value];
-    
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-                                callbackId:command.callbackId];
-}
-
 - (void)getMultiSessionRecord:(CDVInvokedUrlCommand*)command
 {
     BOOL status =  [UXCam getMultiSessionRecord];
@@ -276,6 +265,56 @@
     
 }
 
+- (void)optOutOverall:(CDVInvokedUrlCommand*)command
+{
+    [UXCam optOutOverall];
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
+- (void)optOutOfSchematicRecordings:(CDVInvokedUrlCommand*)command
+{
+    [UXCam optOutOfSchematicRecordings];
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
+- (void)optInOverall:(CDVInvokedUrlCommand*)command
+{
+    [UXCam optInOverall];
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
+- (void)optIntoSchematicRecordings:(CDVInvokedUrlCommand*)command
+{
+    [UXCam optIntoSchematicRecordings];
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
+- (void)optInOverallStatus:(CDVInvokedUrlCommand*)command
+{
+    BOOL status =  [UXCam optInOverallStatus];
+    
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status] callbackId:command.callbackId];
+    
+}
+
+- (void)optInSchematicRecordingStatus:(CDVInvokedUrlCommand*)command
+{
+    BOOL status =  [UXCam optInSchematicRecordingStatus];
+    
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status] callbackId:command.callbackId];
+    
+}
+
 - (void)optInStatus:(CDVInvokedUrlCommand*)command
 {
     BOOL status =  [UXCam isRecording];
@@ -300,12 +339,6 @@
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
                                 callbackId:command.callbackId];
 }
-- (void)addVerificationListener:(CDVInvokedUrlCommand*)command
-{
-    NSLog(@"UXCam: addVerificationListener is not supported by UXCam iOS.");
-    
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-                                callbackId:command.callbackId];
-}
+
 @end
 
