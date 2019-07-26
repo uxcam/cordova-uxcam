@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="cordova-uxcam"
-    version="3.0.0">
+    version="3.1.0">
     
     <name>UXCam</name>
     <description>Cordova plugin for UXCam - enables the recording of your applications screen</description>
@@ -55,7 +55,12 @@
         <framework src="MobileCoreServices.framework" />
         <framework src="QuartzCore.framework" />
         <framework src="SystemConfiguration.framework" />
-        
+        <framework src="MobileCoreServices.framework" />
+        <framework src="Security.framework" />
+        <framework src="Foundation.framework" />
+        <framework src="ExternalAccessory.framework" />
+        <framework src="libz.dylib" />
+        <framework src="libiconv.dylib" />
     </platform>
 </plugin>
 

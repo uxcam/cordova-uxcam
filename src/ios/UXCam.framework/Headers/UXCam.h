@@ -1,9 +1,9 @@
 //
 //  UXCam.h
 //
-//  Copyright (c) 2013-2018 UXCam Ltd. All rights reserved.
+//  Copyright (c) 2013-2019 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.0.3
+//  UXCam SDK VERSION: 3.1.3
 //
 
 #import <Foundation/Foundation.h>
@@ -12,12 +12,49 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *	UXCam SDK captures User experience data when a user uses an app, analyses this data on the cloud and provides insights to improve usability of the app.
+ *	UXCam SDK captures user experience data when a user uses an app, analyses this data on the cloud and provides insights to improve usability of the app.
  */
-
 @interface UXCam : NSObject
 
-#pragma mark Starting the UXCam system
+#pragma mark Methods for controlling if this device is opted out of session and/or schematic recordings
+/**
+ *	This will cancel any current session recording and opt this device out of future session recordings until @c optInOverall is called
+ *	@note The default is to opt-in to session recordings, but not to schematic recordings, and the defaults will be reset if the user un-installs and re-installs the app
+ */
++ (void) optOutOverall;
+
+/**
+ *	This will opt this device out of schematic recordings for future settings
+ *	- any current session will be stopped and restarted with the last settings passed to @c startWithKey:
+ */
++ (void) optOutOfSchematicRecordings;
+
+/**
+ *	This will opt this device into session recordings
+ *	- any current session will be stopped and a new session will be started with the last settings passed to @c startWithKey:
+ */
++ (void) optInOverall;
+
+/**
+ *	This will opt this device into schematic recordings for future sessions (subject to dashboard/verify settings settings as well)
+ *	- any current session will be stopped and a new session will be started with the last settings passed to @c startWithKey:
+ */
++ (void) optIntoSchematicRecordings;
+
+/**
+ *	Returns the opt-in status of this device
+ *	@return YES if the device is opted in to session recordings, NO otherwise. The default is YES.
+ */
++ (BOOL) optInOverallStatus;
+
+/** Returns the opt-in status of this device for schematic recordings
+ *	@returns YES if the device is opted in to schematic recordings, NO otherwise. The default is NO.
+ *	@note Use in conjunction with optInOverallStatus to control the overall recording status for the device
+ */
++ (BOOL) optInSchematicRecordingStatus;
+
+
+#pragma mark Starting the UXCam system capturing data
 
 /**
  *	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
@@ -27,7 +64,6 @@ NS_ASSUME_NONNULL_BEGIN
  *	@param userAPIKey	The key to identify your UXCam account - find it in the UXCam dashboard for your account at https://dashboard.uxcam.com/user/settings
  */
 + (void) startWithKey:(NSString*)userAPIKey;
-
 
 /**
  *	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
@@ -39,7 +75,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void) startWithKey:(NSString*)userAPIKey
 	  buildIdentifier:(nullable NSString*)buildIdentifier;
-
 
 /**
  *	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
@@ -53,7 +88,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) startWithKey:(NSString*)userAPIKey
 	  buildIdentifier:(NSString* _Nullable)buildIdentifier
 	  completionBlock:(nullable void (^)(BOOL started))sessionStartedBlock;
-
 
 /**
  *	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
@@ -74,9 +108,9 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark Manage session once UXCam has started
 
 /**
- *	@brief Stops the UXCam application and sends captured data to the server.
+ *	@brief Stops the UXCam session and sends captured data to the server.
  *
- *	Use this to start sending the data on UXCam server without the app going into the background.
+ *	Use this to start sending the data to the UXCam dashboard without the app going into the background.
  *
  *	@note This starts an asynchronous process and returns immediately.
  */
@@ -85,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *	Stops the UXCam application and sends captured data to the server.
- *	Use this to start sending the data on UXCam server without the app going into the background.
+ *	Use this to start sending the data to the UXCam dashboard without the app going into the background.
  *
  *	@brief Stop the UXCam session and send data to the server
  *	@param block Code block to call once upload process completes - will be run on the main thread. There might still be sessions waiting for upload if there was a problem with uploading any of them
@@ -116,7 +150,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *	Cancels the recording of the current session and discards the data
  *
- * @note A new session will start as normal when the app nexts come out of the background (depending on the state of the MultiSessionRecord flag), or if you call @c startNewSession
+ *  @note A new session will start as normal when the app nexts come out of the background (depending on the state of the MultiSessionRecord flag), or if you call @c startNewSession
  */
 + (void) cancelCurrentSession;
 
@@ -145,13 +179,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- *	Pause the screen recording
+ *	Pause the schematic recording
+ *
+ *  @note With this method gestures are not captured while schematic recording is paused. Use @c occludeSensitiveScreen:hideGestures: to control the capture of gestures when the screen is hidden.
  */
 + (void) pauseScreenRecording;
 
 
 /**
- *	Resumes a paused session - will cancel any remaining pause time and resume screen recording
+ *	Resumes a paused schematic recording
  */
 + (void) resumeScreenRecording;
 
@@ -199,20 +235,29 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) deletePendingUploads;
 
 
-#pragma mark Methods for hiding sensitive information on the screen recording
+#pragma mark Methods for hiding sensitive information on the schematic recording
 
 /**
-	Hide a view that contains sensitive information or that you do not want recording on the screen video.
+	Hide a view that contains sensitive information or that you do not want recording on the schematic video.
 
-	@param sensitiveView The view to occlude in the screen recording
+	@param sensitiveView The view to occlude in the schematic recording
 */
 + (void) occludeSensitiveView:(UIView*)sensitiveView;
 
 
 /**
+ 	Hide a view that contains sensitive information or that you do not want recording on the schematic video.
+ 	Additionally for a view hidden using this method any gesture that starts in the views frame will not be captured.
+ 
+ 	@param sensitiveView The view to occlude in the schematic recording
+*/
++ (void) occludeSensitiveViewWithoutGesture:(UIView*)sensitiveView;
+
+
+/**
  	Stop hiding a view that was previously hidden
  
- 	@param view The view to show again in the screen recording
+ 	@param view The view to show again in the schematic recording
 
  	@note If the view passed in was not previously occluded then no action is taken and this method will just return
  */
@@ -222,20 +267,34 @@ NS_ASSUME_NONNULL_BEGIN
 /**
 	Hide / un-hide the whole screen from the recording
  
-	Call this when you want to hide the whole screen from being recorded - useful in situations where you don't have access to the exact view to occlude
+	Call this when you want to hide the whole screen from being captured on the schematic recording - useful in situations where you don't have access to the exact view to occlude
 	Once turned on with a TRUE parameter it will continue to hide the screen until called with FALSE
  
-	@param hideScreen Set TRUE to hide the screen from the recording, FALSE to start recording the screen contents again
+	@param hideScreen Set TRUE to hide the screen from the recording, FALSE to start schematic recording of the screen contents again
+ 
+ 	@note With this method gestures are not captured on the hidden screen. Use @c occludeSensitiveScreen:hideGestures: to control the capture of gestures when the screen is hidden.
 */
 + (void) occludeSensitiveScreen:(BOOL)hideScreen;
 
 
 /**
-	Hide / un-hide all UITextField views on the screen
+ 	Hide / un-hide the whole screen from being captured on the schematic recording and control whether gestures are till captured while the screen is hidden
  
-	Call this when you want to hide the contents of all UITextFields from the screen capture. Default is NO.
+ 	Call this when you want to hide the whole screen from being captured - useful in situations where you don't have access to the exact view to occlude
+ 	Once turned on with a hideScreen TRUE parameter it will continue to hide the screen until called with FALSE
  
-	@param occludeAll Set YES to hide all UITextField views on the screen in the recording, NO to stop occluding them from the screen recording.
+ 	@param hideScreen Set TRUE to hide the screen from the recording, FALSE to start schematic recording of the screen contents again
+ 	@param hideGestures Set TRUE to hide the gestures while the screen is hidden, FALSE to still capture gesture locations while the screen is hidden (has no effect when @c hideScreen is FALSE)
+ */
++ (void) occludeSensitiveScreen:(BOOL)hideScreen hideGestures:(BOOL)hideGestures;
+
+
+/**
+	Hide / un-hide all UITextField views on the schematic recording
+ 
+	Call this when you want to hide the contents of all UITextFields from the schematic capture. Default is NO.
+ 
+	@param occludeAll Set YES to hide all UITextField views on the screen in the schematic recording, NO to stop occluding them from the schematic recording.
  */
 + (void) occludeAllTextFields:(BOOL)occludeAll;
 
@@ -259,7 +318,7 @@ NS_ASSUME_NONNULL_BEGIN
  
 	@note Call this in @c [UIViewController viewDidAppear:] after the call to @c [super ...] or automatic screen name tagging will override your value
 
-	@param screenName Name to apply to the current screen in the session video
+	@param screenName Name to apply to the current screen in the session
 */
 + (void) tagScreenName:(NSString*)screenName;
 
@@ -321,9 +380,9 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *	@note This can be used for tying in the current user with other analytics systems
  *
- *  @return url path for user session or nil if no verified session is active
+ *  @return url path for all the users sessions or nil if no verified session is active
  */
-+ (NSString*) urlForCurrentUser;
++ (nullable NSString*) urlForCurrentUser;
 
 
 /**
@@ -333,38 +392,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return url path for current session or nil if no verified session is active
  */
-+ (NSString*) urlForCurrentSession;
-
-
-#pragma mark Methods for controlling if this device is opted out of session recordings
-/**
- *	This will cancel any current session recording and opt this device out of future session recordings until @c optIn is called
- *	@note The default is to opt-in to recordings, and the default will be reset if the user un-installs and re-installs the app
- */
-+ (void) optOut;
-
-
-/**
- *	This will opt this device back into session recordings - you will need to call @c startWithKey: @i after opting the device back in
- */
-+ (void) optIn;
-
-
-/**
- *	Returns the opt-in status of this device
- *	@return YES if the device is opted in to session recordings, NO otherwise
- */
-+ (BOOL) optInStatus;
-
-
-/***
- * This is a workaround if you are having problems with stuttering scrolling views in iOS11.2+
- * Default is TRUE - the system will spot the problem and enable a workaround, but set FALSE to disable this and behave in default manner
- */
-+ (void) stopRecordingScrollingOnStutterOS:(BOOL)stopScrollRecording;
-
-
-
++ (nullable NSString*) urlForCurrentSession;
 
 
 #pragma mark Internal use only methods
@@ -375,9 +403,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) pluginType:(NSString*)type version:(NSString*)versionNumber;
 
 
-
-
 #pragma mark - Deprecated methods
+/// Deprecated - old workaround for iOS 11.2+ screen recordings that is no longer needed with schematic recordings
++ (void) stopRecordingScrollingOnStutterOS:(BOOL)stopScrollRecording __attribute__((deprecated("from SDK 3.1.0 - no longer needed with schematic recordings")));
+
 /// Deprecated - will fall through to the new method `uploadingPendingSessions`
 + (void) UploadingPendingSessions:(void (^)(void))block __attribute__((deprecated("from SDK 3.0 - use - uploadingPendingSessions"))) NS_SWIFT_UNAVAILABLE("Deprecated method not available in Swift");
 
@@ -441,6 +470,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// Deprecated - use setUserIdentity: instead
 + (void) tagUsersName:(NSString*)userName __attribute__((deprecated("from SDK 3.0.0 - use setUserIdentity: now")));
 
+/// Deprecated - use optOutOverall instead
++ (void) optOut __attribute__((deprecated("from SDK 3.1.0 - use optOutOverall now")));
+
+/// Deprecated - use optInOverall: instead
++ (void) optIn __attribute__((deprecated("from SDK 3.1.0 - use optInOverall: now")));
+
+/// Deprecated - use optInOverallStatus instead
++ (BOOL) optInStatus __attribute__((deprecated("from SDK 3.1.0 - use optInOverallStatus now")));;
 @end
 
 NS_ASSUME_NONNULL_END

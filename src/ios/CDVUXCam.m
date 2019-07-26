@@ -17,7 +17,7 @@
             buildIdentifier = command.arguments[1];
             buildIdentifier = buildIdentifier.length>0 ? buildIdentifier : nil;
         }
-        [UXCam pluginType:@"cordova" version:@"3.0.3"];
+        [UXCam pluginType:@"cordova" version:@"3.1.0"];
         NSLog(@"UXCam: Starting UXCam with API Key: %@ App Variant id: %@", apiKey, buildIdentifier ?: @"nil");
         
         [UXCam startWithKey:apiKey buildIdentifier:buildIdentifier];
@@ -262,6 +262,56 @@
     
     
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:url] callbackId:command.callbackId];
+    
+}
+
+- (void)optOutOverall:(CDVInvokedUrlCommand*)command
+{
+    [UXCam optOutOverall];
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
+- (void)optOutOfSchematicRecordings:(CDVInvokedUrlCommand*)command
+{
+    [UXCam optOutOfSchematicRecordings];
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
+- (void)optInOverall:(CDVInvokedUrlCommand*)command
+{
+    [UXCam optInOverall];
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
+- (void)optIntoSchematicRecordings:(CDVInvokedUrlCommand*)command
+{
+    [UXCam optIntoSchematicRecordings];
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                callbackId:command.callbackId];
+}
+
+- (void)optInOverallStatus:(CDVInvokedUrlCommand*)command
+{
+    BOOL status =  [UXCam optInOverallStatus];
+    
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status] callbackId:command.callbackId];
+    
+}
+
+- (void)optInSchematicRecordingStatus:(CDVInvokedUrlCommand*)command
+{
+    BOOL status =  [UXCam optInSchematicRecordingStatus];
+    
+    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status] callbackId:command.callbackId];
     
 }
 

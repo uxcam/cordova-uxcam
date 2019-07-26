@@ -75,6 +75,36 @@ UXCam.resumeScreenRecording = function(successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'resumeScreenRecording', []);
 };
 
+UXCam.optOutOverall = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optOutOverall', []);
+};
+
+UXCam.optOutOfSchematicRecordings = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optOutOfSchematicRecordings', []);
+};
+
+UXCam.optInOverall = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optInOverall', []);
+};
+
+UXCam.optIntoSchematicRecordings = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optIntoSchematicRecordings', []);
+};
+
+UXCam.optInOverallStatus = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optInOverallStatus', []);
+};
+
+UXCam.optInSchematicRecordingStatus = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optInSchematicRecordingStatus', []);
+};
+
 UXCam.optIn = function(successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'optIn', []);

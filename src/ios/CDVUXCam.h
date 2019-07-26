@@ -46,6 +46,18 @@
 
 - (void)urlForCurrentSession:(CDVInvokedUrlCommand*)command;
 
+- (void)optOutOverall:(CDVInvokedUrlCommand*)command;
+
+- (void)optOutOfSchematicRecordings:(CDVInvokedUrlCommand*)command;
+
+- (void)optInOverall:(CDVInvokedUrlCommand*)command;
+
+- (void)optIntoSchematicRecordings:(CDVInvokedUrlCommand*)command;
+
+- (void)optInOverallStatus:(CDVInvokedUrlCommand*)command;
+
+- (void)optInSchematicRecordingStatus:(CDVInvokedUrlCommand*)command;
+
 - (void)optInStatus:(CDVInvokedUrlCommand*)command;
 
 - (void)optIn:(CDVInvokedUrlCommand*)command;
