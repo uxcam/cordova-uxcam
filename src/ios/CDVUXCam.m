@@ -17,6 +17,7 @@
             buildIdentifier = command.arguments[1];
             buildIdentifier = buildIdentifier.length>0 ? buildIdentifier : nil;
         }
+		
         [UXCam pluginType:@"cordova" version:@"3.1.0"];
         NSLog(@"UXCam: Starting UXCam with API Key: %@ App Variant id: %@", apiKey, buildIdentifier ?: @"nil");
         
@@ -28,10 +29,9 @@
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
     
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    [self.commandDelegate sendPluginResult:pluginResult
+								callbackId:command.callbackId];
 }
-
-
 
 - (void)stopSessionAndUploadData:(CDVInvokedUrlCommand*)command
 {
@@ -40,8 +40,6 @@
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
                                 callbackId:command.callbackId];
 }
-
-
 
 - (void)allowShortBreakForAnotherApp:(CDVInvokedUrlCommand*)command
 {
@@ -68,14 +66,12 @@
                                 callbackId:command.callbackId];
 }
 
-
 - (void)isRecording:(CDVInvokedUrlCommand*)command
 {
     BOOL recordingStatus =  [UXCam isRecording];
-    
-    
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:recordingStatus] callbackId:command.callbackId];
-    
+	
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:recordingStatus]
+								callbackId:command.callbackId];
 }
 
 
@@ -92,9 +88,9 @@
 - (void)getMultiSessionRecord:(CDVInvokedUrlCommand*)command
 {
     BOOL status =  [UXCam getMultiSessionRecord];
-    
-    
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status] callbackId:command.callbackId];
+	
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
+								callbackId:command.callbackId];
     
 }
 
@@ -129,7 +125,8 @@
     NSUInteger pendingCount =  [UXCam pendingUploads];
     
     
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsNSUInteger:pendingCount] callbackId:command.callbackId];
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsNSUInteger:pendingCount]
+								callbackId:command.callbackId];
     
 }
 
@@ -252,7 +249,8 @@
     NSString *url =  [UXCam urlForCurrentUser];
     
     
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:url] callbackId:command.callbackId];
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:url]
+								callbackId:command.callbackId];
     
 }
 
@@ -260,9 +258,8 @@
 {
     NSString *url =  [UXCam urlForCurrentSession];
     
-    
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:url] callbackId:command.callbackId];
-    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:url]
+								callbackId:command.callbackId];
 }
 
 - (void)optOutOverall:(CDVInvokedUrlCommand*)command
@@ -300,28 +297,25 @@
 - (void)optInOverallStatus:(CDVInvokedUrlCommand*)command
 {
     BOOL status =  [UXCam optInOverallStatus];
-    
-    
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status] callbackId:command.callbackId];
-    
+	
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
+								callbackId:command.callbackId];
 }
 
 - (void)optInSchematicRecordingStatus:(CDVInvokedUrlCommand*)command
 {
     BOOL status =  [UXCam optInSchematicRecordingStatus];
     
-    
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status] callbackId:command.callbackId];
-    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
+								callbackId:command.callbackId];
 }
 
 - (void)optInStatus:(CDVInvokedUrlCommand*)command
 {
     BOOL status =  [UXCam isRecording];
     
-    
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status] callbackId:command.callbackId];
-    
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
+								callbackId:command.callbackId];
 }
 
 - (void)optIn:(CDVInvokedUrlCommand*)command
