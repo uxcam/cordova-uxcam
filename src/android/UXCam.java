@@ -108,7 +108,14 @@ public class UXCam extends CordovaPlugin {
         } else if ("urlForCurrentSession".equals(action)) {
             String url = com.uxcam.UXCam.urlForCurrentSession();
             callbackContext.success(url);
-        } else {
+        }  else if ("occludeRectOnNextFrame".equals(action)) {
+            Rect rec = new Rect();
+            rec.left = (int) (args.getDouble(0));
+            rec.top = (int) (args.getDouble(1));
+            rec.right = (int) (args.getDouble(2));
+            rec.bottom = (int) (args.getDouble(3));
+            com.uxcam.UXCam.occludeRectOnNextFrame(rec);
+        }else {
             callbackContext.error("This API call is not supported by UXCam Android, API called: " + action);
             return false;
         }
