@@ -120,6 +120,11 @@ UXCam.optStatus = function(successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'optStatus', []);
 };
 
+UXCam.optInStatus = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optInStatus', []);
+};
+
 UXCam.cancelCurrentSession = function(successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'cancelCurrentSession', []);

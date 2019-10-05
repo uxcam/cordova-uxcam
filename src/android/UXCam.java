@@ -76,6 +76,8 @@ public class UXCam extends CordovaPlugin {
             com.uxcam.UXCam.optOut();
         } else if ("optStatus".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInStatus()));
+        } else if ("optInStatus".equals(action)) {
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInStatus()));
         } else if ("cancelCurrentSession".equals(action)) {
             com.uxcam.UXCam.cancelCurrentSession();
         } else if ("allowShortBreakForAnotherApp".equals(action)) {
