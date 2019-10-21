@@ -105,21 +105,22 @@ UXCam.optInSchematicRecordingStatus = function(successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'optInSchematicRecordingStatus', []);
 };
 
+//deprecated; use optInOverall
 UXCam.optIn = function(successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'optIn', []);
 };
-
+//deprecated; use optOutOverall
 UXCam.optOut = function(successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'optOut', []);
 };
-
+//deprecated; use optInOverallStatus
 UXCam.optStatus = function(successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'optStatus', []);
 };
-
+//deprecated; use optInOverallStatus
 UXCam.optInStatus = function(successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'optInStatus', []);
