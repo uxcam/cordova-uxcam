@@ -74,11 +74,18 @@ public class UXCam extends CordovaPlugin {
             com.uxcam.UXCam.optIn();
         } else if ("optOut".equals(action)) {
             com.uxcam.UXCam.optOut();
+        }else if ("optInOverall".equals(action)) {
+            com.uxcam.UXCam.optIn();
+        } else if ("optOutOverall".equals(action)) {
+            com.uxcam.UXCam.optOut();
         } else if ("optStatus".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInStatus()));
         } else if ("optInStatus".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInStatus()));
-        } else if ("cancelCurrentSession".equals(action)) {
+        } else if ("optInOverallStatus".equals(action)) {
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInStatus()));
+        }
+         else if ("cancelCurrentSession".equals(action)) {
             com.uxcam.UXCam.cancelCurrentSession();
         } else if ("allowShortBreakForAnotherApp".equals(action)) {
             com.uxcam.UXCam.allowShortBreakForAnotherApp();
@@ -120,7 +127,7 @@ public class UXCam extends CordovaPlugin {
     private void start(final JSONArray args) throws IllegalArgumentException, JSONException {
         String key;
         String buildIdentifier;
-        com.uxcam.UXCam.pluginType("cordova", "3.1.0");
+        com.uxcam.UXCam.pluginType("cordova", "3.1.1");
         if (args.length() == 1) {
             key = args.getString(0);
             if (key == null || key.length() == 0) {
