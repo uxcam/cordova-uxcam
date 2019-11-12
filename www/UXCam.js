@@ -216,4 +216,8 @@ UXCam.urlForCurrentSession = function(successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'urlForCurrentSession', []);
 };
 
+UXCam.occludeRectOnNextFrame = function(top, right, left, bottom, successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'occludeRectOnNextFrame', [top, right, left, bottom]);
+};
 module.exports = UXCam;
