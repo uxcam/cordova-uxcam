@@ -84,8 +84,13 @@ public class UXCam extends CordovaPlugin {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInStatus()));
         } else if ("optInOverallStatus".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInStatus()));
-        }
-         else if ("cancelCurrentSession".equals(action)) {
+        }else if ("optIntoVideoRecording".equals(action)) {
+            com.uxcam.UXCam.optIntoVideoRecording();
+        } else if ("optOutOfVideoRecording".equals(action)) {
+            com.uxcam.UXCam.optOutOfVideoRecording();
+        } else if ("optInVideoRecordingStatus".equals(action)) {
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInVideoRecordingStatus()));
+        } else if ("cancelCurrentSession".equals(action)) {
             com.uxcam.UXCam.cancelCurrentSession();
         } else if ("allowShortBreakForAnotherApp".equals(action)) {
             com.uxcam.UXCam.allowShortBreakForAnotherApp();
@@ -117,14 +122,9 @@ public class UXCam extends CordovaPlugin {
         } else if ("urlForCurrentSession".equals(action)) {
             String url = com.uxcam.UXCam.urlForCurrentSession();
             callbackContext.success(url);
-        }  else if ("occludeRectOnNextFrame".equals(action)) {
-            Rect rec = new Rect();
-            rec.left = (int) (args.getDouble(0));
-            rec.top = (int) (args.getDouble(1));
-            rec.right = (int) (args.getDouble(2));
-            rec.bottom = (int) (args.getDouble(3));
-            com.uxcam.UXCam.occludeRectOnNextFrame(rec);
-        }else {
+        }  else if ("occludeRectsOnNextFrame".equals(action)) {
+            com.uxcam.UXCam.occludeRectsOnNextFrame(new JSONArray(args.getString(0)));
+        } else {
             callbackContext.error("This API call is not supported by UXCam Android, API called: " + action);
             return false;
         }

@@ -126,6 +126,21 @@ UXCam.optInStatus = function(successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'optInStatus', []);
 };
 
+UXCam.optIntoVideoRecording = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optInStatus', []);
+};
+
+UXCam.optOutOfVideoRecording = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optInStatus', []);
+};
+
+UXCam.optInVideoRecordingStatus = function(successCallback, errorCallback)
+{
+  return exec(successCallback, errorCallback, 'UXCam', 'optInStatus', []);
+};
+
 UXCam.cancelCurrentSession = function(successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'cancelCurrentSession', []);
@@ -216,8 +231,9 @@ UXCam.urlForCurrentSession = function(successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'urlForCurrentSession', []);
 };
 
-UXCam.occludeRectOnNextFrame = function(top, right, left, bottom, successCallback, errorCallback)
+UXCam.occludeRectsOnNextFrame = function(rects, successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'occludeRectOnNextFrame', [top, right, left, bottom]);
+  return exec(successCallback, errorCallback, 'UXCam', 'occludeRectsOnNextFrame', [rects]);
 };
+
 module.exports = UXCam;
