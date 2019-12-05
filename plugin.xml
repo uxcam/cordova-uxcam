@@ -21,12 +21,11 @@
                 <param name="android-package" value="com.uxcam.cordova.UXCam"/>
             </feature>
         </config-file>
-        <config-file parent="/*" target="AndroidManifest.xml" />
-        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest">
+        <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.INTERNET" />
         </config-file>
-        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <service android:name="com.uxcam.service.HttpPostService"/>
         </config-file>
         <source-file src="src/android/UXCam.jar" target-dir="app/libs" framework="true" mode="merge"/>
