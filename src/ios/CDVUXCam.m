@@ -319,7 +319,7 @@
 
 - (void)optIn:(CDVInvokedUrlCommand*)command
 {
-    [UXCam optIn];
+    [UXCam optInOverall];
     
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
                                 callbackId:command.callbackId];
@@ -327,7 +327,7 @@
 
 - (void)optOut:(CDVInvokedUrlCommand*)command
 {
-    [UXCam optOut];
+    [UXCam optOutOverall];
     
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
                                 callbackId:command.callbackId];
