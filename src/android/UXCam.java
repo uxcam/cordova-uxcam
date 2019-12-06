@@ -16,7 +16,6 @@ public class UXCam extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        Log.d("UXCamPlugin", "action is " + action + ", args" + args.toString());
         if ("startWithKey".equals(action)) {
             this.start(args);
         } else if ("startNewSession".equals(action)) {
