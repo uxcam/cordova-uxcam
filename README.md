@@ -5,9 +5,10 @@
 
 Version	        | Changes
 ----------------|--------
-3.1.1               | SDK updated to use Android v3.1.8 and iOS v3.1.6. optIn, optOut, optStatus are deprecated and should be replaced with optInOverall, optOutOverall, optInOverallStatus.
-3.1.0               | SDK updated to use Android v3.1.4 and iOS v3.1.3
-3.0.0               | SDK updated to use Android v3.0.1 and iOS v3.0.3
+3.1.2           | SDK updated to use Android v3.1.11 and iOS v3.1.9.
+3.1.1           | SDK updated to use Android v3.1.8 and iOS v3.1.6. optIn, optOut, optStatus are deprecated and should be replaced with optInOverall, optOutOverall, optInOverallStatus.
+3.1.0           | SDK updated to use Android v3.1.4 and iOS v3.1.3
+3.0.0           | SDK updated to use Android v3.0.1 and iOS v3.0.3
 3.0.0-beta.1    | SDK updated to use v3 beta version with all new APIs
 2.3.7	        | Updating Android and iOS SDKs to latest versions (MAR 2018)
 2.3.6	        | Updating Android SDK to latest versions (JAN 2017). setAutomaticScreenNameTagging API typo bug fixed
