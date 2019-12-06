@@ -64,4 +64,6 @@
 
 - (void)optOut:(CDVInvokedUrlCommand*)command;
 
+- (void)occludeRectsOnNextFrame:(CDVInvokedUrlCommand*)command;
+
 @end

@@ -19,7 +19,6 @@
         }
 		
         [UXCam pluginType:@"cordova" version:@"3.1.2"];
-        NSLog(@"UXCam: Starting UXCam with API Key: %@ App Variant id: %@", apiKey, buildIdentifier ?: @"nil");
         
         [UXCam startWithKey:apiKey buildIdentifier:buildIdentifier];
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -332,6 +331,16 @@
     
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
                                 callbackId:command.callbackId];
+}
+
+- (void)occludeRectsOnNextFrame:(CDVInvokedUrlCommand*)command
+{
+	// WIP - iOS will support this in the next version
+//	NSString* rectList = command.arguments[0];
+//	[UXCam occludeRectsOnNextFrame:rectList];
+
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+								callbackId:command.callbackId];
 }
 
 @end
