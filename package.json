@@ -35,8 +35,5 @@
   "bugs": {
     "url": "https://github.com/uxcam/cordova-uxcam/issues"
   },
-  "homepage": "https://github.com/uxcam/cordova-uxcam#readme",
-  "dependencies": {
-    "npm": "^5.7.1"
-  }
+  "homepage": "https://github.com/uxcam/cordova-uxcam#readme"
 }
