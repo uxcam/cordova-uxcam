@@ -5,7 +5,9 @@
 
 Version   | Changes
 ---------- | ----------
-3.1.9	 | Improved react-native schematic rendering
+3.1.10-beta | Fix alignment of text in schematic keyboard view
+		| Improve schematic rendering for clipToBounds views and attributed text
+3.1.9	| Improved react-native schematic rendering
 		| Improved handling of very short sessions and rapid restart of session
 		| Restore screen name when a UIAlertController is dismissed
 		| Improved uploading of large batches of sessions
