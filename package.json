@@ -37,6 +37,6 @@
   },
   "homepage": "https://github.com/uxcam/cordova-uxcam#readme",
   "dependencies": {
-    "npm": "^5.7.1"
+    "npm": "^6.13.4"
   }
 }
