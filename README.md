@@ -5,7 +5,7 @@
 
 Version | Changes
 --------|--------
-3.2.0-beta.1	 | iOS occludeSensitiveViews functionality added for Cordova UIWebView (BETA), iOS SDK updated to v3.1.10, Android SDK 3.1.12
+3.2.1-beta.1	 | iOS occludeSensitiveViews functionality added for Cordova UIWebView (BETA), iOS SDK updated to v3.1.10, Android SDK 3.1.12
 3.1.2           | SDK updated to use Android v3.1.11 and iOS v3.1.9.
 3.1.1           | SDK updated to use Android v3.1.8 and iOS v3.1.6. optIn, optOut, optStatus are deprecated and should be replaced with optInOverall, optOutOverall, optInOverallStatus.
 3.1.0           | SDK updated to use Android v3.1.4 and iOS v3.1.3
