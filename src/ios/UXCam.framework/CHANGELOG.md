@@ -5,6 +5,7 @@
 
 Version   | Changes
 ---------- | ----------
+3.1.11	| Fix a problem with empty text strings in the schematic rendering
 3.1.10	| Fix alignment of text in schematic keyboard view
 		| Improve schematic rendering for clipToBounds views and attributed text
 		| Fix a problem with rendering system fonts in schematic views on iOS13

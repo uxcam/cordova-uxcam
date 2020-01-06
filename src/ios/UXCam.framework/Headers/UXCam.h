@@ -1,9 +1,9 @@
 //
 //  UXCam.h
 //
-//  Copyright (c) 2013-2019 UXCam Ltd. All rights reserved.
+//  Copyright (c) 2013-2020 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.1.10
+//  UXCam SDK VERSION: 3.1.11
 //
 
 #import <Foundation/Foundation.h>
