@@ -5,6 +5,8 @@
 
 Version   | Changes
 ---------- | ----------
+3.1.15	| Fixing more issues with some hybrid platforms
+3.1.14	| Fixing a problem with newer Flutter SDKs
 3.1.13	| Fixed a problem with occlusion rects on certain devices
 		| Removed some debug events that were being added to some timelines
 3.1.12	| Reduced Podspec minimum iOS version back to 9.0, but UXCam will not record sessions on iOS 9 device, iOS 10 required for session recording
