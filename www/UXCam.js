@@ -146,9 +146,9 @@ UXCam.cancelCurrentSession = function(successCallback, errorCallback)
   return exec(successCallback, errorCallback, 'UXCam', 'cancelCurrentSession', []);
 };
 
-UXCam.allowShortBreakForAnotherApp = function(successCallback, errorCallback)
+UXCam.allowShortBreakForAnotherApp = function(isEnabled, successCallback, errorCallback)
 {
-  return exec(successCallback, errorCallback, 'UXCam', 'allowShortBreakForAnotherApp', []);
+  return exec(successCallback, errorCallback, 'UXCam', 'allowShortBreakForAnotherApp', [isEnabled]);
 };
 
 UXCam.resumeShortBreakForAnotherApp = function(successCallback, errorCallback)
