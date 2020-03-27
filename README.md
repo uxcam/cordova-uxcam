@@ -5,6 +5,7 @@
 
 Version | Changes
 --------|--------
+3.2.2			| Version bump to work around some publishing issues - same code as 3.2.1
 3.2.1			| iOS SDK updated to v3.1.15 and Android SDK to 3.2.0
 				| iOS occludeSensitiveViews functionality added for Cordova UIWebView & WKWebView (BETA)
 3.1.2           | SDK updated to use Android v3.1.11 and iOS v3.1.9.
