@@ -12,28 +12,37 @@
 
 - (void)startWithKey:(CDVInvokedUrlCommand*)command
 {
-	CDVPluginResult* pluginResult = nil;
-	NSString* apiKey = command.arguments[0];
-
-	if (apiKey.length > 0)
-	{
-		NSString* buildIdentifier = nil;
-		if (command.arguments.count>1)
-		{
-			buildIdentifier = command.arguments[1];
-			buildIdentifier = buildIdentifier.length>0 ? buildIdentifier : nil;
-		}
-
-		[UXCam startWithKey:apiKey buildIdentifier:buildIdentifier];
-		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-	}
-	else
-	{
-		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-	}
-
-	[self.commandDelegate sendPluginResult:pluginResult
-								callbackId:command.callbackId];
+    __block CDVPluginResult* pluginResult = nil;
+    NSString* apiKey = command.arguments[0];
+    
+    if (apiKey.length > 0)
+    {
+        NSString* buildIdentifier = nil;
+        if (command.arguments.count>1)
+        {
+            buildIdentifier = command.arguments[1];
+            buildIdentifier = buildIdentifier.length>0 ? buildIdentifier : nil;
+        }
+        
+        [UXCam startWithKey:apiKey buildIdentifier:buildIdentifier completionBlock:^(BOOL started) {
+            if (started){
+                NSString *url =  [UXCam urlForCurrentSession];
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: url];
+            }
+            else {
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"failed to start uxcam session"];
+            }
+            
+            [self.commandDelegate sendPluginResult:pluginResult
+                                        callbackId:command.callbackId];
+        }];
+        
+        return;
+    }
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid app key"];
+    [self.commandDelegate sendPluginResult:pluginResult
+                                callbackId:command.callbackId];
 }
 
 - (void)stopSessionAndUploadData:(CDVInvokedUrlCommand*)command

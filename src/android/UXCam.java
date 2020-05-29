@@ -17,6 +17,7 @@ public class UXCam extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("startWithKey".equals(action)) {
+            addListener(callbackContext);
             this.start(args);
         } else if ("startNewSession".equals(action)) {
             com.uxcam.UXCam.startNewSession();
@@ -108,14 +109,7 @@ public class UXCam extends CordovaPlugin {
             }
             com.uxcam.UXCam.tagScreenName(screenName);
         }
-        else if ("addVerificationListener".equals(action)) {
-            String url = com.uxcam.UXCam.urlForCurrentUser();
-            if (url == null || url.contains("null")) {
-                addListener(callbackContext);
-                return true;
-            }
-            callbackContext.success(url);
-        } else if ("urlForCurrentUser".equals(action)) {
+        else if ("urlForCurrentUser".equals(action)) {
             String url = com.uxcam.UXCam.urlForCurrentUser();
             callbackContext.success(url);
         } else if ("urlForCurrentSession".equals(action)) {
@@ -158,7 +152,7 @@ public class UXCam extends CordovaPlugin {
         com.uxcam.UXCam.addVerificationListener(new com.uxcam.OnVerificationListener() {
             @Override
             public void onVerificationSuccess() {
-                callback.success(com.uxcam.UXCam.urlForCurrentUser());
+                callback.success(com.uxcam.UXCam.urlForCurrentSession());
             }
 
             @Override

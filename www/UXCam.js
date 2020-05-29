@@ -216,11 +216,6 @@ UXCam.occludeAllTextView = function(occludeAllTextView, successCallback, errorCa
   return exec(successCallback, errorCallback, 'UXCam', 'occludeAllTextView', [occludeAllTextView]);
 };
 
-UXCam.addVerificationListener = function(successCallback, errorCallback)
-{
-  return exec(successCallback, errorCallback, 'UXCam', 'addVerificationListener', []);
-};
-
 UXCam.urlForCurrentUser = function(successCallback, errorCallback)
 {
   return exec(successCallback, errorCallback, 'UXCam', 'urlForCurrentUser', []);
