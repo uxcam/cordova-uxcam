@@ -215,6 +215,26 @@
 }
 
 
+- (void)setUserProperty:(CDVInvokedUrlCommand*)command
+{
+	CDVPluginResult* pluginResult = nil;
+	NSString* userPropertyKey = command.arguments[0];
+	NSString* userPropertyValue = command.arguments[1];
+	if (userPropertyKey.length>0 && userPropertyValue.length>0)
+	{
+		[UXCam setUserProperty:userPropertyKey value:userPropertyValue];
+
+		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+	}
+	else
+	{
+		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+	}
+
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+
 - (void)logEvent:(CDVInvokedUrlCommand*)command
 {
 	CDVPluginResult* pluginResult = nil;
