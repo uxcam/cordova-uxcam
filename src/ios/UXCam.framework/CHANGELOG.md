@@ -5,6 +5,20 @@
 
 Version   | Changes
 ---------- | ----------
+3.2.4	| Double tap gesture handling changed to reduce delays in single tap processing
+		| Removed all support/references to UI Web View for Cordova in light of Apple full deprecation of UI Web View
+		| Framework requires XCode 11.4 or higher to use fully
+3.2.3	| Fix an issue where starting a new session when one is already running could cause a failure to record the new session
+3.2.2	| Fix a problem with auto-occluded screens when using manual tagging 
+3.2.1	| Extra traps to avoid running and creating a crash on iOS 9
+		| Removed methods deprecated in v3.0
+		| Further improvements to cancelled session reporting
+3.2.0	| Refactored network code to a more modern library to give better control over uploads
+		| Improved handling of cancelled sessions
+		| Improved rendering of long text strings in schematic captures
+		|
+		| NB: Xcode 11 is required to use the UXCam framework from 3.2.0 onwards
+		|
 3.1.15	| Fixing more issues with some hybrid platforms
 3.1.14	| Fixing a problem with newer Flutter SDKs
 3.1.13	| Fixed a problem with occlusion rects on certain devices
