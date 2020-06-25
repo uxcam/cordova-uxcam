@@ -38,6 +38,8 @@
 
 - (void)setUserIdentity:(CDVInvokedUrlCommand*)command;
 
+- (void)setUserProperty:(CDVInvokedUrlCommand*)command;
+
 - (void)logEvent:(CDVInvokedUrlCommand*)command;
 
 - (void)logEventWithProperties:(CDVInvokedUrlCommand*)command;

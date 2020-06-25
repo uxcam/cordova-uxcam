@@ -7,33 +7,42 @@
 + (void)load
 {
 	// Set this early in the startup process so we can do extra Cordova related processing before the session startWithKey is called.
-	[UXCam pluginType:@"cordova" version:@"3.2.2"];
+	[UXCam pluginType:@"cordova" version:@"3.3.0"];
 }
 
 - (void)startWithKey:(CDVInvokedUrlCommand*)command
 {
-	CDVPluginResult* pluginResult = nil;
-	NSString* apiKey = command.arguments[0];
-
-	if (apiKey.length > 0)
-	{
-		NSString* buildIdentifier = nil;
-		if (command.arguments.count>1)
-		{
-			buildIdentifier = command.arguments[1];
-			buildIdentifier = buildIdentifier.length>0 ? buildIdentifier : nil;
-		}
-
-		[UXCam startWithKey:apiKey buildIdentifier:buildIdentifier];
-		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-	}
-	else
-	{
-		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-	}
-
-	[self.commandDelegate sendPluginResult:pluginResult
-								callbackId:command.callbackId];
+    __block CDVPluginResult* pluginResult = nil;
+    NSString* apiKey = command.arguments[0];
+    
+    if (apiKey.length > 0)
+    {
+        NSString* buildIdentifier = nil;
+        if (command.arguments.count>1)
+        {
+            buildIdentifier = command.arguments[1];
+            buildIdentifier = buildIdentifier.length>0 ? buildIdentifier : nil;
+        }
+        
+        [UXCam startWithKey:apiKey buildIdentifier:buildIdentifier completionBlock:^(BOOL started) {
+            if (started){
+                NSString *url =  [UXCam urlForCurrentSession];
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: url];
+            }
+            else {
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"failed to start uxcam session"];
+            }
+            
+            [self.commandDelegate sendPluginResult:pluginResult
+                                        callbackId:command.callbackId];
+        }];
+        
+        return;
+    }
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid app key"];
+    [self.commandDelegate sendPluginResult:pluginResult
+                                callbackId:command.callbackId];
 }
 
 - (void)stopSessionAndUploadData:(CDVInvokedUrlCommand*)command
@@ -194,6 +203,26 @@
 	if (userIdentity.length>0)
 	{
 		[UXCam setUserIdentity:userIdentity];
+
+		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+	}
+	else
+	{
+		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+	}
+
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+
+- (void)setUserProperty:(CDVInvokedUrlCommand*)command
+{
+	CDVPluginResult* pluginResult = nil;
+	NSString* userPropertyKey = command.arguments[0];
+	NSString* userPropertyValue = command.arguments[1];
+	if (userPropertyKey.length>0 && userPropertyValue.length>0)
+	{
+		[UXCam setUserProperty:userPropertyKey value:userPropertyValue];
 
 		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
 	}
