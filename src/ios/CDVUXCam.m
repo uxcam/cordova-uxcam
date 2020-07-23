@@ -148,6 +148,22 @@
 								callbackId:command.callbackId];
 }
 
+- (void)pendingSessionCount:(CDVInvokedUrlCommand*)command
+{
+    NSUInteger count =  [UXCam pendingUploads];
+
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsNSUInteger:count]
+                                callbackId:command.callbackId];
+}
+
+- (void)uploadPendingSession:(CDVInvokedUrlCommand*)command
+{
+    [UXCam uploadingPendingSessions:^{
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:YES]
+        callbackId:command.callbackId];
+    }];
+}
+
 - (void)occludeSensitiveScreen:(CDVInvokedUrlCommand*)command
 {
 	BOOL hideScreen = [command.arguments[0] boolValue];
