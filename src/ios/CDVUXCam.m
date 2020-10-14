@@ -174,7 +174,7 @@
 								callbackId:command.callbackId];
 }
 
-- (void)occludeAllTextFields:(CDVInvokedUrlCommand*)command
+- (void)occludeAllTextView:(CDVInvokedUrlCommand*)command
 {
 	BOOL hideScreen = [command.arguments[0] boolValue];
 
