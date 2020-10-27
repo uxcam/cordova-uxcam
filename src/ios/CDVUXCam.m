@@ -7,7 +7,7 @@
 + (void)load
 {
 	// Set this early in the startup process so we can do extra Cordova related processing before the session startWithKey is called.
-	[UXCam pluginType:@"cordova" version:@"3.3.0"];
+	[UXCam pluginType:@"cordova" version:@"3.3.1"];
 }
 
 - (void)startWithKey:(CDVInvokedUrlCommand*)command

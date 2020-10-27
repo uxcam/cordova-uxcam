@@ -5,6 +5,7 @@
 
 Version | Changes
 --------|--------
+3.3.1			| iOS SDK updated to v3.2.6, fixed a problem with occludeAllTextViews call for iOS.
 3.3.0           | iOS SDK updated to v3.2.4 and Android SDK to 3.3.0. Callback added in startWithKey after verfication complete, returns session url. Missing setUserProperty method added in ios wrapper
 3.2.2			| Version bump to work around some publishing issues - same code as 3.2.1
 3.2.1			| iOS SDK updated to v3.1.15 and Android SDK to 3.2.0. iOS occludeSensitiveViews functionality added for Cordova UIWebView & WKWebView (BETA)
