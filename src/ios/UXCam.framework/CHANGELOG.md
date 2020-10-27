@@ -5,6 +5,8 @@
 
 Version   | Changes
 ---------- | ----------
+3.2.6	| Crashed sessions aren't filtered for minimum duration
+		| Improved schematic capture for layered screens
 3.2.5	| Refactor of offline session verify to reduce retries attempts when offline
 		| Improved handling of cancelled and not started sessions
 		| Report to dashboard when exhausted offline video allowance
