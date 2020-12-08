@@ -68,4 +68,8 @@
 
 - (void)occludeRectsOnNextFrame:(CDVInvokedUrlCommand*)command;
 
+- (void)setPushNotificationToken:(CDVInvokedUrlCommand*)command;
+
+- (void)reportBugEvent:(CDVInvokedUrlCommand*)command;
+
 @end

@@ -43,7 +43,7 @@
         <source-file src="src/ios/CDVUXCam.m"/>
         
         <!-- Add in the UXCam framework -->
-        <framework src="src/ios/UXCam.framework" custom="true"/>
+        <framework src="src/ios/UXCam.xcframework" custom="true"/>
         
         <!-- and the system frameworks that UXCam depends on -->
         <framework src="CoreTelephony.framework" />

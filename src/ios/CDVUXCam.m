@@ -387,4 +387,47 @@
 								callbackId:command.callbackId];
 }
 
+- (void)setPushNotificationToken:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* pluginResult = nil;
+    NSString* token = command.arguments[0];
+    if (token.length>0)
+    {
+        [UXCam setPushNotificationToken:token];
+
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    }
+    else
+    {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    }
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)reportBugEvent:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* pluginResult = nil;
+    NSString* eventName = command.arguments[0];
+    NSDictionary* properties = command.arguments[1];
+
+    if (eventName.length>0 && properties && [properties isKindOfClass:NSDictionary.class])
+    {
+        [UXCam reportBugEvent:eventName properties:properties];
+        
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    }
+    else if (eventName.length>0){
+        [UXCam reportBugEvent:eventName properties:nil];
+        
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    }
+    else
+    {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    }
+
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 @end
