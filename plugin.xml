@@ -31,6 +31,7 @@
         </config-file>
         <source-file src="src/android/UXCam.jar" target-dir="app/libs" framework="true" mode="merge"/>
         <source-file src="src/android/UXCam.java" target-dir="src/com/uxcam/cordova" custom="true"/>
+        <framework src="androidx.core:core:1.3.2" />
     </platform>
     <platform name="ios">
         <config-file target="config.xml" parent="/*">

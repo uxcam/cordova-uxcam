@@ -50,8 +50,6 @@ To remove the plugin:
 UXCam android SDK requires AndroidX; add this to your **config.xml** file
     
     <preference name="AndroidXEnabled" value="true" />
-    
-Optional: If you experience android application crash on startup, primary reason might be due to incomplete AndroidX setup in your android project. To fix this, create **build-extras.gradle** within platforms/android/app and add **androidX.core:core:$core_version** within dependencies. For more info, refer to cordova platform [documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/android/#project-configuration).
 
 Supported platforms: android, ios
 
