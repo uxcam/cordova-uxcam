@@ -38,6 +38,8 @@
 
 - (void)setUserIdentity:(CDVInvokedUrlCommand*)command;
 
+- (void)setUserProperty:(CDVInvokedUrlCommand*)command;
+
 - (void)logEvent:(CDVInvokedUrlCommand*)command;
 
 - (void)logEventWithProperties:(CDVInvokedUrlCommand*)command;
@@ -65,5 +67,9 @@
 - (void)optOut:(CDVInvokedUrlCommand*)command;
 
 - (void)occludeRectsOnNextFrame:(CDVInvokedUrlCommand*)command;
+
+- (void)setPushNotificationToken:(CDVInvokedUrlCommand*)command;
+
+- (void)reportBugEvent:(CDVInvokedUrlCommand*)command;
 
 @end

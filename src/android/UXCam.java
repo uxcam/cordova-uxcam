@@ -9,6 +9,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -17,6 +23,7 @@ public class UXCam extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("startWithKey".equals(action)) {
+            addListener(callbackContext);
             this.start(args);
         } else if ("startNewSession".equals(action)) {
             com.uxcam.UXCam.startNewSession();
@@ -108,14 +115,7 @@ public class UXCam extends CordovaPlugin {
             }
             com.uxcam.UXCam.tagScreenName(screenName);
         }
-        else if ("addVerificationListener".equals(action)) {
-            String url = com.uxcam.UXCam.urlForCurrentUser();
-            if (url == null || url.contains("null")) {
-                addListener(callbackContext);
-                return true;
-            }
-            callbackContext.success(url);
-        } else if ("urlForCurrentUser".equals(action)) {
+        else if ("urlForCurrentUser".equals(action)) {
             String url = com.uxcam.UXCam.urlForCurrentUser();
             callbackContext.success(url);
         } else if ("urlForCurrentSession".equals(action)) {
@@ -123,6 +123,21 @@ public class UXCam extends CordovaPlugin {
             callbackContext.success(url);
         }  else if ("occludeRectsOnNextFrame".equals(action)) {
             com.uxcam.UXCam.occludeRectsOnNextFrame(new JSONArray(args.getString(0)));
+        } else if ("setPushNotificationToken".equals(action)) {
+            String token = args.getString(0);
+            com.uxcam.UXCam.setPushNotificationToken(token);
+        } else if ("reportBugEvent".equals(action)) {
+            String eventName = args.getString(0);
+            JSONObject params = args.getJSONObject(1);
+
+            if (eventName == null || eventName.length() == 0) {
+                throw new IllegalArgumentException("missing event Name");
+            }
+            if (params == null || params.length() == 0) {
+                com.uxcam.UXCam.reportBugEvent(eventName);
+            } else {
+                com.uxcam.UXCam.reportBugEvent(eventName, params);
+            }
         } else {
             callbackContext.error("This API call is not supported by UXCam Android, API called: " + action);
             return false;
@@ -133,7 +148,7 @@ public class UXCam extends CordovaPlugin {
     private void start(final JSONArray args) throws IllegalArgumentException, JSONException {
         String key;
         String buildIdentifier;
-        com.uxcam.UXCam.pluginType("cordova", "3.2.2");
+        com.uxcam.UXCam.pluginType("cordova", "3.4.0");
         if (args.length() == 1) {
             key = args.getString(0);
             if (key == null || key.length() == 0) {
@@ -158,7 +173,7 @@ public class UXCam extends CordovaPlugin {
         com.uxcam.UXCam.addVerificationListener(new com.uxcam.OnVerificationListener() {
             @Override
             public void onVerificationSuccess() {
-                callback.success(com.uxcam.UXCam.urlForCurrentUser());
+                callback.success(com.uxcam.UXCam.urlForCurrentSession());
             }
 
             @Override
@@ -168,4 +183,3 @@ public class UXCam extends CordovaPlugin {
         });
     }
 }
-
