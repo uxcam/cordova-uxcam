@@ -3,7 +3,7 @@
 //
 //  Copyright (c) 2013-2020 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.3.0
+//  UXCam SDK VERSION: 3.3.1
 //
 
 #import <Foundation/Foundation.h>
@@ -390,6 +390,8 @@ NS_ASSUME_NONNULL_BEGIN
 	@param value A value to associate with this property
 
 	@note Only NSNumber and NSString value types are supported to a maximum size per entry of 1KiB
+	
+	@note This has never been fully supported on the dashboard - the mix of user properties and events has been enough, so from SDK 3.3.1 it can be considered deprecated.
  */
 + (void) setSessionProperty:(NSString*)propertyName value:(id)value;
 
