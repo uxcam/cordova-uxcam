@@ -5,6 +5,8 @@
 
 Version   | Changes
 ---------- | ----------
+3.3.1	| Fixed an issue where a manually occluded screen state was reset on session boundaries
+		| Fixed a problem with gestures over sensitive view
 3.3.0	| Added APIs for logging handled exceptions - 
 		|	`+ (void)reportBugEvent:(NSString*)name properties:(nullable NSDictionary<NSString*,id>*)properties;` and
 		|	`+ (void)reportExceptionEvent:(NSException*)exception properties:(nullable NSDictionary<NSString*,id>*)properties;`

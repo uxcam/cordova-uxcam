@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="cordova-uxcam"
-    version="3.4.0">
+    version="3.4.1">
     
     <name>UXCam</name>
     <description>Cordova plugin for UXCam - enables the recording of your applications screen</description>
@@ -24,7 +24,6 @@
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.INTERNET" />
-            <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <service android:name="com.uxcam.service.HttpPostService"/>

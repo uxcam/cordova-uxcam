@@ -148,7 +148,7 @@ public class UXCam extends CordovaPlugin {
     private void start(final JSONArray args) throws IllegalArgumentException, JSONException {
         String key;
         String buildIdentifier;
-        com.uxcam.UXCam.pluginType("cordova", "3.4.0");
+        com.uxcam.UXCam.pluginType("cordova", "3.4.1");
         if (args.length() == 1) {
             key = args.getString(0);
             if (key == null || key.length() == 0) {
