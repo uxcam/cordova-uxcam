@@ -5,6 +5,7 @@
 
 Version | Changes
 --------|--------
+3.4.2           | iOS SDK upated to v3.3.3 & fix for ionic capacitor build issue.
 3.4.1           | iOS SDK updated to v3.3.1 & Android SDK updated to v3.3.5
 3.4.0           | iOS SDK updated to v3.3.0, android SDK updated to 3.3.4, added setPushNotificationToken, reportBugEvent API.
 3.3.1			| iOS SDK updated to v3.2.6, fixed a problem with occludeAllTextViews call for iOS.
