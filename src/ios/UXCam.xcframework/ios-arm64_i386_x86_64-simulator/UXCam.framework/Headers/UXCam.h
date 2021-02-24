@@ -3,7 +3,7 @@
 //
 //  Copyright (c) 2013-2020 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.3.1
+//  UXCam SDK VERSION: 3.3.3
 //
 
 #import <Foundation/Foundation.h>
@@ -415,11 +415,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) logEvent:(NSString*)eventName withProperties:(nullable NSDictionary<NSString*, id>*)properties;
 
 
-// SDK 3.3.0 - BETA methods - not yet fully integrated at server level
-
 /// Set the token to be used to send push notifications to the app
 /// @param pushToken  String from the deviceToken Data
 + (void) setPushNotificationToken:(nullable NSString*)pushToken;
+
 
 #pragma mark Methods for adding a problem report to your timeline
 // SDK 3.3.0 - BETA methods - not yet reflected on Dashboard
@@ -436,6 +435,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param properties Properties to attach to this exception report
 /// @note Only NSNumber and NSString property types are supported to a maximum count of 100 and maximum size per entry of 1KiB in the properties dictionary
 + (void)reportExceptionEvent:(NSException*)exception properties:(nullable NSDictionary<NSString*,id>*)properties;
+
 
 #pragma mark Retrieve URLs for viewing sessions
 /**
@@ -460,7 +460,17 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark Other methodss
 
 /// Gets a list of the gesture recognizers that UXCam has added - might be needed if you are using the UIGestureRecognizerDelegate method `shouldRecognizeSimultaneouslyWithGestureRecognizer`
+/// Your gesture recognizer code should allow these to run alongside - they are all FALSE for `cancelsTouchesInView`, `delaysTouchesBegan` & `delaysTouchesEnded` so can run alongside other GRs
 + (NSArray<UIGestureRecognizer*>*) GetGestureRecognizers;
+
+/**
+ * Control the gesture recognizers used by UXCam
+ * @param enable TRUE to enable the full range of gesture recognizers (the default), or FALSE to limit it to basic touches
+ * @note Disabling the advanced gesture recognizers (swipes, zoom etc.) can be useful if you have another SDK integrated that doesn't cooperate properly with gesture recognizers installed in other views.
+ * @note This method can only be called before `startWIthKey` has been called
+ */
++ (void) EnableAdvancedGestureRecognizers:(BOOL)enable;
+
 
 #pragma mark Internal use only methods
 /**
