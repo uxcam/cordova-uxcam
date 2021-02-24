@@ -5,6 +5,9 @@
 
 Version   | Changes
 ---------- | ----------
+3.3.3	| Add a method to limit gesture recognizing to cooperate with other SDKs that make bad assumptions about UIGestureRecognizers
+		| Improve interaction of occludeSensitiveScreen API and screens listed in the ScreenNamesToIgnore APIs/dashboard exclude list
+3.3.2	| Fix a timestamp issue in reported exceptions
 3.3.1	| Fixed an issue where a manually occluded screen state was reset on session boundaries
 		| Fixed a problem with gestures over sensitive view
 3.3.0	| Added APIs for logging handled exceptions - 
@@ -14,7 +17,7 @@ Version   | Changes
 		| Crashed sessions aren't filtered for minimum duration
 		|
 		| Distribution format changed to XCFramework for future proofing when Apple Silicon simulator versions are needed.
-		| Swift package manager integration available in XCode12/Swift 5.3+
+		| Swift package manager integration available in XCode12/Swift 5.3+, Cocoapods version 1.9.0+ needed
 		| 
 		| NB: Xcode 11.4 or higher is required to use the UXCam framework from 3.3.0 onwards
 		|
