@@ -3,11 +3,12 @@
 //
 //  Copyright (c) 2013-2020 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.3.3
+//  UXCam SDK VERSION: 3.3.7
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <UserNotifications/UNNotification.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -179,10 +180,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- *  @brief Call this before calling startWithKey to disable UXCam from capturing sessions that crash
+ *  @brief Call this before calling startWithKey to disable UXCam from capturing crashed sessions
  *
  *  @param disable YES to disable crash capture
- *  @note By default crashhandling is enabled
+ *  @note By default crashhandling is enabled, with it disabled then sessions that crash will be lost
  */
 + (void) disableCrashHandling:(BOOL)disable;
 
@@ -418,6 +419,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// Set the token to be used to send push notifications to the app
 /// @param pushToken  String from the deviceToken Data
 + (void) setPushNotificationToken:(nullable NSString*)pushToken;
+
+
+/**
+    Insert push notification related event into the timeline - stores the event with the timestamp when it was added.
+    If the notification is logged before session starts. The log is inserted at event time = 0.
+    @param notification a UNNotification object that was obtained from Push Notification
+ */
++ (void) logNotification:(UNNotification*)notification;
 
 
 #pragma mark Methods for adding a problem report to your timeline

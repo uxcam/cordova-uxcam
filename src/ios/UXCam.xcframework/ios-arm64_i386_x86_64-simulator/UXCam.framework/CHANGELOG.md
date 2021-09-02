@@ -5,8 +5,28 @@
 
 Version   | Changes
 ---------- | ----------
+3.3.7	| Stop ANR recording while on `allowShortBreak`
+		| Added  `+ (void)logNotification:(UNNotification*)notification` to record push notifications received into the timeline
+		| Improved automatic screen naming when modal views are not full screen and reduced screen name noise around keyboard controllers
+		|
+3.3.6	| Same code as v3.3.5 but built with XCode 12.4 to support older Clang/Bitcode versions
+		|
+		|  NB: XCode 12.4 or newer is required for UXCam framework from 3.3.6 onwards
+		|
+3.3.5	| UTI mimetype problem on M1 simulators fixed
+		| More improvements in Cellular upload scheduling
+		| Race condition on upload multiple sessions fixed
+		| Improved signal handler exit process
+		| NB: Needs XCode 12.5 - use 3.3.6 if you still need XCode 12.4 support
+		|
+3.3.4	| Don't try and startup if running in SwiftUI preview mode
+		| Fixed a problem for settings in offline sessions recorded immediately after a cold start
+		| Fixed a problem with offline settings not honouring some verify responses
 3.3.3	| Add a method to limit gesture recognizing to cooperate with other SDKs that make bad assumptions about UIGestureRecognizers
 		| Improve interaction of occludeSensitiveScreen API and screens listed in the ScreenNamesToIgnore APIs/dashboard exclude list
+		|
+		| NB: XCode 12 is required for SDKs from 3.3.3 onwards
+		|
 3.3.2	| Fix a timestamp issue in reported exceptions
 3.3.1	| Fixed an issue where a manually occluded screen state was reset on session boundaries
 		| Fixed a problem with gestures over sensitive view
