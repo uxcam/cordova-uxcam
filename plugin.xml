@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-uxcam"
-    version="3.4.2">
-    
+        id="cordova-uxcam"
+        version="3.4.3-beta.1">
+
     <name>UXCam</name>
     <description>Cordova plugin for UXCam - enables the recording of your applications screen</description>
     <license>Commercial</license>
     <keywords>UXCam, Analytics, Screen capture, screen recording</keywords>
-    
+
     <engines>
-        <engine name="cordova-android" version=">=7.0.0" />
+        <engine name="cordova-android" version=">=7.0.0"/>
     </engines>
 
     <js-module src="www/UXCam.js" name="UXCam">
-        <clobbers target="UXCam" />
+        <clobbers target="UXCam"/>
     </js-module>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -30,28 +30,28 @@
                 <param name="ios-package" value="CDVUXCam"/>
             </feature>
         </config-file>
-        
+
         <!-- Source for our iOS plugin -->
         <header-file src="src/ios/CDVUXCam.h"/>
         <source-file src="src/ios/CDVUXCam.m"/>
-        
+
         <!-- Add in the UXCam framework -->
         <framework src="src/ios/UXCam.xcframework" custom="true"/>
-        
+
         <!-- and the system frameworks that UXCam depends on -->
-        <framework src="CoreTelephony.framework" />
-        <framework src="AVFoundation.framework" />
-        <framework src="CoreGraphics.framework" />
-        <framework src="CoreMedia.framework" />
-        <framework src="CoreVideo.framework" />
-        <framework src="MobileCoreServices.framework" />
-        <framework src="QuartzCore.framework" />
-        <framework src="SystemConfiguration.framework" />
-        <framework src="Security.framework" />
-        <framework src="Foundation.framework" />
-        <framework src="ExternalAccessory.framework" />
-        <framework src="libz.dylib" />
-        <framework src="libiconv.dylib" />
+        <framework src="CoreTelephony.framework"/>
+        <framework src="AVFoundation.framework"/>
+        <framework src="CoreGraphics.framework"/>
+        <framework src="CoreMedia.framework"/>
+        <framework src="CoreVideo.framework"/>
+        <framework src="MobileCoreServices.framework"/>
+        <framework src="QuartzCore.framework"/>
+        <framework src="SystemConfiguration.framework"/>
+        <framework src="Security.framework"/>
+        <framework src="Foundation.framework"/>
+        <framework src="ExternalAccessory.framework"/>
+        <framework src="libz.dylib"/>
+        <framework src="libiconv.dylib"/>
     </platform>
 </plugin>
 

@@ -1,8 +1,8 @@
 repositories {
-  maven{ 
-     url 'https://sdk.uxcam.com/android/' 
-  } 
-} 
-dependencies { 
-     implementation 'com.uxcam:uxcam:3.3.5@aar' 
+  maven{
+     url 'https://sdk.uxcam.com/android/'
+  }
+}
+dependencies {
+     implementation 'com.uxcam:uxcam:3.3.7-beta-2@aar'
 }
