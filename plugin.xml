@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="cordova-uxcam"
-        version="3.4.3-beta.1">
+        version="3.4.3">
 
     <name>UXCam</name>
     <description>Cordova plugin for UXCam - enables the recording of your applications screen</description>
