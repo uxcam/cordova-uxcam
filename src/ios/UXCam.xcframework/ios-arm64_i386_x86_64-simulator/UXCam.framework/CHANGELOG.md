@@ -5,6 +5,7 @@
 
 Version   | Changes
 ---------- | ----------
+3.3.8	| Fix a race condition that could cause a crash
 3.3.7	| Stop ANR recording while on `allowShortBreak`
 		| Added  `+ (void)logNotification:(UNNotification*)notification` to record push notifications received into the timeline
 		| Improved automatic screen naming when modal views are not full screen and reduced screen name noise around keyboard controllers
