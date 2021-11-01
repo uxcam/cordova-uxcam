@@ -32,7 +32,7 @@ public class UXCam extends CordovaPlugin {
         } else if ("occludeSensitiveScreen".equals(action)) {
             boolean occludeSensitiveScreen = args.getBoolean(0);
             com.uxcam.UXCam.occludeSensitiveScreen(occludeSensitiveScreen);
-        } else if ("occludeAllTextView".equals(action)) {
+        } else if ("occludeAllTextFields".equals(action)) {
             boolean occludeAllTextField = args.getBoolean(0);
             com.uxcam.UXCam.occludeAllTextFields(occludeAllTextField);
         } else if ("tagScreenName".equals(action)) {

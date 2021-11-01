@@ -30,11 +30,6 @@
     return exec(successCallback, errorCallback, 'UXCam', 'stopSessionAndUploadData', []);
   };
   
-  UXCam.stopApplicationAndUploadData = function(occludeAllTextView, successCallback, errorCallback)
-  {
-    return exec(successCallback, errorCallback, 'UXCam', 'occludeAllTextView', [occludeAllTextView]);
-  };
-  
   UXCam.tagScreenName = function(screenName, successCallback, errorCallback)
   {
     return exec(successCallback, errorCallback, 'UXCam', 'tagScreenName', [screenName]);
@@ -211,10 +206,17 @@
     return exec(successCallback, errorCallback, 'UXCam', 'occludeSensitiveScreen', [occludeSensitiveScreen]);
   };
   
-  UXCam.occludeAllTextView = function(occludeAllTextView, successCallback, errorCallback)
+  // For historical reasons this can be called as occludeAllTextFields or occludeAllTextView
+  UXCam.occludeAllTextFields = function(occludeAll, successCallback, errorCallback)
   {
-    return exec(successCallback, errorCallback, 'UXCam', 'occludeAllTextView', [occludeAllTextView]);
+    return exec(successCallback, errorCallback, 'UXCam', 'occludeAllTextFields', [occludeAll]);
   };
+
+  UXCam.occludeAllTextView = function(occludeAll, successCallback, errorCallback)
+  {
+    return exec(successCallback, errorCallback, 'UXCam', 'occludeAllTextFields', [occludeAll]);
+  };
+  
   
   UXCam.urlForCurrentUser = function(successCallback, errorCallback)
   {
