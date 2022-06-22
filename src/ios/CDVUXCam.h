@@ -2,7 +2,13 @@
 
 @interface CDVUXCam : CDVPlugin
 
+- (void)startWithConfiguration:(CDVInvokedUrlCommand*)command;
+
 - (void)startWithKey:(CDVInvokedUrlCommand*)command;
+
+- (void)applyOcclusion:(CDVInvokedUrlCommand*)command;
+
+- (void)removeOcclusion:(CDVInvokedUrlCommand*)command;
 
 - (void)stopSessionAndUploadData:(CDVInvokedUrlCommand*)command;
 
