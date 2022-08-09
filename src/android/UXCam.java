@@ -306,7 +306,10 @@ public class UXCam extends CordovaPlugin {
         // get data
         List<String> screens = (List<String>) blurMap.get(SCREENS);
         Boolean excludeMentionedScreens = (Boolean) blurMap.get(EXCLUDE_MENTIONED_SCREENS);
-        Double blurRadius = Double.valueOf(blurMap.get(BLUR_RADIUS).toString());
+        Double blurRadius = 0.0;
+        if(blurMap.get(BLUR_RADIUS) != null)
+          blurRadius = Double.valueOf(blurMap.get(BLUR_RADIUS).toString());
+        
         Boolean hideGestures = (Boolean) blurMap.get(HIDE_GESTURES);
 
         // set data
