@@ -4,9 +4,17 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>BSBacktraceLogger-LICENSE.md</key>
+		<data>
+		EtgfUHZ9TgmqeHfaB3rZ0bkV11s=
+		</data>
+		<key>BSBacktraceLogger-README.md</key>
+		<data>
+		1cTsEQkgHf+20Gwz//TCjYDTjl0=
+		</data>
 		<key>CHANGELOG.md</key>
 		<data>
-		T8X9NxTOkd/SVa36HwkgV5LrT34=
+		dEEsymr4K/7+wMiVfddTR0sVFF8=
 		</data>
 		<key>FileMD5Hash-LICENSE</key>
 		<data>
@@ -30,7 +38,7 @@
 		</data>
 		<key>Headers/UXCam.h</key>
 		<data>
-		MDu+ZJEjDYUQDRFy4ibJAXhjrZc=
+		nXUpgUAQ25sSUQAO7cgtjy/rGdA=
 		</data>
 		<key>Headers/UXCamBlurSetting.h</key>
 		<data>
@@ -70,7 +78,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		LY7O9ifDi+hjku4djRoY+Ua07Jc=
+		ZPxHt4x0LN5JbBdgKvlIyZVehNg=
 		</data>
 		<key>LICENSE-minizip</key>
 		<data>
@@ -95,15 +103,37 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>BSBacktraceLogger-LICENSE.md</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			EtgfUHZ9TgmqeHfaB3rZ0bkV11s=
+			</data>
+			<key>hash2</key>
+			<data>
+			WJ7YI+moTFb+uVrFjnzzhGJrnL9P2iqQe8NuED3hutI=
+			</data>
+		</dict>
+		<key>BSBacktraceLogger-README.md</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			1cTsEQkgHf+20Gwz//TCjYDTjl0=
+			</data>
+			<key>hash2</key>
+			<data>
+			l6wHXS+nzXBGoFYODjT11tYT6QLOhglWOkhhyLXKAsI=
+			</data>
+		</dict>
 		<key>CHANGELOG.md</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			T8X9NxTOkd/SVa36HwkgV5LrT34=
+			dEEsymr4K/7+wMiVfddTR0sVFF8=
 			</data>
 			<key>hash2</key>
 			<data>
-			0IBZgm8xKbDWJDNyyLaItzMZgUWLKAdCkz+hfUZLLy8=
+			1U7+bEkQhg0gtcGxoRvs0B2LjVVC4VytAuvqEjbwxrk=
 			</data>
 		</dict>
 		<key>FileMD5Hash-LICENSE</key>
@@ -165,11 +195,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			MDu+ZJEjDYUQDRFy4ibJAXhjrZc=
+			nXUpgUAQ25sSUQAO7cgtjy/rGdA=
 			</data>
 			<key>hash2</key>
 			<data>
-			7Z14pg01wtaupifH8T5/VnaILTCqh6HTCyIRqJthzmw=
+			2Ut5dry2H8wtM+7hTWHERIVdC/e2xU1gv/RQqu1ZX4c=
 			</data>
 		</dict>
 		<key>Headers/UXCamBlurSetting.h</key>

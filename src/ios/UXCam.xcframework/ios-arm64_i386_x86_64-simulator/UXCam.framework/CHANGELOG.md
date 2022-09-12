@@ -5,6 +5,8 @@
 
 Version   | Changes
 ---------- | ----------
+3.4.3   | Fixed an issue related to a random crash while saving heatmaps
+3.4.2   | Performance improvements and fixed issue related to certain crash not uploading on dashboard
 3.4.1   | Occlusion with blur Support
         | Fallback as error when verify response is other than 200
 3.4.0	| Changes to how the SDK is started - use the `UXCamConfiguration` to setup how the SDK operates and pass that object to `startWith:` call.
