@@ -15,17 +15,61 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.uxcam.datamodel.UXCamBlur;
+import com.uxcam.datamodel.UXCamOverlay;
+import com.uxcam.datamodel.UXCamOcclusion;
+import com.uxcam.datamodel.UXCamOccludeAllTextFields;
+import com.uxcam.datamodel.UXConfig;
 /**
  * This class echoes a string called from JavaScript.
  */
 public class UXCam extends CordovaPlugin {
+    private static final String UXCAM_PLUGIN_TYPE = "cordova";
+    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.5.0";
+
+    public static final String USER_APP_KEY = "userAppKey";
+    public static final String ENABLE_MUTLI_SESSION_RECORD = "enableMultiSessionRecord";
+    public static final String ENABLE_CRASH_HANDLING = "enableCrashHandling";
+    public static final String ENABLE_AUTOMATIC_SCREEN_NAME_TAGGING = "enableAutomaticScreenNameTagging";
+    public static final String ENABLE_IMPROVED_SCREEN_CAPTURE = "enableImprovedScreenCapture";
+    public static final String OCCLUSION = "occlusions";
+    public static final String SCREENS = "screens";
+    public static final String NAME = "name";
+    public static final String TYPE = "type";
+    public static final String EXCLUDE_MENTIONED_SCREENS = "excludeMentionedScreens";
+    public static final String CONFIG = "config";
+    public static final String BLUR_RADIUS = "blurRadius";
+    public static final String HIDE_GESTURES = "hideGestures";
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("startWithKey".equals(action)) {
             addListener(callbackContext);
             this.start(args);
-        } else if ("startNewSession".equals(action)) {
+        } else if("startWithConfiguration".equals(action)){
+            try{
+                startWithConfiguration(toMap(args.getJSONObject(0)));
+            }catch(Exception e){
+                Log.d("UXCam Cordova Android:"," startWithConfiguration");
+                e.printStackTrace();
+            }
+        } else if("applyOcclusion".equals(action)){
+            try{
+                UXCamOcclusion occlusion = getOcclusion(toMap(args.getJSONObject(0)));
+                com.uxcam.UXCam.applyOcclusion(occlusion);
+            }catch(Exception e){
+                Log.d("UXCam Cordova Android:","applyOcclusion");
+                e.printStackTrace();
+            }
+        } else if("removeOcclusion".equals(action)){
+            try{
+                UXCamOcclusion occlusion = getOcclusion(toMap(args.getJSONObject(0)));
+            com.uxcam.UXCam.removeOcclusion(occlusion);
+            }catch(Exception e){
+                Log.d("UXCam Cordova Android:","removeOcclusion");
+                e.printStackTrace();
+            }            
+        }else if ("startNewSession".equals(action)) {
             com.uxcam.UXCam.startNewSession();
         } else if ("stopSessionAndUploadData".equals(action)) {
             com.uxcam.UXCam.stopSessionAndUploadData();
@@ -148,7 +192,7 @@ public class UXCam extends CordovaPlugin {
     private void start(final JSONArray args) throws IllegalArgumentException, JSONException {
         String key;
         String buildIdentifier;
-        com.uxcam.UXCam.pluginType("cordova", "3.4.3");
+        com.uxcam.UXCam.pluginType("cordova", "3.5.0");
         if (args.length() == 1) {
             key = args.getString(0);
             if (key == null || key.length() == 0) {
@@ -181,5 +225,144 @@ public class UXCam extends CordovaPlugin {
                 callback.error(errorMessage);
             }
         });
+    }
+
+    private List<UXCamOcclusion> convertToOcclusionList(List<Map<String, Object>> occlusionObjects) {
+        List<UXCamOcclusion> occlusionList = new ArrayList<UXCamOcclusion>();
+        for (Map<String, Object> occlusionMap :
+                occlusionObjects) {
+                    UXCamOcclusion occlusion = getOcclusion(occlusionMap);
+            if (occlusion != null)
+                occlusionList.add(getOcclusion(occlusionMap));
+        }
+        return occlusionList;
+    }
+
+    private Map<String, Object> toMap(JSONObject jsonobj)  throws JSONException {
+        Map<String, Object> map = new HashMap<String, Object>();
+        Iterator<String> keys = jsonobj.keys();
+        while(keys.hasNext()) {
+            String key = keys.next();
+            Object value = jsonobj.get(key);
+            if (value instanceof JSONArray) {
+                value = toList((JSONArray) value);
+            } else if (value instanceof JSONObject) {
+                value = toMap((JSONObject) value);
+            }   
+            map.put(key, value);
+        }   return map;
+    }
+
+    private List<Object> toList(JSONArray array) throws JSONException {
+        List<Object> list = new ArrayList<Object>();
+        for(int i = 0; i < array.length(); i++) {
+            Object value = array.get(i);
+            if (value instanceof JSONArray) {
+                value = toList((JSONArray) value);
+            }
+            else if (value instanceof JSONObject) {
+                value = toMap((JSONObject) value);
+            }
+            list.add(value);
+        }   return list;
+}
+
+    private UXCamOcclusion getOcclusion(Map<String, Object> occlusionMap) {
+        int typeIndex = (int) occlusionMap.get(TYPE);
+        switch (typeIndex) {
+            case 1:
+                return (UXCamOcclusion) getOccludeAllTextFields();
+            case 2:
+                return (UXCamOcclusion) getOverlay(occlusionMap);
+            case 3:
+                return (UXCamOcclusion) getBlur(occlusionMap);
+            default:
+                return null;
+        }
+    }
+
+    private UXCamOccludeAllTextFields getOccludeAllTextFields() {
+        return new UXCamOccludeAllTextFields();
+    }
+
+    private UXCamOverlay getOverlay(Map<String, Object> overlayMap) {
+        // get data
+        List<String> screens = (List<String>) overlayMap.get(SCREENS);
+        Boolean excludeMentionedScreens = (Boolean) overlayMap.get(EXCLUDE_MENTIONED_SCREENS);
+        Boolean hideGestures = (Boolean) overlayMap.get(HIDE_GESTURES);
+
+        // set data
+        UXCamOverlay.Builder overlayBuilder = new UXCamOverlay.Builder();
+        if (screens != null && !screens.isEmpty())
+            overlayBuilder.screens(screens);
+        if (excludeMentionedScreens != null)
+            overlayBuilder.excludeMentionedScreens(excludeMentionedScreens);
+        if (hideGestures != null)
+            overlayBuilder.withoutGesture(hideGestures);
+        return overlayBuilder.build();
+    }
+
+    private UXCamBlur getBlur(Map<String, Object> blurMap) {
+        // get data
+        List<String> screens = (List<String>) blurMap.get(SCREENS);
+        Boolean excludeMentionedScreens = (Boolean) blurMap.get(EXCLUDE_MENTIONED_SCREENS);
+        Double blurRadius = 0.0;
+        if(blurMap.get(BLUR_RADIUS) != null)
+          blurRadius = Double.valueOf(blurMap.get(BLUR_RADIUS).toString());
+        
+        Boolean hideGestures = (Boolean) blurMap.get(HIDE_GESTURES);
+
+        // set data
+        UXCamBlur.Builder blurBuilder = new UXCamBlur.Builder();
+        if (screens != null && !screens.isEmpty())
+            blurBuilder.screens(screens);
+        if (excludeMentionedScreens != null)
+            blurBuilder.excludeMentionedScreens(excludeMentionedScreens);
+        if (blurRadius != null)
+            blurBuilder.blurRadius(blurRadius.intValue());
+        if (hideGestures != null)
+            blurBuilder.withoutGesture(hideGestures);
+        return blurBuilder.build();
+
+
+    }
+    private void startWithConfiguration(Map<String,Object> configuration) {
+        try {
+            HashMap<String, Object> configMap = (HashMap<String, Object>) configuration;
+            String appKey = (String) configMap.get(USER_APP_KEY);
+            Boolean enableMultiSessionRecord = (Boolean) configMap.get(ENABLE_MUTLI_SESSION_RECORD);
+            Boolean enableCrashHandling = (Boolean) configMap.get(ENABLE_CRASH_HANDLING);
+            Boolean enableAutomaticScreenNameTagging = (Boolean) configMap.get(ENABLE_AUTOMATIC_SCREEN_NAME_TAGGING);
+            Boolean enableImprovedScreenCapture = (Boolean) configMap.get(ENABLE_IMPROVED_SCREEN_CAPTURE);
+
+            // // occlusion
+            List<UXCamOcclusion> occlusionList = null;
+            if (configMap.get(OCCLUSION) != null) {
+                List<Map<String, Object>> occlusionObjects = (List<Map<String, Object>>) configMap.get(OCCLUSION);
+                occlusionList = convertToOcclusionList(occlusionObjects);
+            }
+
+            UXConfig.Builder uxConfigBuilder = new UXConfig.Builder(appKey);
+            if (enableMultiSessionRecord != null)
+                uxConfigBuilder.enableMultiSessionRecord(enableMultiSessionRecord);
+            if (enableCrashHandling != null)
+                uxConfigBuilder.enableCrashHandling(enableCrashHandling);
+            if (enableAutomaticScreenNameTagging != null)
+                uxConfigBuilder.enableAutomaticScreenNameTagging(enableAutomaticScreenNameTagging);
+            if (enableImprovedScreenCapture != null) {
+                Log.d("config", "improved screen capture enabled " + enableImprovedScreenCapture);
+                uxConfigBuilder.enableImprovedScreenCapture(enableImprovedScreenCapture);
+            }
+            if (occlusionList != null)
+                uxConfigBuilder.occlusions(occlusionList);
+
+            UXConfig config = uxConfigBuilder.build();
+            com.uxcam.UXCam.pluginType(UXCAM_PLUGIN_TYPE, UXCAM_CORDOVA_PLUGIN_VERSION);
+            com.uxcam.UXCam.startWithConfigurationCrossPlatform(this.cordova.getActivity(), config);
+        
+        } catch (Exception e) {
+            Log.d("config", "Error starting with configuration");
+            e.printStackTrace();
+        }
     }
 }
