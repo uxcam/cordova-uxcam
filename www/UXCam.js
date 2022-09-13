@@ -10,9 +10,24 @@
   
   var UXCam = function(){};
   
+  UXCam.startWithConfiguration = function(configuration, successCallback, errorCallback)
+  {
+    return exec(successCallback, errorCallback, 'UXCam', 'startWithConfiguration', [configuration]);
+  };
+
   UXCam.startWithKey = function(key, successCallback, errorCallback)
   {
     return exec(successCallback, errorCallback, 'UXCam', 'startWithKey', [key]);
+  };
+
+  UXCam.applyOcclusion = function(occlusion, successCallback, errorCallback)
+  {
+    return exec(successCallback, errorCallback, 'UXCam', 'applyOcclusion', [occlusion]);
+  };
+
+  UXCam.removeOcclusion = function(occlusion, successCallback, errorCallback)
+  {
+    return exec(successCallback, errorCallback, 'UXCam', 'removeOcclusion', [occlusion]);
   };
   
   UXCam.startWithKeyAndAppVariant = function(key, appVariant, successCallback, errorCallback)

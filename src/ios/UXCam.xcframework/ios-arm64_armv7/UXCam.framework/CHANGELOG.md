@@ -5,6 +5,23 @@
 
 Version   | Changes
 ---------- | ----------
+3.4.3   | Fixed an issue related to a random crash while saving heatmaps
+3.4.2   | Performance improvements and fixed issue related to certain crash not uploading on dashboard
+3.4.1   | Occlusion with blur Support
+        | Fallback as error when verify response is other than 200
+3.4.0	| Changes to how the SDK is started - use the `UXCamConfiguration` to setup how the SDK operates and pass that object to `startWith:` call.
+		| Logging of network activity is available - off by default - see `captureNetworkLogs` in the `UXCamConfiguration`
+		| The capture of crashes has been made more reliable by using PLCrashReporter
+		| Improvements to capture of Alert boxes and ActivitiyIndicators in the schematic recording
+		| Improved reliability of `allowShortBreak` video capture
+        | Added new APIs for better control over 'short breaks' - `getAllowShortBreakStatus`, `setAllowShortBreakMaxDuration` and `getAllowShortBreakMaxDuration`     
+		|
+		| **Known issues:** 
+		|	The logging of push notification details `+ (void) logNotification:(UNNotification*)notification;` requires furher server side changes before it will work fully.
+		|
+		| **NB:** XCode 13.0 or newer is required for UXCam framework from 3.4.0 onwards
+		|
+		|
 3.3.9	| Internal update to fix problems with Cordova view occlusion
 3.3.8	| Fix a race condition that could cause a crash
 3.3.7	| Stop ANR recording while on `allowShortBreak`
@@ -13,7 +30,7 @@ Version   | Changes
 		|
 3.3.6	| Same code as v3.3.5 but built with XCode 12.4 to support older Clang/Bitcode versions
 		|
-		|  NB: XCode 12.4 or newer is required for UXCam framework from 3.3.6 onwards
+		| NB: XCode 12.4 or newer is required for UXCam framework from 3.3.6 onwards
 		|
 3.3.5	| UTI mimetype problem on M1 simulators fixed
 		| More improvements in Cellular upload scheduling

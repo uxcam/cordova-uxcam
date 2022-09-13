@@ -1,48 +1,212 @@
 #import "CDVUXCam.h"
 
-#import <UXCam/UXCam.h>
+@import UXCam;
+
+// Configuration Keys
+static NSString* const Uxcam_AppKey = @"userAppKey";
+static NSString* const Uxcam_MultiSession = @"enableMultiSessionRecord";
+static NSString* const Uxcam_CrashHandling = @"enableCrashHandling";
+static NSString* const Uxcam_ScreenTag = @"enableAutomaticScreenNameTagging";
+static NSString* const Uxcam_AdvancedGestures = @"enableAdvancedGestureRecognition";
+static NSString* const Uxcam_EnableNetworkLogs = @"enableNetworkLogging";
+
+static NSString* const Uxcam_Occlusion = @"occlusions";
+static NSString* const Uxcam_OccludeScreens = @"screens";
+static NSString* const Uxcam_ExcludeScreens = @"excludeMentionedScreens";
+static NSString* const Uxcam_OcclusionType = @"type";
+static NSString* const Uxcam_BlurName = @"name";
+static NSString* const Uxcam_BlurRadius = @"blurRadius";
+static NSString* const Uxcam_HideGestures = @"hideGestures";
+static NSString* const Uxcam_OverlayColor = @"color";
 
 @implementation CDVUXCam
 
 + (void)load
 {
-	// Set this early in the startup process so we can do extra Cordova related processing before the session startWithKey is called.
-	[UXCam pluginType:@"cordova" version:@"3.4.3"];
+    // Set this early in the startup process so we can do extra Cordova related processing before the session startWithKey is called.
+    [UXCam pluginType:@"cordova" version:@"3.5.1"];
+}
+
+- (void)startWithConfiguration:(CDVInvokedUrlCommand*)command
+{
+    __block CDVPluginResult* pluginResult = nil;
+    NSDictionary *config = command.arguments[0];
+    
+    NSString *userAppKey = config[Uxcam_AppKey];
+    if (!userAppKey || ![userAppKey isKindOfClass:NSString.class])
+    {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid app key"];
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:command.callbackId];
+        return;
+    }
+    UXCamConfiguration *configuration = [[UXCamConfiguration alloc] initWithAppKey:userAppKey];
+    [self updateConfiguration:configuration fromDict:config];
+    
+    [UXCam startWithConfiguration:configuration completionBlock:^(BOOL started)
+     {
+        if (started) {
+            NSString *url =  [UXCam urlForCurrentSession];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: url];
+        }
+        else {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"failed to start uxcam session"];
+        }
+        
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:command.callbackId];
+    }
+    ];
 }
 
 - (void)startWithKey:(CDVInvokedUrlCommand*)command
 {
-    __block CDVPluginResult* pluginResult = nil;
-    NSString* apiKey = command.arguments[0];
+    NSString *userAppKey = command.arguments[0];
+    NSDictionary *config = @{Uxcam_AppKey: userAppKey};
+    CDVInvokedUrlCommand *configurationCommand = [[CDVInvokedUrlCommand alloc] initWithArguments: @[config] callbackId: command.callbackId className: command.className methodName: command.methodName];
+    [self startWithConfiguration: configurationCommand];
+}
 
-    if (apiKey.length > 0)
+- (void)updateConfiguration:(UXCamConfiguration *)configuration fromDict:(NSDictionary *)config
+{
+    NSNumber *enableMultiSessionRecord = config[Uxcam_MultiSession];
+    if (enableMultiSessionRecord && [self isBoolNumber:enableMultiSessionRecord])
     {
-        NSString* buildIdentifier = nil;
-        if (command.arguments.count>1)
-        {
-            buildIdentifier = command.arguments[1];
-            buildIdentifier = buildIdentifier.length>0 ? buildIdentifier : nil;
-        }
-
-        [UXCam startWithKey:apiKey buildIdentifier:buildIdentifier completionBlock:^(BOOL started) {
-            if (started){
-                NSString *url =  [UXCam urlForCurrentSession];
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: url];
-            }
-            else {
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"failed to start uxcam session"];
-            }
-
-            [self.commandDelegate sendPluginResult:pluginResult
-                                        callbackId:command.callbackId];
-        }];
-
-        return;
+        configuration.enableMultiSessionRecord = [enableMultiSessionRecord boolValue];
     }
+    NSNumber *enableCrashHandling = config[Uxcam_CrashHandling];
+    if (enableCrashHandling && [self isBoolNumber:enableCrashHandling])
+    {
+        configuration.enableCrashHandling = [enableCrashHandling boolValue];
+    }
+    NSNumber *enableAutomaticScreenNameTagging = config[Uxcam_ScreenTag];
+    if (enableAutomaticScreenNameTagging && [self isBoolNumber:enableAutomaticScreenNameTagging])
+    {
+        configuration.enableAutomaticScreenNameTagging = [enableAutomaticScreenNameTagging boolValue];
+    }
+    NSNumber *enableAdvancedGestureRecognition = config[Uxcam_AdvancedGestures];
+    if (enableAdvancedGestureRecognition && [self isBoolNumber:enableAdvancedGestureRecognition])
+    {
+        configuration.enableAdvancedGestureRecognition = [enableAdvancedGestureRecognition boolValue];
+    }
+    NSNumber *enableNetworkLogging = config[Uxcam_EnableNetworkLogs];
+    if (enableNetworkLogging && [self isBoolNumber:enableNetworkLogging])
+    {
+        configuration.enableNetworkLogging = [enableNetworkLogging boolValue];
+    }
+    
+    NSArray *occlusionList = config[Uxcam_Occlusion];
+    if (occlusionList && ![occlusionList isKindOfClass:NSNull.class]) {
+        UXCamOcclusion *occlusion = [[UXCamOcclusion alloc] init];
+        for (NSDictionary *occlusionJson in occlusionList) {
+            id <UXCamOcclusionSetting> setting = [self getOcclusionSettingFromJson:occlusionJson];
+            if (setting)
+            {
+                NSArray *screens = occlusionJson[Uxcam_OccludeScreens];
+                BOOL excludeMentionedScreens = [occlusionJson[Uxcam_ExcludeScreens] boolValue];
+                [occlusion applySettings:@[setting] screens:screens excludeMentionedScreens: excludeMentionedScreens];
+            }
+        }
+        configuration.occlusion = occlusion;
+    }
+}
 
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid app key"];
-    [self.commandDelegate sendPluginResult:pluginResult
-                                callbackId:command.callbackId];
+- (id<UXCamOcclusionSetting>)getOcclusionSettingFromJson:(NSDictionary *)json
+{
+    NSNumber *type = json[Uxcam_OcclusionType];
+    UXOcclusionType occlusionType = type.integerValue ?: UXOcclusionTypeBlur;
+    
+    switch (occlusionType) {
+        case UXOcclusionTypeBlur:
+        {
+            NSString *name = json[Uxcam_BlurName];
+            UXBlurType blurType = [UXCamOcclusion getBlurTypeFromName:name];
+            NSNumber *radiusValue = json[Uxcam_BlurRadius];
+            int radius = radiusValue.intValue ?: 10;
+            UXCamBlurSetting *blur = [[UXCamBlurSetting alloc] initWithBlurType:blurType radius:radius];
+            NSNumber *hideGestures = json[Uxcam_HideGestures];
+            if (hideGestures) {
+                blur.hideGestures = hideGestures.boolValue;
+            }
+            
+            return blur;
+        }
+        case UXOcclusionTypeOverlay:
+        {
+            UXCamOverlaySetting *overlay = [[UXCamOverlaySetting alloc] init];
+            NSNumber *colorCode = json[Uxcam_OverlayColor];
+            if (colorCode)
+            {
+                int colorValue = colorCode.intValue;
+                float redValue = (colorValue >> 16 & 0xff) / 0xff;
+                float greenValue = (colorValue >> 8 & 0xff) / 0xff;
+                float blueValue = (colorValue & 0xff) / 0xff;
+                
+                UIColor *color = [UIColor colorWithRed:redValue green:greenValue blue:blueValue alpha: 1];
+                overlay.color = color;
+            }
+            
+            NSNumber *hideGestures = json[Uxcam_HideGestures];
+            if (hideGestures) {
+                overlay.hideGestures = hideGestures.boolValue;
+            }
+            return overlay;
+        }
+        case UXOcclusionTypeOccludeAllTextFields:
+        {
+            UXCamOccludeAllTextFields *occlude = [[UXCamOccludeAllTextFields alloc] init];
+            return occlude;
+        }
+        default:
+            return nil;
+    }
+}
+
+- (void)applyOcclusion:(CDVInvokedUrlCommand*)command
+{
+    NSDictionary *occlusion = command.arguments[0];
+    
+    if (occlusion && ![occlusion isKindOfClass:NSNull.class]) {
+        id <UXCamOcclusionSetting> setting = [self getOcclusionSettingFromJson:occlusion];
+        if (setting)
+        {
+            [UXCam applyOcclusion:setting];
+            [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                        callbackId:command.callbackId];
+            return;
+        }
+    }
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Occlusion setting not found"];
+    [self.commandDelegate sendPluginResult: pluginResult callbackId: command.callbackId];
+    
+}
+
+- (void)removeOcclusion:(CDVInvokedUrlCommand*)command
+{
+    NSDictionary *occlusion = command.arguments[0];
+    if (occlusion && ![occlusion isKindOfClass:NSNull.class]) {
+        id <UXCamOcclusionSetting> setting = [self getOcclusionSettingFromJson:occlusion];
+        if (setting)
+        {
+            [UXCam removeOcclusionOfType:setting.type];
+        }
+        else
+        {
+            [UXCam removeOcclusion];
+        }
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+                                    callbackId:command.callbackId];
+    } else {
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Occlusion setting not found"];
+        [self.commandDelegate sendPluginResult: pluginResult callbackId: command.callbackId];
+    }
+}
+
+- (BOOL)isBoolNumber:(NSNumber *)num
+{
+    CFTypeID boolID = CFBooleanGetTypeID(); // the type ID of CFBoolean
+    CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(num)); // the type ID of num
+    return numID == boolID;
 }
 
 - (void)stopSessionAndUploadData:(CDVInvokedUrlCommand*)command

@@ -1,14 +1,16 @@
 //
 //  UXCam.h
 //
-//  Copyright (c) 2013-2020 UXCam Ltd. All rights reserved.
+//  Copyright (c) 2013-2021 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.3.9
+//  UXCam SDK VERSION: 3.4.4
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <UserNotifications/UNNotification.h>
+#import <UXCam/UXCamConfiguration.h>
+#import <UXCam/UXCamOcclusion.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +18,32 @@ NS_ASSUME_NONNULL_BEGIN
  *	UXCam SDK captures user experience data when a user uses an app, analyses this data on the cloud and provides insights to improve usability of the app.
  */
 @interface UXCam : NSObject
+
+/**
+ * This notification is sent when a session verify completes.
+ * The userInfo dictionary contains an NSNumber wrapped BOOL in the key @c UXCam_VerifyNotification_StartedKey that indicates if the verify result was YES or NO
+ */
+extern NSNotificationName const UXCam_VerifyNotification;
+
+/// The key in the @c userInfo dictionary that contains the NSNumber wrapped BOOL indicating if the verification was sucessful or not
+extern NSString* const UXCam_VerifyNotification_StartedKey;
+
+/**
+ * This notification is sent when the app returns to the foreground after an interruption where the @c allowShortBreak flag was set
+ * @discussion The @c userInfo dictionary contains keys @c UXCam_Notification_Key_AllowShortBreakContinuing and @c UXCam_Notification_Key_AllowShortBreakDuration giving details of how long the break was, and if the original session is continuing.
+ */
+extern NSNotificationName const UXCam_Notification_AllowShortBreak;
+
+/// The key in the @c userInfo dictionary that contains the NSNumber wrapped BOOL indicating if the original session is continuing or not
+extern NSString* const UXCam_Notification_Key_AllowShortBreakContinuing;
+/// The key in the @c userInfo dictionary that contains the NSNumber wrapped NSTimeInterval duration of the break (in seconds)
+extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
+
+
+/**
+ * The current configuration of the SDK. Value will be nil if called before @c startWithConfiguration method.
+ */
+@property (class, nullable, nonatomic, assign, readonly) UXCamConfiguration *configuration;
 
 #pragma mark Methods for controlling if this device is opted out of session and/or schematic recordings
 /**
@@ -62,33 +90,20 @@ NS_ASSUME_NONNULL_BEGIN
  *	This will start the UXCam system, get the settings configurations from our server and start capturing the data according to the configuration.
  *
  *	@brief Start the UXCam session
- *	@param userAPIKey	The key to identify your UXCam account - find it in the UXCam dashboard for your account at https://dashboard.uxcam.com/user/settings
+ *	@param configuration	The configuration to identify your UXCam account - find app key of configuration in the UXCam dashboard for your account at https://dashboard.uxcam.com/user/settings
  */
-+ (void) startWithKey:(NSString*)userAPIKey;
++ (void) startWithConfiguration:(UXCamConfiguration *)configuration;
 
 /**
  *	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
  * 	This will start the UXCam system, get the settings configurations from our server and start capturing the data according to the configuration.
  *
  *	@brief Start the UXCam session
- *	@param userAPIKey			The key to identify your UXCam account - find it in the UXCam dashboard for your account at https://dashboard.uxcam.com/user/settings
+ *	@param configuration		The configuration to identify your UXCam account - find app key of configuration in the UXCam dashboard for your account at https://dashboard.uxcam.com/user/settings
  *	@param sessionStartedBlock	This block will be called once the app settings have been checked against the UXCam server - the parameter will be TRUE if recording has started.  @b NOTE @b: This block is captured and called each time a new session starts.
  */
-+ (void) startWithKey:(NSString*)userAPIKey
-	  completionBlock:(nullable void (^)(BOOL started))sessionStartedBlock;
-
-/**
- *	Call this method from applicationDidFinishLaunching to start UXCam recording your application's session.
- *	This will start the UXCam system, get the settings configurations from our server and start capturing the data according to the configuration.
- *
- *	@brief Start the UXCam session
- *	@param userAPIKey			The key to identify your UXCam account - find it in the UXCam dashboard for your account at https://dashboard.uxcam.com/user/settings
- *	@param multiSession			If YES (the default for other methods) then a new session is recorded each time the app comes to the foreground. If NO then a single session is recorded, when stopped (either programmatically with @c stopSessionAndUploadData or by the app going to the background) then no more sessions are recorded until @c startWithKey is called again)
- *	@param sessionStartedBlock	This block will be called once the app settings have been checked against the UXCam server - the parameter will be TRUE if recording has started. @b NOTE @b: This block is captured and called each time a new session starts.
- */
-+ (void) startWithKey:(NSString*)userAPIKey
-	 multipleSessions:(BOOL)multiSession
-	  completionBlock:(nullable void (^)(BOOL started))sessionStartedBlock;
++ (void) startWithConfiguration:(UXCamConfiguration *)configuration
+				completionBlock:(nullable void (^)(BOOL started))sessionStartedBlock;
 
 
 #pragma mark Manage session once UXCam has started
@@ -121,12 +136,34 @@ NS_ASSUME_NONNULL_BEGIN
  *	@brief Prevent a short trip to another app causing a break in a session
  *	@param continueSession Set to TRUE to continue the current session after a short trip out to another app. Default is FALSE - stop the session as soon as the app enters the background.
  *	@note If the app is in the background for more than the 'background time allowed' (3 minutes on iOS <=12 or 30 seconds since iOS >=13) and the app is killed then the session will be lost.
+ *	@note Notification `UXCam_Notification_AllowShortBreak` is sent when the app returns from a break, and the payload of that indicates if the session continues or was too long and a new sessions is started
  */
 + (void) allowShortBreakForAnotherApp:(BOOL)continueSession;
 
 
 /**
- * 	Starts a new session after the @link stopApplicationAndUploadData @/link method has been called.
+ * Get the current status of the @c allowShortBreakForAnotherApp flag
+ */
++ (BOOL)getAllowShortBreakStatus;
+
+
+/**
+ * Sets the maximum duration of break allowed when the @c allowShortBreakForAnotherApp flag is @c TRUE
+ *
+ * @param duration Set to the duration of break allowed (in milliseconds)
+ * @note The default duration is (180 * 1000) milliseconds
+ */
++ (void)setAllowShortBreakMaxDuration:(double)duration;
+
+
+/**
+ * Get the maximum duration allowed for the short break (in milliseconds).
+ */
++ (double)getAllowShortBreakMaxDuration;
+
+
+/**
+ * 	Starts a new session after the @c stopApplicationAndUploadData method has been called.
  *	This happens automatically when the app returns from background.
  *
  *	@note Any completion block registered during startWithKey: will be called as the session starts
@@ -151,21 +188,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- *	Set whether to record multiple sessions or not
- *
- *	@param recordMultipleSessions YES to record a new session automatically when the device comes out of the background. If NO then a single session is recorded, when stopped (either programmatically with @c stopApplicationAndUploadData or by the app going to the background) then no more sessions are recorded until @c startWithKey is called again).
- *	@note The default setting is to record a new session each time a device comes out of the background. This flag can be set to NO to stop that. You can also set this with the appropriate startWithKey: variant. (This will be reset each time startWithKey is called)
- */
-+ (void) setMultiSessionRecord:(BOOL)recordMultipleSessions;
-
-
-/**
- *	Get whether UXCam is set to automatically record a new session when the app resumes from the background
- */
-+ (BOOL) getMultiSessionRecord;
-
-
-/**
  *	Pause the schematic recording
  *
  *  @note With this method gestures are not captured while schematic recording is paused. Use @c occludeSensitiveScreen:hideGestures: to control the capture of gestures when the screen is hidden.
@@ -177,22 +199,6 @@ NS_ASSUME_NONNULL_BEGIN
  *	Resumes a paused schematic recording
  */
 + (void) resumeScreenRecording;
-
-
-/**
- *  @brief Call this before calling startWithKey to disable UXCam from capturing crashed sessions
- *
- *  @param disable YES to disable crash capture
- *  @note By default crashhandling is enabled, with it disabled then sessions that crash will be lost
- */
-+ (void) disableCrashHandling:(BOOL)disable;
-
-
-/**
- *	When called the NSLog output (stderr) will be redirected to a file and uploaded with the session details
- *	@note There will be no console output while debugging after calling this
- */
-+ (void) captureLogOutput;
 
 
 #pragma mark Manage sessions waiting for upload
@@ -210,14 +216,14 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *	@param block Code block to call once upload process completes - will be run on the main thread. There might still be sessions waiting for upload if there was a problem with uploading any of them
  *
- *	@note Advanced use only. This is not needed for most developers. This can't be called until UXCam startWithKey: has completed
+ *	@note Advanced use only. This is not needed for most developers. This can't be called until @c [UXCam @c startWithKey:] has completed
  */
 + (void) uploadingPendingSessions:(nullable void (^)(void))block;
 
 
 /**
  *	@brief Deletes any sessions that are awaiting upload
- *	@note Advanced use only. This is not needed for most developers. This can't be called until UXCam startWithKey: has completed
+ *	@note Advanced use only. This is not needed for most developers. This can't be called until @c [UXCam @c startWithKey:] has completed
  */
 + (void) deletePendingUploads;
 
@@ -240,6 +246,21 @@ NS_ASSUME_NONNULL_BEGIN
 */
 + (void) occludeSensitiveViewWithoutGesture:(UIView*)sensitiveView;
 
+/**
+    Apply occlusion setting from specific position within app. Use @c removeOcclusion to remove this occlusion setting.
+    @note This method takes precedence over configuration based occlusion properties in case of conflict.
+ */
++ (void) applyOcclusion:(id<UXCamOcclusionSetting>)setting;
+
+/**
+    Remove all occlusion of spcific type from the occlusion applied using @c applyOcclusion:
+ */
++ (void) removeOcclusionOfType:(UXOcclusionType)type;
+
+/**
+    Remove all occlusion that are applied using @c applyOcclusion:
+ */
++ (void) removeOcclusion;
 
 /**
  	Stop hiding a view that was previously hidden
@@ -289,74 +310,62 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark Methods for controlling screen naming
 
 /**
- UXCam normally captures the view controller name automatically but in cases where it this is not sufficient (such as in OpenGL applications)
- or where you would like to set a different unique name, use this function to set the name.
- 
- @note Call this in @c [UIViewController viewDidAppear:] after the call to @c [super ...] or automatic screen name tagging will override your value.
- 
- Screen names added with this method will not be filtered by the ignore list.
- 
- @param screenName Name to apply to the current screen in the session
+	UXCam normally captures the view controller name automatically but in cases where it this is not sufficient (such as in OpenGL applications)
+	or where you would like to set a different unique name, use this function to set the name.
+
+	@note Call this in @c [UIViewController @c viewDidAppear:] after the call to @c [super ...] or automatic screen name tagging will override your value.
+
+	Screen names added with this method will not be filtered by the ignore list.
+
+	@param screenName Name to apply to the current screen in the session
  */
 + (void) tagScreenName:(NSString*)screenName;
 
 /**
- Enable / disable the automatic tagging of screen names
- 
- By default UXCam will tag new screen names automatically. You can override this using the @c tagScreenName: method, or use this method to disable the automatic tagging. Build a list of screen names to ignore with the @c addScreenNamesToIgnore: method
- 
- @param enable Set to TRUE to enable automatic screen name tagging (the default) or FALSE to disable it
- 
- */
-+ (void) setAutomaticScreenNameTagging:(BOOL)enable;
+	Add a name to the list of screens names that wont be added to the timeline in automatic screen name tagging mode
 
+	This will not impact gesture or action recording - just that the timeline on the dashboard will not contain an entry for this screen name if it appears after this call.
+	Use this if you have view controllers that are presented but which are not primary user interaction screens to make your dashboard timeline easier to understand.
 
-/**
- Add a name to the list of screens names that wont be added to the timeline in automatic screen name tagging mode
- 
- This will not impact gesture or action recording - just that the timeline on the dashboard will not contain an entry for this screen name if it appears after this call.
- Use this if you have view controllers that are presented but which are not primary user interaction screens to make your dashboard timeline easier to understand.
- 
- @param nameToIgnore A name to add to the list of screens to ignore
- 
- @note This is a convenience method for @c addScreenNamesToIgnore:\@[nameToIgnore]
+	@param nameToIgnore A name to add to the list of screens to ignore
+
+	@note This is a convenience method for @c addScreenNamesToIgnore:\@[nameToIgnore]
  
  */
 + (void) addScreenNameToIgnore:(NSString*)nameToIgnore;
 
 /**
- Add a list of names to the list of screens names that wont be added to the timeline in automatic screen name tagging mode
- 
- This will not impact gesture or action recording - just that the timeline on the dashboard will not contain an entry for any of the screens in this list encountered after this call.
- Use this if you have view controllers that are presented but which are not primary user interaction screens to make your dashboard timeline easier to understand.
- 
- @param namesToIgnore A list of screen names to add to the ignore list
- 
+	Add a list of names to the list of screens names that wont be added to the timeline in automatic screen name tagging mode
+
+	This will not impact gesture or action recording - just that the timeline on the dashboard will not contain an entry for any of the screens in this list encountered after this call.
+	Use this if you have view controllers that are presented but which are not primary user interaction screens to make your dashboard timeline easier to understand.
+
+	@param namesToIgnore A list of screen names to add to the ignore list
  */
 + (void) addScreenNamesToIgnore:(NSArray<NSString*>*)namesToIgnore;
 
 /**
- Remove the a name from the list of screens to be ignored in automatic screen name tagging mode
- 
- @param nameToRemove The name to remove from the list of ignored screens
- @note This is a convenience method for @c removeScreenNamesToIgnore:\@[nameToRemove]
+	Remove the a name from the list of screens to be ignored in automatic screen name tagging mode
+
+	@param nameToRemove The name to remove from the list of ignored screens
+	@note This is a convenience method for @c removeScreenNamesToIgnore:\@[nameToRemove]
  */
 + (void) removeScreenNameToIgnore:(NSString*)nameToRemove;
 
 /**
- Remove the a list of names from the list of screens to be ignored in automatic screen name tagging mode
+	Remove the a list of names from the list of screens to be ignored in automatic screen name tagging mode
  
- @param namesToRemove A list of names to remove from the ignore list
+	@param namesToRemove A list of names to remove from the ignore list
  */
 + (void) removeScreenNamesToIgnore:(NSArray<NSString*>*)namesToRemove;
 
 /**
- Remove all entries from the list of screen names to be ignored in automatic screen name tagging mode
+	Remove all entries from the list of screen names to be ignored in automatic screen name tagging mode
  */
 + (void) removeAllScreenNamesToIgnore;
 
 /**
- Get the list of screen names that are being ignored in automatic screen name tagging mode
+	Get the list of screen names that are being ignored in automatic screen name tagging mode
  */
 + (NSArray<NSString*>*)screenNamesBeingIgnored;
 
@@ -416,8 +425,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) logEvent:(NSString*)eventName withProperties:(nullable NSDictionary<NSString*, id>*)properties;
 
 
-/// Set the token to be used to send push notifications to the app
-/// @param pushToken  String from the deviceToken Data
+/**
+	Set the token to be used to send push notifications to the app
+	@param pushToken  String from the deviceToken Data
+ */
 + (void) setPushNotificationToken:(nullable NSString*)pushToken;
 
 
@@ -432,17 +443,20 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark Methods for adding a problem report to your timeline
 // SDK 3.3.0 - BETA methods - not yet reflected on Dashboard
 
-/// Send a report of a problem your app encountered to be displayed in the dashboard
-/// @param name The name to call the proplem
-/// @param properties Properties associated with the report
-/// @note Only NSNumber and NSString property types are supported to a maximum count of 100 and maximum size per entry of 1KiB in the properties dictionary
+/**
+	Send a report of a problem your app encountered to be displayed in the dashboard
+	@param name The name to call the proplem
+	@param properties Properties associated with the report
+	@note Only NSNumber and NSString property types are supported to a maximum count of 100 and maximum size per entry of 1KiB in the properties dictionary
+ */
 + (void)reportBugEvent:(NSString*)name properties:(nullable NSDictionary<NSString*,id>*)properties;
 
-
-/// Report an exception that your app encountered and handled. To be shown in an area of the dashboard
-/// @param exception The exception that was caught
-/// @param properties Properties to attach to this exception report
-/// @note Only NSNumber and NSString property types are supported to a maximum count of 100 and maximum size per entry of 1KiB in the properties dictionary
+/**
+	Report an exception that your app encountered and handled. To be shown in an area of the dashboard
+	@param exception The exception that was caught
+	@param properties Properties to attach to this exception report
+	@note Only NSNumber and NSString property types are supported to a maximum count of 100 and maximum size per entry of 1KiB in the properties dictionary
+ */
 + (void)reportExceptionEvent:(NSException*)exception properties:(nullable NSDictionary<NSString*,id>*)properties;
 
 
@@ -468,17 +482,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark Other methodss
 
-/// Gets a list of the gesture recognizers that UXCam has added - might be needed if you are using the UIGestureRecognizerDelegate method `shouldRecognizeSimultaneouslyWithGestureRecognizer`
-/// Your gesture recognizer code should allow these to run alongside - they are all FALSE for `cancelsTouchesInView`, `delaysTouchesBegan` & `delaysTouchesEnded` so can run alongside other GRs
-+ (NSArray<UIGestureRecognizer*>*) GetGestureRecognizers;
-
 /**
- * Control the gesture recognizers used by UXCam
- * @param enable TRUE to enable the full range of gesture recognizers (the default), or FALSE to limit it to basic touches
- * @note Disabling the advanced gesture recognizers (swipes, zoom etc.) can be useful if you have another SDK integrated that doesn't cooperate properly with gesture recognizers installed in other views.
- * @note This method can only be called before `startWIthKey` has been called
+	Gets a list of the gesture recognizers that UXCam has added - might be needed if you are using the UIGestureRecognizerDelegate method @c shouldRecognizeSimultaneouslyWithGestureRecognizer
+	Your gesture recognizer code should allow these to run alongside - they are all FALSE for @c cancelsTouchesInView, @c delaysTouchesBegan & @c delaysTouchesEnded so can run alongside other GRs
  */
-+ (void) EnableAdvancedGestureRecognizers:(BOOL)enable;
++ (NSArray<UIGestureRecognizer*>*) GetGestureRecognizers;
 
 
 #pragma mark Internal use only methods
@@ -493,10 +501,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Deprecated methods
 
-// All buildIdentifier variants of the startWithKey method have been removed in 3.3.0 - the buildIdentifier string was not used anywhere
-+ (void) startWithKey:(NSString*)userAPIKey buildIdentifier:(nullable NSString*)buildIdentifier __attribute__((deprecated("from SDK 3.3.0 - buildIdentifier methods removed as the string was not used anywhere")));
-+ (void) startWithKey:(NSString*)userAPIKey buildIdentifier:(NSString* _Nullable)buildIdentifier completionBlock:(nullable void (^)(BOOL started))sessionStartedBlock __attribute__((deprecated("from SDK 3.3.0 - buildIdentifier methods removed as the string was not used anywhere")));
-+ (void) startWithKey:(NSString*)userAPIKey buildIdentifier:(nullable NSString*)buildIdentifier multipleSessions:(BOOL)multiSession completionBlock:(nullable void (^)(BOOL started))sessionStartedBlock __attribute__((deprecated("from SDK 3.3.0 - buildIdentifier methods removed as the string was not used anywhere")));
++ (void) startWithKey:(NSString*)userAPIKey  __attribute__((deprecated("Use startWithConfiguration: instead")));
++ (void) startWithKey:(NSString*)userAPIKey
+      completionBlock:(nullable void (^)(BOOL started))sessionStartedBlock __attribute__((deprecated("Use startWithConfiguration:completionBlock: instead")));
++ (void) startWithKey:(NSString*)userAPIKey
+     multipleSessions:(BOOL)multiSession completionBlock:(nullable void (^)(BOOL started))sessionStartedBlock __attribute__((deprecated("Use startWithConfiguration:completionBlock: instead")));
+
++ (void) setMultiSessionRecord:(BOOL)recordMultipleSessions  __attribute__((deprecated("Set enableMultiSessionRecord on UXCam configuration object instead")));
++ (BOOL) getMultiSessionRecord  __attribute__((deprecated("Fetch using isMultiSessionRecordEnabled on UXCam configuration object instead")));
++ (void) disableCrashHandling:(BOOL)disable  __attribute__((deprecated("Set enableCrashHandling on UXCam configuration object instead. Note: Changed from set disabled to set enabled (enabled = YES by default)")));
++ (void) setAutomaticScreenNameTagging:(BOOL)enable  __attribute__((deprecated("Set enableAutomaticScreenNameTagging on UXCam configuration object instead")));
++ (void) EnableAdvancedGestureRecognizers:(BOOL)enable  __attribute__((deprecated("Set enableAdvancedGestureRecognizers on UXCam configuration object instead")));
++ (void) captureLogOutput  __attribute__((deprecated("Set using dashboard controls on the website")));
 
 @end
 
