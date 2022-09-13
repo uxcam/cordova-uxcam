@@ -24,7 +24,7 @@ static NSString* const Uxcam_OverlayColor = @"color";
 + (void)load
 {
     // Set this early in the startup process so we can do extra Cordova related processing before the session startWithKey is called.
-    [UXCam pluginType:@"cordova" version:@"3.5.0"];
+    [UXCam pluginType:@"cordova" version:@"3.5.1"];
 }
 
 - (void)startWithConfiguration:(CDVInvokedUrlCommand*)command

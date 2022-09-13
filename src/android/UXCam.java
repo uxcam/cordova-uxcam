@@ -25,7 +25,7 @@ import com.uxcam.datamodel.UXConfig;
  */
 public class UXCam extends CordovaPlugin {
     private static final String UXCAM_PLUGIN_TYPE = "cordova";
-    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.5.0";
+    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.5.1";
 
     public static final String USER_APP_KEY = "userAppKey";
     public static final String ENABLE_MUTLI_SESSION_RECORD = "enableMultiSessionRecord";
@@ -282,7 +282,7 @@ public class UXCam extends CordovaPlugin {
     }
 
     private UXCamOccludeAllTextFields getOccludeAllTextFields() {
-        return new UXCamOccludeAllTextFields();
+        return new UXCamOccludeAllTextFields.Builder().build();
     }
 
     private UXCamOverlay getOverlay(Map<String, Object> overlayMap) {
