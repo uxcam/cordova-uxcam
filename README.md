@@ -4,6 +4,7 @@
 
 Version | Changes
 --------|--------
+3.5.1   | iOS SDK updated to v3.4.3 & Android SDK updated to v3.4.4
 3.4.3	| iOS SDK updated to v3.3.9 & Android SDK updated to v3.3.7
 3.4.2	| iOS SDK updated to v3.3.3 & fix for ionic capacitor build issue.
 3.4.1	| iOS SDK updated to v3.3.1 & Android SDK updated to v3.3.5
@@ -57,13 +58,15 @@ Supported platforms: android, ios
 
 STEP 2: START UXCAM
 
-Call the `startWithKey` method when `deviceready` has fired to start the UXCam session:
+Call the `startWithConfiguration` method when `deviceready` has fired to start the UXCam session:
 
-#### `startWithKey`
+#### `startWithConfiguration`
 
 Starts the UXCam session
-
-UXCam.startWithKey("APP Key");
+const configuration = {
+    userAppKey: 'YOUR API KEY'
+}
+UXCam.startWithConfiguration(configuration);
 
 Get your app key from the dashboard at www.uxcam.com
 
