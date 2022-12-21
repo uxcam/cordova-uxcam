@@ -1,5 +1,5 @@
 {
-  "version": "3.5.1",
+  "version": "3.5.2",
   "name": "cordova-uxcam",
   "cordova_name": "UXCam",
   "description": "Cordova plugin for UXCam - enables the recording of your applications screen",

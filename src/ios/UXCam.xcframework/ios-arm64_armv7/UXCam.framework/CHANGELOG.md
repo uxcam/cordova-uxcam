@@ -5,6 +5,10 @@
 
 Version   | Changes
 ---------- | ----------
+3.5.0   | Improved app performance on native session recording
+          Fixed hitching issue while scrolling in native recording
+3.4.5   | Fixed app freezing and random crash issue due to enabling app logs
+3.4.4   | Fixed an issue regarding gestures not captured in paused state on same screen
 3.4.3   | Fixed an issue related to a random crash while saving heatmaps
 3.4.2   | Performance improvements and fixed issue related to certain crash not uploading on dashboard
 3.4.1   | Occlusion with blur Support
