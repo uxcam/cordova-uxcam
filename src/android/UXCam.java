@@ -46,8 +46,9 @@ public class UXCam extends CordovaPlugin {
         if ("startWithKey".equals(action)) {
             addListener(callbackContext);
             this.start(args);
-        } else if("startWithConfiguration".equals(action)){
-            try{
+         } else if("startWithConfiguration".equals(action)) {
+            try {
+                addListener(callbackContext);
                 startWithConfiguration(toMap(args.getJSONObject(0)));
             } catch(Exception e) {
                 Log.d("UXCam Cordova Android:"," startWithConfiguration");
