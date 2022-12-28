@@ -4,5 +4,5 @@ repositories {
   }
 }
 dependencies {
-     implementation 'com.uxcam:uxcam:3.4.4@aar'
+     implementation 'com.uxcam:uxcam:3.5.2'
 }
