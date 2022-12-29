@@ -25,7 +25,7 @@ import com.uxcam.datamodel.UXConfig;
  */
 public class UXCam extends CordovaPlugin {
     private static final String UXCAM_PLUGIN_TYPE = "cordova";
-    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.5.1";
+    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.5.2";
 
     public static final String USER_APP_KEY = "userAppKey";
     public static final String ENABLE_MUTLI_SESSION_RECORD = "enableMultiSessionRecord";
@@ -46,10 +46,11 @@ public class UXCam extends CordovaPlugin {
         if ("startWithKey".equals(action)) {
             addListener(callbackContext);
             this.start(args);
-        } else if("startWithConfiguration".equals(action)){
-            try{
+         } else if("startWithConfiguration".equals(action)) {
+            try {
+                addListener(callbackContext);
                 startWithConfiguration(toMap(args.getJSONObject(0)));
-            }catch(Exception e){
+            } catch(Exception e) {
                 Log.d("UXCam Cordova Android:"," startWithConfiguration");
                 e.printStackTrace();
             }
