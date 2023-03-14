@@ -25,8 +25,11 @@ typedef NS_ENUM(NSInteger, UXOcclusionCategory) {
 };
 
 @protocol UXCamOcclusionSetting <NSObject>
+
 @property (readonly) UXOcclusionType type;
 @property (readonly) UXOcclusionCategory category;
+@property (nonatomic) BOOL hideGestures;
+
 @end
 
 

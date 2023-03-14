@@ -5,6 +5,9 @@
 
 Version   | Changes
 ---------- | ----------
+3.5.3   | Improved implementation for showing UI elements and unresponsive gestures
+3.5.2   | Added new configuration option for different environment types (alpha, beta, release)
+3.5.1   | Improved screen tagging logic for automatic tagged screens
 3.5.0   | Improved app performance on native session recording
           Fixed hitching issue while scrolling in native recording
 3.4.5   | Fixed app freezing and random crash issue due to enabling app logs

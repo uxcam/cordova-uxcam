@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UXCamOccludeAllTextFields : NSObject<UXCamOcclusionSetting>
 
+@property (nonatomic) BOOL hideGestures;
+
 @end
 
 NS_ASSUME_NONNULL_END

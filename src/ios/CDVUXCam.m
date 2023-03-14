@@ -19,12 +19,14 @@ static NSString* const Uxcam_BlurRadius = @"blurRadius";
 static NSString* const Uxcam_HideGestures = @"hideGestures";
 static NSString* const Uxcam_OverlayColor = @"color";
 
+static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.0";
+
 @implementation CDVUXCam
 
 + (void)load
 {
     // Set this early in the startup process so we can do extra Cordova related processing before the session startWithKey is called.
-    [UXCam pluginType:@"cordova" version:@"3.5.2"];
+    [UXCam pluginType:@"cordova" version: UXCAM_CORDOVA_PLUGIN_VERSION];
 }
 
 - (void)startWithConfiguration:(CDVInvokedUrlCommand*)command

@@ -14,7 +14,7 @@
 		</data>
 		<key>CHANGELOG.md</key>
 		<data>
-		riNJi4l++hezxMQ1dtAXNtXZXtc=
+		rD9sjsu0J8srocV1r+VP67R4fn4=
 		</data>
 		<key>FileMD5Hash-LICENSE</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Headers/UXCam.h</key>
 		<data>
-		h6GKpdlnhcrc96/3Fi6YvZkzrC4=
+		rFPSxVYCZA5xfc4bqnklx8EhBmE=
 		</data>
 		<key>Headers/UXCamBlurSetting.h</key>
 		<data>
@@ -46,11 +46,11 @@
 		</data>
 		<key>Headers/UXCamConfiguration.h</key>
 		<data>
-		QSEVSFh/uatk1anmHJwuocS+pi8=
+		ajcXRUD2Deh23cCkYzMvDKhrB5I=
 		</data>
 		<key>Headers/UXCamOccludeAllTextFields.h</key>
 		<data>
-		9KvgnJJRq35scRWrr/F08SB5GuI=
+		b6gYSzbvSpB2P1KV5GOfWWRivIM=
 		</data>
 		<key>Headers/UXCamOcclusion.h</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Headers/UXCamOcclusionSetting.h</key>
 		<data>
-		7qh1/1uWcXyKX/8V3kPxDhDhMX4=
+		72nugo/NRLE7dB+hBVP7bQjjlPI=
 		</data>
 		<key>Headers/UXCamOverlaySetting.h</key>
 		<data>
@@ -78,7 +78,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		GvopKi9/Z3OFHmxljYo2BTOxxKU=
+		IEF3u12oecaoPJc1zUfYHUVkMDE=
 		</data>
 		<key>LICENSE-minizip</key>
 		<data>
@@ -95,6 +95,10 @@
 		<key>SSZipArchive-LICENSE.txt</key>
 		<data>
 		bkIUr4Vb85YIQXWyLtfoTgYlc/g=
+		</data>
+		<key>cgmanifest.json</key>
+		<data>
+		66iPLun1sI+B7BtS5bE93V6D6bI=
 		</data>
 		<key>iOSViewHierarchy-LICENSE.txt</key>
 		<data>
@@ -129,11 +133,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			riNJi4l++hezxMQ1dtAXNtXZXtc=
+			rD9sjsu0J8srocV1r+VP67R4fn4=
 			</data>
 			<key>hash2</key>
 			<data>
-			Qm4enf/l/z8fS3jPQyihZekChQiyq6dCe0YS6abcHT0=
+			CD0+t+Uy7fX18MbNyoQ+e8JClZKjL/NcrNmh8DizF4s=
 			</data>
 		</dict>
 		<key>FileMD5Hash-LICENSE</key>
@@ -195,11 +199,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			h6GKpdlnhcrc96/3Fi6YvZkzrC4=
+			rFPSxVYCZA5xfc4bqnklx8EhBmE=
 			</data>
 			<key>hash2</key>
 			<data>
-			iYlBVnABNyzNzqf2U+WbhIiHMYYQihMkkonk9OJ1IrU=
+			EXlJKXJLNMXnM+QhCU9Qg3ycD4hAIO0tbmahCAZKsL8=
 			</data>
 		</dict>
 		<key>Headers/UXCamBlurSetting.h</key>
@@ -217,22 +221,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			QSEVSFh/uatk1anmHJwuocS+pi8=
+			ajcXRUD2Deh23cCkYzMvDKhrB5I=
 			</data>
 			<key>hash2</key>
 			<data>
-			8DBOIg8ETatPIrq9JK+ali2LHpBPakaR0FKhZpdAc+4=
+			tWtxiG9VkOEKsjXVXCyW4bm9CpYmxS0ugL/XRu30pwo=
 			</data>
 		</dict>
 		<key>Headers/UXCamOccludeAllTextFields.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			9KvgnJJRq35scRWrr/F08SB5GuI=
+			b6gYSzbvSpB2P1KV5GOfWWRivIM=
 			</data>
 			<key>hash2</key>
 			<data>
-			MNwHlNV68ajdwkecWYTGHmnFR7UsSuLiYWWiYCzCZBo=
+			2XetdIsRkOrYnF00MUeECuKEKihESsHGI4fpK0rr9Gc=
 			</data>
 		</dict>
 		<key>Headers/UXCamOcclusion.h</key>
@@ -272,11 +276,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			7qh1/1uWcXyKX/8V3kPxDhDhMX4=
+			72nugo/NRLE7dB+hBVP7bQjjlPI=
 			</data>
 			<key>hash2</key>
 			<data>
-			nHSsM0vs9EKMxpaMIAVB3lePw1sMSS/cdHcWfNzP0yI=
+			OMbPeZ1IcI4J7D0UmRUmVDtg7K/2QN7IcIg9cQGZD8o=
 			</data>
 		</dict>
 		<key>Headers/UXCamOverlaySetting.h</key>
@@ -343,6 +347,17 @@
 			<key>hash2</key>
 			<data>
 			qHJYYttwtoYlKIVoMkgJBdSPqxnh4+74XRqyK7lBwh4=
+			</data>
+		</dict>
+		<key>cgmanifest.json</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			66iPLun1sI+B7BtS5bE93V6D6bI=
+			</data>
+			<key>hash2</key>
+			<data>
+			LITGGMr805TGdN/ijxim/ZFA+r9HQGfvIm4YSAIlDAo=
 			</data>
 		</dict>
 		<key>iOSViewHierarchy-LICENSE.txt</key>

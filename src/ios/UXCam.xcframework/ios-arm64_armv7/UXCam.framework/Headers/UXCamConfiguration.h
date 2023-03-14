@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UXCam/UXCamOcclusion.h>
 
+typedef NS_ENUM(NSInteger, UXEnvironment) {
+    UXEnvironmentAlpha = 1, //Debug build while developing on Xcode
+    UXEnvironmentBeta = 2, //Release build but app not installed from app store rather TestFlight
+    UXEnvironmentRelease = 3 //Release build when app installed from app store (Default)
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UXCamConfiguration : NSObject
@@ -52,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL enableAdvancedGestureRecognition;
 
 /**
- *  Set this method from @c applicationDidFinishLaunching before @c startWithKey: method to capture network logs.
+ *  Set this property to capture network logs.
  *  This will control the capture of summary logs about the applications network activity. By default this is disabled.
  *
  *  @brief Enable or disable capturing logs of network activity
@@ -61,6 +67,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL enableNetworkLogging;
 
 @property (nullable, nonatomic, strong) UXCamOcclusion *occlusion;
+
+/**
+ *  Set this property to emulate app run in desired environment with respective configurations.
+ *  This will run app in the desired environment overriding the current environment. By default this lets app run in the current environment.
+ *
+ *  .alpha → Debug build while developing on Xcode
+    .beta → Release build but app not installed from app store rather TestFlight
+    .release → Release build when app installed from app store (Default)
+ *
+ */
+@property (nonatomic) UXEnvironment environment;
 
 /**
  *	@brief Designated initializer for the configuration object
