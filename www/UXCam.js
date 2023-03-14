@@ -74,6 +74,10 @@
   {
       return exec(successCallback, errorCallback, 'UXCam', 'isRecording', []);
   };
+
+  UXCam.pendingUploads = async function(successCallback, errorCallback){
+       return exec(successCallback,errorCallback,'UXCam', 'pendingUploads');
+  };
   
   UXCam.pauseScreenRecording = function(successCallback, errorCallback)
   {
@@ -221,6 +225,13 @@
     return exec(successCallback, errorCallback, 'UXCam', 'occludeSensitiveScreen', [occludeSensitiveScreen]);
   };
   
+
+  UXCam.occludeSensitiveScreenWithoutGesture = function(occludeSensitiveScreenWithoutGesture, successCallback, errorCallback)
+  {
+    return exec(successCallback, errorCallback, 'UXCam', 'occludeSensitiveScreenWithoutGesture', [occludeSensitiveScreenWithoutGesture]);
+  };
+  
+
   // For historical reasons this can be called as occludeAllTextFields or occludeAllTextView
   UXCam.occludeAllTextFields = function(occludeAll, successCallback, errorCallback)
   {
