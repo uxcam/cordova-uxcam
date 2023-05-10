@@ -27,8 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *	Set whether to record multiple sessions or not
  *
- *  YES to record a new session automatically when the device comes out of the background. If NO then a single session is recorded, when stopped (either programmatically with @c stopApplicationAndUploadData or by the app going to the background) then no more sessions are recorded until @c startWithKey is called again).
- *  @note The default setting is to record a new session each time a device comes out of the background. This flag can be set to NO to stop that. You can also set this with the appropriate startWithKey: variant. (This will be reset each time startWithKey is called)
+ *  YES to record a new session automatically when the device comes out of the background. If NO then a single session is recorded, when stopped (either programmatically with @c stopApplicationAndUploadData or by the app going to the background) then no more sessions are recorded until @c startWithConfiguration is called again).
+ *  @note The default setting is to record a new session each time a device comes out of the background. This flag can be set to NO to stop that.
  */
 @property (nonatomic, assign) BOOL enableMultiSessionRecord;
 
@@ -53,7 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
  * Control the gesture recognizers used by UXCam
  * TRUE to enable the full range of gesture recognizers (the default), or FALSE to limit it to basic touches
  * @note Disabling the advanced gesture recognizers (swipes, zoom etc.) can be useful if you have another SDK integrated that doesn't cooperate properly with gesture recognizers installed in other views.
- * @note This property can only be called before `startWIthKey` has been called
  */
 @property (nonatomic, assign) BOOL enableAdvancedGestureRecognition;
 

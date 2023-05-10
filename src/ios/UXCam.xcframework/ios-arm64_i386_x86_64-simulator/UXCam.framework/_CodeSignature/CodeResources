@@ -14,7 +14,7 @@
 		</data>
 		<key>CHANGELOG.md</key>
 		<data>
-		rD9sjsu0J8srocV1r+VP67R4fn4=
+		7mJEu/s/KkZUDcHutf7jmKtgCO0=
 		</data>
 		<key>FileMD5Hash-LICENSE</key>
 		<data>
@@ -38,19 +38,19 @@
 		</data>
 		<key>Headers/UXCam.h</key>
 		<data>
-		rFPSxVYCZA5xfc4bqnklx8EhBmE=
+		WauMMfpZHYbmicnq2qykeGRZWmM=
 		</data>
 		<key>Headers/UXCamBlurSetting.h</key>
 		<data>
-		zKNIh+nke6Tet7/aiqb6u2iaEvM=
+		a+EO5ndF8pgTPZL53hXLI8iQ5jQ=
 		</data>
 		<key>Headers/UXCamConfiguration.h</key>
 		<data>
-		ajcXRUD2Deh23cCkYzMvDKhrB5I=
+		lOiaPCQI7HF9ltEEjOr/q2i59o8=
 		</data>
 		<key>Headers/UXCamOccludeAllTextFields.h</key>
 		<data>
-		b6gYSzbvSpB2P1KV5GOfWWRivIM=
+		9KvgnJJRq35scRWrr/F08SB5GuI=
 		</data>
 		<key>Headers/UXCamOcclusion.h</key>
 		<data>
@@ -66,11 +66,11 @@
 		</data>
 		<key>Headers/UXCamOcclusionSetting.h</key>
 		<data>
-		72nugo/NRLE7dB+hBVP7bQjjlPI=
+		LR85T2SkBsLKvTdvw54UrBsva7s=
 		</data>
 		<key>Headers/UXCamOverlaySetting.h</key>
 		<data>
-		ZcQHLsvs+U6AMTrbyYGluf0+Kxs=
+		hVx8O6ne5uW8kwJGVqQGi9FAq9k=
 		</data>
 		<key>Headers/UXOcclusionHeaders.h</key>
 		<data>
@@ -78,7 +78,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		IEF3u12oecaoPJc1zUfYHUVkMDE=
+		U+olbYgGuKMwdeDQP61eAucsD7w=
 		</data>
 		<key>LICENSE-minizip</key>
 		<data>
@@ -133,11 +133,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rD9sjsu0J8srocV1r+VP67R4fn4=
+			7mJEu/s/KkZUDcHutf7jmKtgCO0=
 			</data>
 			<key>hash2</key>
 			<data>
-			CD0+t+Uy7fX18MbNyoQ+e8JClZKjL/NcrNmh8DizF4s=
+			inelXvRfLePnBs1hGakPcOOBU8qkKH2tqCzYwxXzpeE=
 			</data>
 		</dict>
 		<key>FileMD5Hash-LICENSE</key>
@@ -199,44 +199,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rFPSxVYCZA5xfc4bqnklx8EhBmE=
+			WauMMfpZHYbmicnq2qykeGRZWmM=
 			</data>
 			<key>hash2</key>
 			<data>
-			EXlJKXJLNMXnM+QhCU9Qg3ycD4hAIO0tbmahCAZKsL8=
+			E1umdDmrO30N7VkgxTO8AIvauVKqItYJlgofscWLYeo=
 			</data>
 		</dict>
 		<key>Headers/UXCamBlurSetting.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zKNIh+nke6Tet7/aiqb6u2iaEvM=
+			a+EO5ndF8pgTPZL53hXLI8iQ5jQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			ogwsN7nHxo7O9ETxK3zFdd502PFtFVo71GIcDtNpfQA=
+			BBob4V7XULwe/AcbcS5eo2vJ3xLWdkpquO2G5FIzOZE=
 			</data>
 		</dict>
 		<key>Headers/UXCamConfiguration.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ajcXRUD2Deh23cCkYzMvDKhrB5I=
+			lOiaPCQI7HF9ltEEjOr/q2i59o8=
 			</data>
 			<key>hash2</key>
 			<data>
-			tWtxiG9VkOEKsjXVXCyW4bm9CpYmxS0ugL/XRu30pwo=
+			N/wW7C1874L7wWHO5xvidmmXAsCUpKm4DXqaDX6ukHw=
 			</data>
 		</dict>
 		<key>Headers/UXCamOccludeAllTextFields.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			b6gYSzbvSpB2P1KV5GOfWWRivIM=
+			9KvgnJJRq35scRWrr/F08SB5GuI=
 			</data>
 			<key>hash2</key>
 			<data>
-			2XetdIsRkOrYnF00MUeECuKEKihESsHGI4fpK0rr9Gc=
+			MNwHlNV68ajdwkecWYTGHmnFR7UsSuLiYWWiYCzCZBo=
 			</data>
 		</dict>
 		<key>Headers/UXCamOcclusion.h</key>
@@ -276,22 +276,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			72nugo/NRLE7dB+hBVP7bQjjlPI=
+			LR85T2SkBsLKvTdvw54UrBsva7s=
 			</data>
 			<key>hash2</key>
 			<data>
-			OMbPeZ1IcI4J7D0UmRUmVDtg7K/2QN7IcIg9cQGZD8o=
+			kq7StHnT1jpWHiaTaeEj/2XjTbIKk+j7Z1eDnurgRAo=
 			</data>
 		</dict>
 		<key>Headers/UXCamOverlaySetting.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ZcQHLsvs+U6AMTrbyYGluf0+Kxs=
+			hVx8O6ne5uW8kwJGVqQGi9FAq9k=
 			</data>
 			<key>hash2</key>
 			<data>
-			BpT2YHhT7dQc/l04NkU26mXSBFFstsOKpV2EcQ+VkMM=
+			O5S7VID3aOyg9IOpUFsqMtKhsWrFKS1dD1KKLy+yUxc=
 			</data>
 		</dict>
 		<key>Headers/UXOcclusionHeaders.h</key>

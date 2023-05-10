@@ -1,9 +1,9 @@
 //
 //  UXCam.h
 //
-//  Copyright (c) 2013-2021 UXCam Ltd. All rights reserved.
+//  Copyright (c) 2013-2023 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.5.3
+//  UXCam SDK VERSION: 3.6.2
 //
 
 #import <Foundation/Foundation.h>
@@ -313,10 +313,8 @@ extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
 	UXCam normally captures the view controller name automatically but in cases where it this is not sufficient (such as in OpenGL applications)
 	or where you would like to set a different unique name, use this function to set the name.
 
-	@note Call this in @c [UIViewController @c viewDidAppear:] after the call to @c [super ...] or automatic screen name tagging will override your value.
-
-	Screen names added with this method will not be filtered by the ignore list.
-
+	@note Call this in @c [UIViewController @c viewWillAppear:] after the call to @c [super ...] or automatic screen name tagging will override your value.
+ 
 	@param screenName Name to apply to the current screen in the session
  */
 + (void) tagScreenName:(NSString*)screenName;
