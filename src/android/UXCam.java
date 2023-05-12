@@ -44,7 +44,6 @@ public class UXCam extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        System.out.println("The action is : "+ action);
         if ("startWithKey".equals(action)) {
             addListener(callbackContext);
             this.start(args);
