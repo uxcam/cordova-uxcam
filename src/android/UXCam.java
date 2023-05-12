@@ -15,17 +15,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.uxcam.datamodel.UXCamBlur;
-import com.uxcam.datamodel.UXCamOverlay;
-import com.uxcam.datamodel.UXCamOcclusion;
-import com.uxcam.datamodel.UXCamOccludeAllTextFields;
+import com.uxcam.screenshot.model.UXCamBlur;
+import com.uxcam.screenshot.model.UXCamOverlay;
+import com.uxcam.screenshot.model.UXCamOcclusion;
+import com.uxcam.screenshot.model.UXCamOccludeAllTextFields;
+
 import com.uxcam.datamodel.UXConfig;
 /**
  * This class echoes a string called from JavaScript.
  */
 public class UXCam extends CordovaPlugin {
     private static final String UXCAM_PLUGIN_TYPE = "cordova";
-    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.5.2";
+    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.6.0";
 
     public static final String USER_APP_KEY = "userAppKey";
     public static final String ENABLE_MUTLI_SESSION_RECORD = "enableMultiSessionRecord";
@@ -77,6 +78,8 @@ public class UXCam extends CordovaPlugin {
         } else if ("occludeSensitiveScreen".equals(action)) {
             boolean occludeSensitiveScreen = args.getBoolean(0);
             com.uxcam.UXCam.occludeSensitiveScreen(occludeSensitiveScreen);
+        }else if ("occludeSensitiveScreenWithoutGesture".equals(action)) {
+            com.uxcam.UXCam.occludeSensitiveScreen(args.getBoolean(0), true);
         } else if ("occludeAllTextFields".equals(action)) {
             boolean occludeAllTextField = args.getBoolean(0);
             com.uxcam.UXCam.occludeAllTextFields(occludeAllTextField);
@@ -116,7 +119,6 @@ public class UXCam extends CordovaPlugin {
             }
         } else if ("isRecording".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.isRecording()));
-            return true;
         } else if ("pauseScreenRecording".equals(action)) {
             com.uxcam.UXCam.pauseScreenRecording();
         } else if ("resumeScreenRecording".equals(action)) {
@@ -149,7 +151,9 @@ public class UXCam extends CordovaPlugin {
             com.uxcam.UXCam.resumeShortBreakForAnotherApp();
         } else if ("deletePendingUploads".equals(action)) {
             com.uxcam.UXCam.deletePendingUploads();
-        } else if ("pendingSessionCount".equals(action)) {
+        } else if ("pendingUploads".equals(action)) {
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.pendingUploads()));
+        }else if ("pendingSessionCount".equals(action)) {
             com.uxcam.UXCam.pendingSessionCount();
         } else if ("stopApplicationAndUploadData".equals(action)) {
             com.uxcam.UXCam.stopSessionAndUploadData();

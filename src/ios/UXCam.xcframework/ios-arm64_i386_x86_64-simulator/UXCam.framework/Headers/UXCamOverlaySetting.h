@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UXCamOverlaySetting : NSObject<UXCamOcclusionSetting>
+@interface UXCamOverlaySetting : NSObject<UXCamOcclusionSetting, UXGestureRecordable>
 
 @property (strong, nonatomic) UIColor *color;
 @property (nonatomic) BOOL hideGestures;

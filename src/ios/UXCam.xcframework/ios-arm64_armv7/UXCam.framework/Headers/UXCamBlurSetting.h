@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, UXBlurType) {
     UXBlurTypeBokeh
 };
 
-@interface UXCamBlurSetting : NSObject<UXCamOcclusionSetting>
+@interface UXCamBlurSetting : NSObject<UXCamOcclusionSetting, UXGestureRecordable>
 
 @property (readonly) UXBlurType blurType;
 @property (readonly) int radius;

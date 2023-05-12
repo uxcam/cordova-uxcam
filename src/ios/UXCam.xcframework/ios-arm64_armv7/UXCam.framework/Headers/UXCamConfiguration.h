@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UXCam/UXCamOcclusion.h>
 
+typedef NS_ENUM(NSInteger, UXEnvironment) {
+    UXEnvironmentAlpha = 1, //Debug build while developing on Xcode
+    UXEnvironmentBeta = 2, //Release build but app not installed from app store rather TestFlight
+    UXEnvironmentRelease = 3 //Release build when app installed from app store (Default)
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UXCamConfiguration : NSObject
@@ -21,8 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *	Set whether to record multiple sessions or not
  *
- *  YES to record a new session automatically when the device comes out of the background. If NO then a single session is recorded, when stopped (either programmatically with @c stopApplicationAndUploadData or by the app going to the background) then no more sessions are recorded until @c startWithKey is called again).
- *  @note The default setting is to record a new session each time a device comes out of the background. This flag can be set to NO to stop that. You can also set this with the appropriate startWithKey: variant. (This will be reset each time startWithKey is called)
+ *  YES to record a new session automatically when the device comes out of the background. If NO then a single session is recorded, when stopped (either programmatically with @c stopApplicationAndUploadData or by the app going to the background) then no more sessions are recorded until @c startWithConfiguration is called again).
+ *  @note The default setting is to record a new session each time a device comes out of the background. This flag can be set to NO to stop that.
  */
 @property (nonatomic, assign) BOOL enableMultiSessionRecord;
 
@@ -47,12 +53,11 @@ NS_ASSUME_NONNULL_BEGIN
  * Control the gesture recognizers used by UXCam
  * TRUE to enable the full range of gesture recognizers (the default), or FALSE to limit it to basic touches
  * @note Disabling the advanced gesture recognizers (swipes, zoom etc.) can be useful if you have another SDK integrated that doesn't cooperate properly with gesture recognizers installed in other views.
- * @note This property can only be called before `startWIthKey` has been called
  */
 @property (nonatomic, assign) BOOL enableAdvancedGestureRecognition;
 
 /**
- *  Set this method from @c applicationDidFinishLaunching before @c startWithKey: method to capture network logs.
+ *  Set this property to capture network logs.
  *  This will control the capture of summary logs about the applications network activity. By default this is disabled.
  *
  *  @brief Enable or disable capturing logs of network activity
@@ -61,6 +66,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL enableNetworkLogging;
 
 @property (nullable, nonatomic, strong) UXCamOcclusion *occlusion;
+
+/**
+ *  Set this property to emulate app run in desired environment with respective configurations.
+ *  This will run app in the desired environment overriding the current environment. By default this lets app run in the current environment.
+ *
+ *  .alpha → Debug build while developing on Xcode
+    .beta → Release build but app not installed from app store rather TestFlight
+    .release → Release build when app installed from app store (Default)
+ *
+ */
+@property (nonatomic) UXEnvironment environment;
 
 /**
  *	@brief Designated initializer for the configuration object
