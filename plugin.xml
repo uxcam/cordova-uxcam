@@ -51,6 +51,7 @@
         <framework src="Foundation.framework"/>
         <framework src="ExternalAccessory.framework"/>
         <framework src="libz.dylib"/>
+        <framework src="libc++.dylib"/>
         <framework src="libiconv.dylib"/>
     </platform>
 </plugin>
