@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UXCamOcclusionScreen : NSObject
 
+@property (nonatomic) BOOL isSourceManual;
+@property (nonatomic) BOOL isVisible;
+
 @property (readonly) NSString *name;
 @property NSMutableArray<id<UXCamOcclusionSetting>> *settings;
 

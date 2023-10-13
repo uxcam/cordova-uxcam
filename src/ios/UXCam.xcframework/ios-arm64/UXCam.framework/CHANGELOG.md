@@ -5,6 +5,8 @@
 
 Version   | Changes
 ---------- | ----------
+3.6.6   | Added new configuration key `enableImprovedScreenCapture` to improve the screen capturing logic
+3.6.5   | Fixed rendering issues in Flutter
 3.6.4   | Fixed performance issue in Cordova and other webview related frameworks
 3.6.3   | Fixed some random crash issue while uploading sessions for few customers
 3.6.2   | Fixed occlusion not correctly happening while scrolling
