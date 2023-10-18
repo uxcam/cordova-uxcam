@@ -14,7 +14,7 @@
 		</data>
 		<key>CHANGELOG.md</key>
 		<data>
-		B+1VK9ypY3VfPAzGKDMs3GPAjwY=
+		o2qAgHsP50Jv2vUQ1Lq7oUOILqs=
 		</data>
 		<key>FileMD5Hash-LICENSE</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Headers/UXCam.h</key>
 		<data>
-		00nkCgRu3pyX095D+ZxkshL31SE=
+		aPrBKMcvfAnYx7X9NKaC4yo3AmM=
 		</data>
 		<key>Headers/UXCamBlurSetting.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Headers/UXCamConfiguration.h</key>
 		<data>
-		lOiaPCQI7HF9ltEEjOr/q2i59o8=
+		XPkIPpKRJB6/u8i1JR1xBcoEkuI=
 		</data>
 		<key>Headers/UXCamOccludeAllTextFields.h</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Headers/UXCamOcclusionScreen.h</key>
 		<data>
-		mr2BtXE39i0hfcoK3fQ9B+8bkw8=
+		7HbY9xZNqKDVFMprIA9/KQ5llvA=
 		</data>
 		<key>Headers/UXCamOcclusionSetting.h</key>
 		<data>
@@ -78,7 +78,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		cC3YsgaHDEQhOOkt7lBqyPqg3ZI=
+		26+dDvv7/6epgV/bcwqWB7CU+2c=
 		</data>
 		<key>LICENSE-minizip</key>
 		<data>
@@ -100,9 +100,21 @@
 		<data>
 		66iPLun1sI+B7BtS5bE93V6D6bI=
 		</data>
+		<key>ci_post_clone.sh</key>
+		<data>
+		dQh3cuBe2tge3YZn1lUCVI6TsIA=
+		</data>
+		<key>ci_post_xcodebuild.sh</key>
+		<data>
+		IhBxVOFkTPSpcLsPLnP50QS9o4M=
+		</data>
 		<key>iOSViewHierarchy-LICENSE.txt</key>
 		<data>
 		4q9v9uBlNKSLJReAY5mT0MNm2Hc=
+		</data>
+		<key>upload_framework.sh</key>
+		<data>
+		QeV6O9Hu3+BqnZAQbF7MNyKig7M=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -133,11 +145,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			B+1VK9ypY3VfPAzGKDMs3GPAjwY=
+			o2qAgHsP50Jv2vUQ1Lq7oUOILqs=
 			</data>
 			<key>hash2</key>
 			<data>
-			XRjodQKaEkOoZ++gSS0tRDBwmxxj/3dQ3UPUzTUdu1k=
+			YRhuUREC7lC0WOtmFWl+dWg4DMCCmNIvvvcnBcvCafQ=
 			</data>
 		</dict>
 		<key>FileMD5Hash-LICENSE</key>
@@ -199,11 +211,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			00nkCgRu3pyX095D+ZxkshL31SE=
+			aPrBKMcvfAnYx7X9NKaC4yo3AmM=
 			</data>
 			<key>hash2</key>
 			<data>
-			nGd6pdGyANn6cS308cozE9VI7Myeusq8gLR68Wx3+bc=
+			CeEADh7s5hsHa2KJW2Wj/CYuBEaF2AFT0Kk4eqF6d5c=
 			</data>
 		</dict>
 		<key>Headers/UXCamBlurSetting.h</key>
@@ -221,11 +233,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			lOiaPCQI7HF9ltEEjOr/q2i59o8=
+			XPkIPpKRJB6/u8i1JR1xBcoEkuI=
 			</data>
 			<key>hash2</key>
 			<data>
-			N/wW7C1874L7wWHO5xvidmmXAsCUpKm4DXqaDX6ukHw=
+			4Ad4N5cCCbZ4jaqe09Wvh+DW2oQ8e/kn/PxMfS/WsD4=
 			</data>
 		</dict>
 		<key>Headers/UXCamOccludeAllTextFields.h</key>
@@ -265,11 +277,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			mr2BtXE39i0hfcoK3fQ9B+8bkw8=
+			7HbY9xZNqKDVFMprIA9/KQ5llvA=
 			</data>
 			<key>hash2</key>
 			<data>
-			Hla+3yhhvH5EXMxr4SYhxRLCVPOLTDubtAhJDP1rJ1o=
+			IWT4KNpobswvlZy7fQGCDW6vJ3zcPwX0jVJHZETV2ME=
 			</data>
 		</dict>
 		<key>Headers/UXCamOcclusionSetting.h</key>
@@ -360,6 +372,28 @@
 			LITGGMr805TGdN/ijxim/ZFA+r9HQGfvIm4YSAIlDAo=
 			</data>
 		</dict>
+		<key>ci_post_clone.sh</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			dQh3cuBe2tge3YZn1lUCVI6TsIA=
+			</data>
+			<key>hash2</key>
+			<data>
+			SnoGyl/GoUQ+KUCFxZTV8IjRFBPqebolRMnwgiHJP6Q=
+			</data>
+		</dict>
+		<key>ci_post_xcodebuild.sh</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			IhBxVOFkTPSpcLsPLnP50QS9o4M=
+			</data>
+			<key>hash2</key>
+			<data>
+			D1yI3wTkyKmI3ZW4wGdhWvbSSsAzZFxpmqRb6WLVAc0=
+			</data>
+		</dict>
 		<key>iOSViewHierarchy-LICENSE.txt</key>
 		<dict>
 			<key>hash</key>
@@ -369,6 +403,17 @@
 			<key>hash2</key>
 			<data>
 			M6HHOQgJVUKRHECV9HHJgEhwSl60qQ/9YG1Ixt8jeOg=
+			</data>
+		</dict>
+		<key>upload_framework.sh</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			QeV6O9Hu3+BqnZAQbF7MNyKig7M=
+			</data>
+			<key>hash2</key>
+			<data>
+			v04CVFKFe/p/1ru7EcY7VBoF0WneRoZeUTMVUevzhRE=
 			</data>
 		</dict>
 	</dict>

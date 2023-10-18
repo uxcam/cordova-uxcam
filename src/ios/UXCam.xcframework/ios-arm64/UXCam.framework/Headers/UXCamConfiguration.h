@@ -57,6 +57,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL enableAdvancedGestureRecognition;
 
 /**
+ * @brief Enable latest screen recording apis to capture screens.
+ * TRUE to enable the view based rendering  (the default), or FALSE to use layer based screen rendering methods
+ * @note Disable this property in case the performance has degraded after using UXCam, but this might not render complex screens effectively
+ */
+@property (nonatomic, assign) BOOL enableImprovedScreenCapture;
+
+/**
  *  Set this property to capture network logs.
  *  This will control the capture of summary logs about the applications network activity. By default this is disabled.
  *

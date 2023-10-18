@@ -4,6 +4,7 @@
 
 Version | Changes
 --------|--------
+3.6.2   | iOS SDK updated to v3.6.4 and Android SDK updated to v3.6.16
 3.6.1   | iOS SDK updated to v3.6.4
 3.6.0   | iOS SDK updated to v3.6.2 & Android SDK updated to v3.6.4
 3.5.2   | <ul><li>UXCam session URL is returned after successful start on Android platform (Already available on iOS)</li><li>Fixed issue related to occlusion flickering on custom webview (iOS)</li><li>Fixed textfields not occluding properly (iOS)</li><li>Fixed memory level crash issue while recording video (iOS)</li><li>Updated Android SDK to 3.5.2 and iOS SDK to 3.5.1</li></ul> |

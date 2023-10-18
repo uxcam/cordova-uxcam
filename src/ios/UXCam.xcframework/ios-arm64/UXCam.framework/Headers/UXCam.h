@@ -3,7 +3,7 @@
 //
 //  Copyright (c) 2013-2023 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.6.4
+//  UXCam SDK VERSION: 3.6.5
 //
 
 #import <Foundation/Foundation.h>
@@ -496,6 +496,9 @@ extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
 
 /// Used by non-native view hybrid wrappers to pass in occlusion rects - An array where each item is an array of 4 NSNumber items - each define a rect: x, y, width, height
 + (void) occludeRectsOnNextFrame:(NSArray<NSArray<NSNumber*>*>*)rectList;
+
+/// Used for add text for flutter in timeLine for specific event
++ (void) addGestureContent:(NSDictionary *)content;
 
 #pragma mark - Deprecated methods
 
