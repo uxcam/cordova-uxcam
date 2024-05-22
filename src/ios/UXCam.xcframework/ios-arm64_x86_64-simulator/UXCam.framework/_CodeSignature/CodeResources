@@ -14,7 +14,7 @@
 		</data>
 		<key>CHANGELOG.md</key>
 		<data>
-		o2qAgHsP50Jv2vUQ1Lq7oUOILqs=
+		DDmwD/ucDs7MeKxs93/s+5KjhCs=
 		</data>
 		<key>FileMD5Hash-LICENSE</key>
 		<data>
@@ -24,21 +24,21 @@
 		<data>
 		1yEyLPzHndGlDej7PKBU3qls8eQ=
 		</data>
-		<key>Frameworks/module.modulemap</key>
-		<data>
-		f31cF8hGpJKSZV7uHltEES15AFo=
-		</data>
 		<key>GZIP-LICENCE.md</key>
 		<data>
 		VRla/Kx2ahaT9ecNa7/+z9LaJX8=
 		</data>
+		<key>Headers/FlutterUXCam.h</key>
+		<data>
+		XL46xvEjygiBmUxVePDWHw6J6u8=
+		</data>
 		<key>Headers/UXCam-umbrella.h</key>
 		<data>
-		Uv3QN2RTwedOWO/RY+Tox0zMGrc=
+		UDiQN381ansijTBrNmyOO43kQdk=
 		</data>
 		<key>Headers/UXCam.h</key>
 		<data>
-		aPrBKMcvfAnYx7X9NKaC4yo3AmM=
+		gblPbDI9CcjxZOELXCaTvbzOCY0=
 		</data>
 		<key>Headers/UXCamBlurSetting.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Headers/UXCamConfiguration.h</key>
 		<data>
-		XPkIPpKRJB6/u8i1JR1xBcoEkuI=
+		Ekj8GYG78Mfnk0k2kUb1wfGFkao=
 		</data>
 		<key>Headers/UXCamOccludeAllTextFields.h</key>
 		<data>
@@ -72,13 +72,21 @@
 		<data>
 		hVx8O6ne5uW8kwJGVqQGi9FAq9k=
 		</data>
+		<key>Headers/UXCamPlugin.h</key>
+		<data>
+		jJBu817O7nm1LR55y72KGehyGbo=
+		</data>
+		<key>Headers/UXCamPluginConfirmable.h</key>
+		<data>
+		veQWyJenGyBMiLRhxjmpxVWfkkg=
+		</data>
 		<key>Headers/UXOcclusionHeaders.h</key>
 		<data>
 		tDa6ADr9WV+VK7AKAyGFASEWE94=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		26+dDvv7/6epgV/bcwqWB7CU+2c=
+		he5VxfLQCXWTiT2vyvaAohnDFfk=
 		</data>
 		<key>LICENSE-minizip</key>
 		<data>
@@ -92,6 +100,10 @@
 		<data>
 		Juktu5JmuvdTwx+P7fel0ZuKyW0=
 		</data>
+		<key>PrivacyInfo.xcprivacy</key>
+		<data>
+		FfvpMYNudddyxjn3TaQI9T3n+Yk=
+		</data>
 		<key>SSZipArchive-LICENSE.txt</key>
 		<data>
 		bkIUr4Vb85YIQXWyLtfoTgYlc/g=
@@ -100,21 +112,9 @@
 		<data>
 		66iPLun1sI+B7BtS5bE93V6D6bI=
 		</data>
-		<key>ci_post_clone.sh</key>
-		<data>
-		dQh3cuBe2tge3YZn1lUCVI6TsIA=
-		</data>
-		<key>ci_post_xcodebuild.sh</key>
-		<data>
-		IhBxVOFkTPSpcLsPLnP50QS9o4M=
-		</data>
 		<key>iOSViewHierarchy-LICENSE.txt</key>
 		<data>
 		4q9v9uBlNKSLJReAY5mT0MNm2Hc=
-		</data>
-		<key>upload_framework.sh</key>
-		<data>
-		QeV6O9Hu3+BqnZAQbF7MNyKig7M=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -145,11 +145,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			o2qAgHsP50Jv2vUQ1Lq7oUOILqs=
+			DDmwD/ucDs7MeKxs93/s+5KjhCs=
 			</data>
 			<key>hash2</key>
 			<data>
-			YRhuUREC7lC0WOtmFWl+dWg4DMCCmNIvvvcnBcvCafQ=
+			TLbe2uIRcLeVyAgJHaeCB8njnxVYTS8XNqXylnccnBA=
 			</data>
 		</dict>
 		<key>FileMD5Hash-LICENSE</key>
@@ -174,17 +174,6 @@
 			SiBxGsCIBw4PT8yZL35fem2epSW4bg8shidHaf0MvJw=
 			</data>
 		</dict>
-		<key>Frameworks/module.modulemap</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			f31cF8hGpJKSZV7uHltEES15AFo=
-			</data>
-			<key>hash2</key>
-			<data>
-			TMneu8llhbdX/I6fCNfGaGY0UVtS9KWfZG3Q/ZjPIf8=
-			</data>
-		</dict>
 		<key>GZIP-LICENCE.md</key>
 		<dict>
 			<key>hash</key>
@@ -196,26 +185,37 @@
 			5oEHSNwGc/KkOEDocS9t/tv9Vqk3Oo1CISoiL8HkA/w=
 			</data>
 		</dict>
+		<key>Headers/FlutterUXCam.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			XL46xvEjygiBmUxVePDWHw6J6u8=
+			</data>
+			<key>hash2</key>
+			<data>
+			9y1/6unKbOQA419SyjI+VnPpRReZVjh/tL4WX0rUlJI=
+			</data>
+		</dict>
 		<key>Headers/UXCam-umbrella.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Uv3QN2RTwedOWO/RY+Tox0zMGrc=
+			UDiQN381ansijTBrNmyOO43kQdk=
 			</data>
 			<key>hash2</key>
 			<data>
-			HQOtfgkuU+kdH81/SiOTAXmxxk2rNRvr2rqmv4XTl3A=
+			YSm3h23hSRNFKb48IvahTngYarERrrnb/Ctm3o6i5Ug=
 			</data>
 		</dict>
 		<key>Headers/UXCam.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			aPrBKMcvfAnYx7X9NKaC4yo3AmM=
+			gblPbDI9CcjxZOELXCaTvbzOCY0=
 			</data>
 			<key>hash2</key>
 			<data>
-			CeEADh7s5hsHa2KJW2Wj/CYuBEaF2AFT0Kk4eqF6d5c=
+			NjtrFkdzeIIS9/7+NKsniiozioWq/RgR5mw64w4JJ40=
 			</data>
 		</dict>
 		<key>Headers/UXCamBlurSetting.h</key>
@@ -233,11 +233,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			XPkIPpKRJB6/u8i1JR1xBcoEkuI=
+			Ekj8GYG78Mfnk0k2kUb1wfGFkao=
 			</data>
 			<key>hash2</key>
 			<data>
-			4Ad4N5cCCbZ4jaqe09Wvh+DW2oQ8e/kn/PxMfS/WsD4=
+			fj+XjLAvRksa9iKMbSbSBk79AKrRwmK2hxZMTqFNmyU=
 			</data>
 		</dict>
 		<key>Headers/UXCamOccludeAllTextFields.h</key>
@@ -306,6 +306,28 @@
 			O5S7VID3aOyg9IOpUFsqMtKhsWrFKS1dD1KKLy+yUxc=
 			</data>
 		</dict>
+		<key>Headers/UXCamPlugin.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			jJBu817O7nm1LR55y72KGehyGbo=
+			</data>
+			<key>hash2</key>
+			<data>
+			EN1PDydVuIHBrQEyXzC/Jh/4r4bHBoE30YeQNzmiWIA=
+			</data>
+		</dict>
+		<key>Headers/UXCamPluginConfirmable.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			veQWyJenGyBMiLRhxjmpxVWfkkg=
+			</data>
+			<key>hash2</key>
+			<data>
+			U/VK2UNr6w7qY5787pZGUqYnBHj+V94d/6ClAwIyxmo=
+			</data>
+		</dict>
 		<key>Headers/UXOcclusionHeaders.h</key>
 		<dict>
 			<key>hash</key>
@@ -350,6 +372,17 @@
 			RfVzCKX5UDmmR4zx5HRJqhHihCd3fYFJe9ZUwfQe9a8=
 			</data>
 		</dict>
+		<key>PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			FfvpMYNudddyxjn3TaQI9T3n+Yk=
+			</data>
+			<key>hash2</key>
+			<data>
+			NqKS03EfF0GD4vz5o8a8SCJSJD89yBrIuDgI1RCcBuI=
+			</data>
+		</dict>
 		<key>SSZipArchive-LICENSE.txt</key>
 		<dict>
 			<key>hash</key>
@@ -372,28 +405,6 @@
 			LITGGMr805TGdN/ijxim/ZFA+r9HQGfvIm4YSAIlDAo=
 			</data>
 		</dict>
-		<key>ci_post_clone.sh</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			dQh3cuBe2tge3YZn1lUCVI6TsIA=
-			</data>
-			<key>hash2</key>
-			<data>
-			SnoGyl/GoUQ+KUCFxZTV8IjRFBPqebolRMnwgiHJP6Q=
-			</data>
-		</dict>
-		<key>ci_post_xcodebuild.sh</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			IhBxVOFkTPSpcLsPLnP50QS9o4M=
-			</data>
-			<key>hash2</key>
-			<data>
-			D1yI3wTkyKmI3ZW4wGdhWvbSSsAzZFxpmqRb6WLVAc0=
-			</data>
-		</dict>
 		<key>iOSViewHierarchy-LICENSE.txt</key>
 		<dict>
 			<key>hash</key>
@@ -403,17 +414,6 @@
 			<key>hash2</key>
 			<data>
 			M6HHOQgJVUKRHECV9HHJgEhwSl60qQ/9YG1Ixt8jeOg=
-			</data>
-		</dict>
-		<key>upload_framework.sh</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			QeV6O9Hu3+BqnZAQbF7MNyKig7M=
-			</data>
-			<key>hash2</key>
-			<data>
-			v04CVFKFe/p/1ru7EcY7VBoF0WneRoZeUTMVUevzhRE=
 			</data>
 		</dict>
 	</dict>

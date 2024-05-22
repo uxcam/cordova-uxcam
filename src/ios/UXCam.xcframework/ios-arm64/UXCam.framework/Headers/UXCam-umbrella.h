@@ -19,3 +19,4 @@ FOUNDATION_EXPORT const unsigned char UXCamVersionString[];
 #import <UXCam/UXCamConfiguration.h>
 
 #import <UXCam/UXOcclusionHeaders.h>
+#import <UXCam/FlutterUXCam.h>
