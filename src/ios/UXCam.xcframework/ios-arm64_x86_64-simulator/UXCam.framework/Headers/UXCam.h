@@ -1,9 +1,9 @@
 //
 //  UXCam.h
 //
-//  Copyright (c) 2013-2023 UXCam Ltd. All rights reserved.
+//  Copyright (c) 2013-2024 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.6.5
+//  UXCam SDK VERSION: 3.6.14
 //
 
 #import <Foundation/Foundation.h>
@@ -457,6 +457,15 @@ extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
  */
 + (void)reportExceptionEvent:(NSException*)exception properties:(nullable NSDictionary<NSString*,id>*)properties;
 
+/**
+    Report caught exception that you can send directly to dashboard without app capturing it. To be shown in an area of the dashboard
+    @param name Name of the exception
+    @param reason Reason for the exception
+    @param callStacks The callstack for the exception
+    @param properties Properties to attach to this exception report
+    @note Only NSNumber and NSString property types are supported to a maximum count of 100 and maximum size per entry of 1KiB in the properties dictionary
+ */
++ (void)reportExceptionEvent:(NSString*)name reason:(NSString *)reason callStacks:(NSArray <NSString *> *)callStacks properties:(nullable NSDictionary<NSString*,id>*)properties;
 
 #pragma mark Retrieve URLs for viewing sessions
 /**

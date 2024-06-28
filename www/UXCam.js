@@ -3,7 +3,7 @@
    *
    * Cordova UXCam plugin for version >= 3.0.0
    *
-   * Copyright(c) 2015-2023 UXCam Inc.
+   * Copyright(c) 2015-2024 UXCam Inc.
    */
    
   var exec = require('cordova/exec');

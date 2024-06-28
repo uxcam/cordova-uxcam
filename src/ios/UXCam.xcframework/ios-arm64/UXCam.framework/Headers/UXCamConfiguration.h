@@ -86,6 +86,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) UXEnvironment environment;
 
 /**
+ * Set this property to bundle identifiers of third party frameworks for screens that you want to capture.
+ * @note You don't need to set this value if all your screens are in `NSBundle.mainBundle`.
+ */
+@property (strong, nonatomic) NSArray<NSString *> *frameworksBundleIdentifiers;
+
+/**
  *	@brief Designated initializer for the configuration object
  *  @param userAppKey    The key to identify your UXCam account - find it in the UXCam dashboard for your account at https://dashboard.uxcam.com/user/settings
  */

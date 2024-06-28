@@ -5,6 +5,14 @@
 
 Version   | Changes
 ---------- | ----------
+3.6.14  | Add support for webview occlusion
+3.6.13  | Fixed occlusion issue on schematic recordings
+3.6.12  | SwiftUI automatic screen tagging
+3.6.11  | Fixed Xcode 15.3 SPM issue while validating SDK to app store along with other bug fixes
+3.6.10  | Fixed occlusion related issues
+3.6.9   | Fixed crash issue due to uploading large session in background
+3.6.8   | Fixed crash issue due to inefficient rendering mechanism for some devices
+3.6.7   | Handled uploading of large sessions in efficient way
 3.6.6   | Added new configuration key `enableImprovedScreenCapture` to improve the screen capturing logic
 3.6.5   | Fixed rendering issues in Flutter
 3.6.4   | Fixed performance issue in Cordova and other webview related frameworks
