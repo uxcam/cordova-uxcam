@@ -4,7 +4,7 @@
 
 Version | Changes
 --------|--------
-3.6.3   | iOS SDK updated to v3.6.13 and Android SDK updated to v3.6.26
+3.6.3   | iOS SDK updated to v3.6.14 and Android SDK updated to v3.6.24
 3.6.2   | iOS SDK updated to v3.6.4 and Android SDK updated to v3.6.16
 3.6.1   | iOS SDK updated to v3.6.4
 3.6.0   | iOS SDK updated to v3.6.2 & Android SDK updated to v3.6.4
