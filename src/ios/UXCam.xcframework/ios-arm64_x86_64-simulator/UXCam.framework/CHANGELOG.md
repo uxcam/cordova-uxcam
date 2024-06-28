@@ -5,6 +5,7 @@
 
 Version   | Changes
 ---------- | ----------
+3.6.14  | Add support for webview occlusion
 3.6.13  | Fixed occlusion issue on schematic recordings
 3.6.12  | SwiftUI automatic screen tagging
 3.6.11  | Fixed Xcode 15.3 SPM issue while validating SDK to app store along with other bug fixes

@@ -3,7 +3,7 @@
 //
 //  Copyright (c) 2013-2024 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.6.13
+//  UXCam SDK VERSION: 3.6.14
 //
 
 #import <Foundation/Foundation.h>
