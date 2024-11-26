@@ -19,7 +19,7 @@ static NSString* const Uxcam_BlurRadius = @"blurRadius";
 static NSString* const Uxcam_HideGestures = @"hideGestures";
 static NSString* const Uxcam_OverlayColor = @"color";
 
-static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.19";
+static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.4";
 
 @implementation CDVUXCam
 
@@ -172,8 +172,7 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.19";
         id <UXCamOcclusionSetting> setting = [self getOcclusionSettingFromJson:occlusion];
         if (setting)
         {
-            NSArray<NSString *> *screens = occlusion[@"screens"] ?: @[];
-            [UXCam applyOcclusion:setting toScreens: screens];
+            [UXCam applyOcclusion:setting];
             [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
                                         callbackId:command.callbackId];
             return;

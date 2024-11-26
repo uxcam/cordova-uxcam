@@ -26,7 +26,7 @@ import com.uxcam.datamodel.UXConfig;
  */
 public class UXCam extends CordovaPlugin {
     private static final String UXCAM_PLUGIN_TYPE = "cordova";
-    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.6.3";
+    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.6.4";
 
     public static final String USER_APP_KEY = "userAppKey";
     public static final String ENABLE_MUTLI_SESSION_RECORD = "enableMultiSessionRecord";
