@@ -3,7 +3,7 @@
 //
 //  Copyright (c) 2013-2024 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.6.14
+//  UXCam SDK VERSION: 3.6.19
 //
 
 #import <Foundation/Foundation.h>
@@ -135,6 +135,7 @@ extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
  *
  *	@brief Prevent a short trip to another app causing a break in a session
  *	@param continueSession Set to TRUE to continue the current session after a short trip out to another app. Default is FALSE - stop the session as soon as the app enters the background.
+ *  @note This method should be called when the app is in foreground state, setting this value in background won't have any effect
  *	@note If the app is in the background for more than the 'background time allowed' (3 minutes on iOS <=12 or 30 seconds since iOS >=13) and the app is killed then the session will be lost.
  *	@note Notification `UXCam_Notification_AllowShortBreak` is sent when the app returns from a break, and the payload of that indicates if the session continues or was too long and a new sessions is started
  */
@@ -245,6 +246,12 @@ extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
  	@param sensitiveView The view to occlude in the schematic recording
 */
 + (void) occludeSensitiveViewWithoutGesture:(UIView*)sensitiveView;
+
+/**
+    Apply occlusion setting manually in specified screens
+    @note This method takes precedence over configuration based occlusion properties in case of conflict.
+ */
++ (void)applyOcclusion:(id<UXCamOcclusionSetting>)setting toScreens:(NSArray <NSString *> *)screens;
 
 /**
     Apply occlusion setting from specific position within app. Use @c removeOcclusion to remove this occlusion setting.
@@ -439,15 +446,6 @@ extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
 
 
 #pragma mark Methods for adding a problem report to your timeline
-// SDK 3.3.0 - BETA methods - not yet reflected on Dashboard
-
-/**
-	Send a report of a problem your app encountered to be displayed in the dashboard
-	@param name The name to call the proplem
-	@param properties Properties associated with the report
-	@note Only NSNumber and NSString property types are supported to a maximum count of 100 and maximum size per entry of 1KiB in the properties dictionary
- */
-+ (void)reportBugEvent:(NSString*)name properties:(nullable NSDictionary<NSString*,id>*)properties;
 
 /**
 	Report an exception that your app encountered and handled. To be shown in an area of the dashboard
@@ -523,6 +521,8 @@ extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
 + (void) setAutomaticScreenNameTagging:(BOOL)enable  __attribute__((deprecated("Set enableAutomaticScreenNameTagging on UXCam configuration object instead")));
 + (void) EnableAdvancedGestureRecognizers:(BOOL)enable  __attribute__((deprecated("Set enableAdvancedGestureRecognizers on UXCam configuration object instead")));
 + (void) captureLogOutput  __attribute__((deprecated("Set using dashboard controls on the website")));
+
++ (void)reportBugEvent:(NSString*)name properties:(nullable NSDictionary<NSString*,id>*)properties  __attribute__((deprecated("Use reportExceptionEvent:properties: instead")));
 
 @end
 

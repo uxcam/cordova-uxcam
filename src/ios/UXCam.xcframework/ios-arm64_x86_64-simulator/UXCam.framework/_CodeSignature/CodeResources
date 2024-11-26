@@ -14,7 +14,7 @@
 		</data>
 		<key>CHANGELOG.md</key>
 		<data>
-		MhZvsseEM2hgkblVBKyBhrZLfzE=
+		cmVxxEuhfdbgrhTnT7eIoVsZdt0=
 		</data>
 		<key>FileMD5Hash-LICENSE</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Headers/UXCam.h</key>
 		<data>
-		DXhTGs7ocvR897ZQY/QOdwlWeCo=
+		vZw6KPy74LqAigzUz3u72LEhiUA=
 		</data>
 		<key>Headers/UXCamBlurSetting.h</key>
 		<data>
@@ -86,7 +86,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		YMLfIW3aYdb6+QGQP2UFrHhV+Qs=
+		8r2eUXs1ClfTjOF6y6uZSlNXxc4=
 		</data>
 		<key>LICENSE-minizip</key>
 		<data>
@@ -145,11 +145,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			MhZvsseEM2hgkblVBKyBhrZLfzE=
+			cmVxxEuhfdbgrhTnT7eIoVsZdt0=
 			</data>
 			<key>hash2</key>
 			<data>
-			0pLX6hXsxlpLfnhQ9IuNW1USWYPiewL0yMZ5modWsR4=
+			ncDDxUeIgn45dPkADnYugem5/V3g1Xd4JI20L2r8sBU=
 			</data>
 		</dict>
 		<key>FileMD5Hash-LICENSE</key>
@@ -211,11 +211,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			DXhTGs7ocvR897ZQY/QOdwlWeCo=
+			vZw6KPy74LqAigzUz3u72LEhiUA=
 			</data>
 			<key>hash2</key>
 			<data>
-			ndDdFD2+7dKAKvTnrCHZNgdKFnvE7GXdR5SRrmXu4s0=
+			WFNa3JqvFYo5ITVJ2fv4DRd74ZisQtxtoBnK2KBZ6vI=
 			</data>
 		</dict>
 		<key>Headers/UXCamBlurSetting.h</key>
