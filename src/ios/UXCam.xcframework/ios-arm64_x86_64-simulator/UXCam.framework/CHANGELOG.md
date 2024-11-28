@@ -5,6 +5,11 @@
 
 Version   | Changes
 ---------- | ----------
+3.6.19  | Removed upload symbol script to fix build issue in spm
+3.6.18  | Add support for crash symbolication and app load time
+3.6.17  | Fixed occlusion issue for moving views
+3.6.16  | Improved uploading sessions logic to reduce missing sessions
+3.6.15  | Fixed session not uploading issue when cellular data is on
 3.6.14  | Add support for webview occlusion
 3.6.13  | Fixed occlusion issue on schematic recordings
 3.6.12  | SwiftUI automatic screen tagging

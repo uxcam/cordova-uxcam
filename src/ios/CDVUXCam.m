@@ -19,7 +19,7 @@ static NSString* const Uxcam_BlurRadius = @"blurRadius";
 static NSString* const Uxcam_HideGestures = @"hideGestures";
 static NSString* const Uxcam_OverlayColor = @"color";
 
-static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.3";
+static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.4";
 
 @implementation CDVUXCam
 
