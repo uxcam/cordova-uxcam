@@ -25,6 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, readonly) NSString *userAppKey;
 
 /**
+ *  @brief Set this to true before calling startWithKey to enable UXCam from capturing verbose/Integration log.
+ *
+ *  NO to disable integration logging
+ *  @note By default integration logging is disabled, with it disabled then logging about various integration will be unseen in console
+ */
+@property (nonatomic, assign) BOOL enableIntegrationLogging;
+
+/**
  *	Set whether to record multiple sessions or not
  *
  *  YES to record a new session automatically when the device comes out of the background. If NO then a single session is recorded, when stopped (either programmatically with @c stopApplicationAndUploadData or by the app going to the background) then no more sessions are recorded until @c startWithConfiguration is called again).

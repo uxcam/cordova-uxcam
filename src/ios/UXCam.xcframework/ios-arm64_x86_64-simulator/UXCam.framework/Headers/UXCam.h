@@ -1,9 +1,9 @@
 //
 //  UXCam.h
 //
-//  Copyright (c) 2013-2024 UXCam Ltd. All rights reserved.
+//  Copyright (c) 2013-2025 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 3.6.19
+//  UXCam SDK VERSION: 3.6.23
 //
 
 #import <Foundation/Foundation.h>
@@ -13,6 +13,11 @@
 #import <UXCam/UXCamOcclusion.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef void (^OcclusionRectCompletionBlock)(NSArray* rects);
+typedef void (^OcclusionRectCompletionHandler)(OcclusionRectCompletionBlock);
+
+typedef void (^OcclusionFrameRenderingHandler)(void (^)(BOOL));
 
 /**
  *	UXCam SDK captures user experience data when a user uses an app, analyses this data on the cloud and provides insights to improve usability of the app.
@@ -231,6 +236,27 @@ extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
 
 #pragma mark Methods for hiding sensitive information on the schematic recording
 
+
+/**
+    Property to handle occlusion rects when requested by internal methods.
+ 
+    @note Initiated by - `setOccludeRectsRequestHandler`
+ */
+@property (nonatomic, copy) OcclusionRectCompletionHandler occludeRectsRequestHandler;
+
+/**
+    Property to handle widget Rendering state to pause used for handling s rects when requested by internal methods.
+ 
+    @note Initiated by - `pauseForOccludeRectsRequestHandler`
+ */
+@property (nonatomic, copy) OcclusionFrameRenderingHandler pauseRenderingRequestHandler;
+/**
+    Property to handle widget Rendering state for resume used for handling s rects when requested by internal methods.
+ 
+    @note Initiated by - `resumeAfterOccludeRectsRequestHandler`
+ */
+@property (nonatomic, copy) OcclusionFrameRenderingHandler resumeRenderingRequestHandler;
+
 /**
 	Hide a view that contains sensitive information or that you do not want recording on the schematic video.
 
@@ -413,7 +439,7 @@ extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
 
 /**
 	Insert a general event into the timeline - stores the event with the timestamp when it was added.
-
+ 
 	@param eventName Name of the event to attach to the session recording at the current time
 */
 + (void) logEvent:(NSString*)eventName;
@@ -501,8 +527,17 @@ extern NSString* const UXCam_Notification_Key_AllowShortBreakDuration;
  */
 + (void) pluginType:(NSString*)type version:(NSString*)versionNumber;
 
+/// Used by non-native within `startwithConfiguration` to get occlusion rects during recording.
++ (void) setOccludeRectsRequestHandler:(OcclusionRectCompletionHandler) block;
+
+/// Used by non-native within `startwithConfiguration` to pause rendering before rects fetch started.
++ (void) pauseForOcclusionNextFrameRequestHandler:(OcclusionFrameRenderingHandler) block;
+
 /// Used by non-native view hybrid wrappers to pass in occlusion rects - An array where each item is an array of 4 NSNumber items - each define a rect: x, y, width, height
 + (void) occludeRectsOnNextFrame:(NSArray<NSArray<NSNumber*>*>*)rectList;
+
+/// Used by non-native view hybrid wrappers to pass in occlusion rects with Identity - An array where each item is an array of 4 NSNumber items - each define a rect: x, y, width, height
++ (void) occludeRectsOnNextFrame:(NSArray<NSArray<NSNumber*>*>*)rectList withIdentity: (NSString*) identity;
 
 /// Used for add text for flutter in timeLine for specific event
 + (void) addGestureContent:(NSDictionary *)content;
