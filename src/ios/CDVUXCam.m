@@ -9,6 +9,7 @@ static NSString* const Uxcam_CrashHandling = @"enableCrashHandling";
 static NSString* const Uxcam_ScreenTag = @"enableAutomaticScreenNameTagging";
 static NSString* const Uxcam_AdvancedGestures = @"enableAdvancedGestureRecognition";
 static NSString* const Uxcam_EnableNetworkLogs = @"enableNetworkLogging";
+static NSString* const Uxcam_EnableIntegrationLogs = @"enableIntegrationLogging";
 
 static NSString* const Uxcam_Occlusion = @"occlusions";
 static NSString* const Uxcam_OccludeScreens = @"screens";
@@ -19,7 +20,7 @@ static NSString* const Uxcam_BlurRadius = @"blurRadius";
 static NSString* const Uxcam_HideGestures = @"hideGestures";
 static NSString* const Uxcam_OverlayColor = @"color";
 
-static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.4";
+static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.5";
 
 @implementation CDVUXCam
 
@@ -95,6 +96,12 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.4";
     if (enableNetworkLogging && [self isBoolNumber:enableNetworkLogging])
     {
         configuration.enableNetworkLogging = [enableNetworkLogging boolValue];
+    }
+
+    NSNumber *enableIntegrationLogging = config[Uxcam_EnableIntegrationLogs];
+    if (enableIntegrationLogging && [self isBoolNumber:enableIntegrationLogging])
+    {
+        configuration.enableIntegrationLogging = [enableIntegrationLogging boolValue];
     }
     
     NSArray *occlusionList = config[Uxcam_Occlusion];

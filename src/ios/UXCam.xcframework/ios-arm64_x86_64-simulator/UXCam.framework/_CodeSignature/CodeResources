@@ -14,7 +14,7 @@
 		</data>
 		<key>CHANGELOG.md</key>
 		<data>
-		cmVxxEuhfdbgrhTnT7eIoVsZdt0=
+		yiRiPbmb/rmBd/B41OCXD6jxjJo=
 		</data>
 		<key>FileMD5Hash-LICENSE</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Headers/UXCam.h</key>
 		<data>
-		vZw6KPy74LqAigzUz3u72LEhiUA=
+		zfrai8RtYjsTgtHvpVvoQeWQsko=
 		</data>
 		<key>Headers/UXCamBlurSetting.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Headers/UXCamConfiguration.h</key>
 		<data>
-		Ekj8GYG78Mfnk0k2kUb1wfGFkao=
+		JxwDCRlVQVdR5tsyVZjWhCYWJ5g=
 		</data>
 		<key>Headers/UXCamOccludeAllTextFields.h</key>
 		<data>
@@ -86,7 +86,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		8r2eUXs1ClfTjOF6y6uZSlNXxc4=
+		3ZrM2jbPQQ+3S084iBjfuhjkQiA=
 		</data>
 		<key>LICENSE-minizip</key>
 		<data>
@@ -94,7 +94,7 @@
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		f31cF8hGpJKSZV7uHltEES15AFo=
+		CclbJjkufejI/AOFL9mBrHGZqDE=
 		</data>
 		<key>PLCrashReporter-LICENSE</key>
 		<data>
@@ -111,6 +111,10 @@
 		<key>cgmanifest.json</key>
 		<data>
 		66iPLun1sI+B7BtS5bE93V6D6bI=
+		</data>
+		<key>iOSViewHierarchy-AUTHORS.txt</key>
+		<data>
+		ZZI+AofyyD0LS+lywNls1hzQdlE=
 		</data>
 		<key>iOSViewHierarchy-LICENSE.txt</key>
 		<data>
@@ -145,11 +149,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			cmVxxEuhfdbgrhTnT7eIoVsZdt0=
+			yiRiPbmb/rmBd/B41OCXD6jxjJo=
 			</data>
 			<key>hash2</key>
 			<data>
-			ncDDxUeIgn45dPkADnYugem5/V3g1Xd4JI20L2r8sBU=
+			CqJBvN44L6hyp41uoQkr2/TupHYg54dsS9eE3OCZCGk=
 			</data>
 		</dict>
 		<key>FileMD5Hash-LICENSE</key>
@@ -211,11 +215,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vZw6KPy74LqAigzUz3u72LEhiUA=
+			zfrai8RtYjsTgtHvpVvoQeWQsko=
 			</data>
 			<key>hash2</key>
 			<data>
-			WFNa3JqvFYo5ITVJ2fv4DRd74ZisQtxtoBnK2KBZ6vI=
+			0CiBGmJpXOWPAgooKzh6Wt3Abz6xeKwePfg+Ma8ne7A=
 			</data>
 		</dict>
 		<key>Headers/UXCamBlurSetting.h</key>
@@ -233,11 +237,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Ekj8GYG78Mfnk0k2kUb1wfGFkao=
+			JxwDCRlVQVdR5tsyVZjWhCYWJ5g=
 			</data>
 			<key>hash2</key>
 			<data>
-			fj+XjLAvRksa9iKMbSbSBk79AKrRwmK2hxZMTqFNmyU=
+			9n+7pJHatgQHi2xPpsQvrNJHtkPzR9AX20lKpC/iIGg=
 			</data>
 		</dict>
 		<key>Headers/UXCamOccludeAllTextFields.h</key>
@@ -354,11 +358,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			f31cF8hGpJKSZV7uHltEES15AFo=
+			CclbJjkufejI/AOFL9mBrHGZqDE=
 			</data>
 			<key>hash2</key>
 			<data>
-			TMneu8llhbdX/I6fCNfGaGY0UVtS9KWfZG3Q/ZjPIf8=
+			CyxDJtA9CkoR/LEpOGq73PO11z/vZf87O3swPFqAV1c=
 			</data>
 		</dict>
 		<key>PLCrashReporter-LICENSE</key>
@@ -403,6 +407,17 @@
 			<key>hash2</key>
 			<data>
 			LITGGMr805TGdN/ijxim/ZFA+r9HQGfvIm4YSAIlDAo=
+			</data>
+		</dict>
+		<key>iOSViewHierarchy-AUTHORS.txt</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ZZI+AofyyD0LS+lywNls1hzQdlE=
+			</data>
+			<key>hash2</key>
+			<data>
+			oGRULo6/7LrZGBYsPinc7h6aKtd5XQrDZkMJmd6F5jw=
 			</data>
 		</dict>
 		<key>iOSViewHierarchy-LICENSE.txt</key>

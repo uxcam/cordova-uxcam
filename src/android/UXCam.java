@@ -26,13 +26,14 @@ import com.uxcam.datamodel.UXConfig;
  */
 public class UXCam extends CordovaPlugin {
     private static final String UXCAM_PLUGIN_TYPE = "cordova";
-    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.6.4";
+    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.6.5";
 
     public static final String USER_APP_KEY = "userAppKey";
     public static final String ENABLE_MUTLI_SESSION_RECORD = "enableMultiSessionRecord";
     public static final String ENABLE_CRASH_HANDLING = "enableCrashHandling";
     public static final String ENABLE_AUTOMATIC_SCREEN_NAME_TAGGING = "enableAutomaticScreenNameTagging";
     public static final String ENABLE_IMPROVED_SCREEN_CAPTURE = "enableImprovedScreenCapture";
+    public static final String ENABLE_INTEGRATION_LOGGING = "enableIntegrationLogging";
     public static final String OCCLUSION = "occlusions";
     public static final String SCREENS = "screens";
     public static final String NAME = "name";
@@ -339,6 +340,7 @@ public class UXCam extends CordovaPlugin {
             Boolean enableCrashHandling = (Boolean) configMap.get(ENABLE_CRASH_HANDLING);
             Boolean enableAutomaticScreenNameTagging = (Boolean) configMap.get(ENABLE_AUTOMATIC_SCREEN_NAME_TAGGING);
             Boolean enableImprovedScreenCapture = (Boolean) configMap.get(ENABLE_IMPROVED_SCREEN_CAPTURE);
+            Boolean enableIntegrationLogging = (Boolean) configMap.get(ENABLE_INTEGRATION_LOGGING);
 
             // // occlusion
             List<UXCamOcclusion> occlusionList = null;
@@ -357,6 +359,10 @@ public class UXCam extends CordovaPlugin {
             if (enableImprovedScreenCapture != null) {
                 Log.d("config", "improved screen capture enabled " + enableImprovedScreenCapture);
                 uxConfigBuilder.enableImprovedScreenCapture(enableImprovedScreenCapture);
+            }
+            if (enableIntegrationLogging != null) {
+                Log.d("config", "integration logging enabled " + enableIntegrationLogging);
+                uxConfigBuilder.enableIntegrationLogging(enableIntegrationLogging);
             }
             if (occlusionList != null)
                 uxConfigBuilder.occlusions(occlusionList);

@@ -5,6 +5,10 @@
 
 Version   | Changes
 ---------- | ----------
+3.6.23  | Fixed occlusion not working for few offline sessions and recording smart events for occluded screens
+3.6.22  | Fixed app hang issues due to video recording
+3.6.21  | Occlusion improvement for flutter
+3.6.20  | Improve video recording logic to capture sessions efficiently
 3.6.19  | Removed upload symbol script to fix build issue in spm
 3.6.18  | Add support for crash symbolication and app load time
 3.6.17  | Fixed occlusion issue for moving views
