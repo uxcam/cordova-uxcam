@@ -5,6 +5,8 @@
 
 Version   | Changes
 ---------- | ----------
+3.7.1   | Fixed sensitive view not occluding while transitioning
+3.7.0   | Added ai text occlusion setting, improved video recording logic
 3.6.26  | Fixed crash for null pointer exception while parsing ANR stacktrace
 3.6.25  | Made ANR stacktrace readable
 3.6.24  | Fixed recording issues resulting in long and failed video in sessions
