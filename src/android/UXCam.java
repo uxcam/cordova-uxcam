@@ -19,7 +19,7 @@ import com.uxcam.screenshot.model.UXCamBlur;
 import com.uxcam.screenshot.model.UXCamOverlay;
 import com.uxcam.screenshot.model.UXCamOcclusion;
 import com.uxcam.screenshot.model.UXCamOccludeAllTextFields;
-
+import com.uxcam.screenshot.model.UXCamAITextOcclusion;
 import com.uxcam.datamodel.UXConfig;
 /**
  * This class echoes a string called from JavaScript.
@@ -42,7 +42,7 @@ public class UXCam extends CordovaPlugin {
     public static final String CONFIG = "config";
     public static final String BLUR_RADIUS = "blurRadius";
     public static final String HIDE_GESTURES = "hideGestures";
-
+    public static final String RECOGNITION_LANGUAGES = "recognitionLanguages";
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("startWithKey".equals(action)) {
@@ -282,6 +282,8 @@ public class UXCam extends CordovaPlugin {
                 return (UXCamOcclusion) getOverlay(occlusionMap);
             case 3:
                 return (UXCamOcclusion) getBlur(occlusionMap);
+            case 4:
+                return (UXCamOcclusion) getAITextOcclusion(occlusionMap);   
             default:
                 return null;
         }
@@ -332,6 +334,16 @@ public class UXCam extends CordovaPlugin {
 
 
     }
+
+    private UXCamAITextOcclusion getAITextOcclusion(Map<String, Object> aiMap) {
+        List<String> recognitionLanguages = (List<String>) aiMap.get(RECOGNITION_LANGUAGES);
+        Boolean hideGestures = (Boolean) aiMap.get(HIDE_GESTURES);
+        if (hideGestures != null) {
+            return new UXCamAITextOcclusion.Builder().recognitionLanguages(recognitionLanguages).withoutGesture(hideGestures).build();
+        }
+        return new UXCamAITextOcclusion.Builder().recognitionLanguages(recognitionLanguages).build();
+    }
+
     private void startWithConfiguration(Map<String,Object> configuration) {
         try {
             HashMap<String, Object> configMap = (HashMap<String, Object>) configuration;
