@@ -170,7 +170,7 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 
         case UXOcclusionTypeAITextOcclusion:
         {
-            UXCamAITextOcclusion *ai = [[UXCamAITextOcclusion alloc] initWithLanguage:json[Uxcam_RecognitionLanguages]];
+            UXCamAITextOcclusionSetting *ai = [[UXCamAITextOcclusionSetting alloc] initWithLanguage:json[Uxcam_RecognitionLanguages]];
             NSNumber *hideGestures = json[Uxcam_HideGestures];
             if (hideGestures) {
                 ai.hideGestures = hideGestures.boolValue;
