@@ -335,7 +335,7 @@ public class UXCam extends CordovaPlugin {
 
     }
 
-    private UXCamAITextOcclusionSetting getAITextOcclusion(Map<String, Object> aiMap) {
+    private UXCamAITextOcclusion getAITextOcclusion(Map<String, Object> aiMap) {
         Boolean hideGestures = (Boolean) aiMap.get(HIDE_GESTURES);
         UXCamAITextOcclusion.Builder builder = new UXCamAITextOcclusion.Builder();
         if (hideGestures != null) {
