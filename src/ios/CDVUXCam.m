@@ -74,11 +74,6 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 
 - (void)updateConfiguration:(UXCamConfiguration *)configuration fromDict:(NSDictionary *)config
 {
-    NSNumber *enableSchematicRecording = config[Uxcam_SchematicRecording];
-    if (enableSchematicRecording && [self isBoolNumber:enableSchematicRecording])
-    {
-        configuration.enableSchematicRecording = FALSE;
-    }
 
     NSNumber *enableMultiSessionRecord = config[Uxcam_MultiSession];
     if (enableMultiSessionRecord && [self isBoolNumber:enableMultiSessionRecord])
@@ -541,7 +536,7 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 {
 	BOOL status =  [UXCam optInSchematicRecordingStatus];
 
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:FALSE]
 								callbackId:command.callbackId];
 }
 
