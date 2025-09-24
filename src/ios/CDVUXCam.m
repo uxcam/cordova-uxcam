@@ -4,6 +4,7 @@
 
 // Configuration Keys
 static NSString* const Uxcam_AppKey = @"userAppKey";
+static NSString* const Uxcam_SchematicRecording = @"enableSchematicRecording";
 static NSString* const Uxcam_MultiSession = @"enableMultiSessionRecord";
 static NSString* const Uxcam_CrashHandling = @"enableCrashHandling";
 static NSString* const Uxcam_ScreenTag = @"enableAutomaticScreenNameTagging";
@@ -73,6 +74,12 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 
 - (void)updateConfiguration:(UXCamConfiguration *)configuration fromDict:(NSDictionary *)config
 {
+    NSNumber *enableSchematicRecording = config[Uxcam_SchematicRecording];
+    if (enableSchematicRecording && [self isBoolNumber:enableSchematicRecording])
+    {
+        configuration.enableSchematicRecording = FALSE;
+    }
+
     NSNumber *enableMultiSessionRecord = config[Uxcam_MultiSession];
     if (enableMultiSessionRecord && [self isBoolNumber:enableMultiSessionRecord])
     {
