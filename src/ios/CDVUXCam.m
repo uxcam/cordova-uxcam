@@ -518,7 +518,7 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 
 - (void)optIntoSchematicRecordings:(CDVInvokedUrlCommand*)command
 {
-	[UXCam optIntoSchematicRecordings];
+	[UXCam optOutOfSchematicRecordings];
 
 	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
 								callbackId:command.callbackId];
