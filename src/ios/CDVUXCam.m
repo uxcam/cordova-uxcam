@@ -536,7 +536,7 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 {
 	BOOL status =  [UXCam optInSchematicRecordingStatus];
 
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:FALSE]
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
 								callbackId:command.callbackId];
 }
 
