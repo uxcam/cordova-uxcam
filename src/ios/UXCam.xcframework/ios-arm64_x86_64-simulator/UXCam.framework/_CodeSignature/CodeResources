@@ -4,17 +4,9 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>BSBacktraceLogger-LICENSE.md</key>
-		<data>
-		EtgfUHZ9TgmqeHfaB3rZ0bkV11s=
-		</data>
-		<key>BSBacktraceLogger-README.md</key>
-		<data>
-		1cTsEQkgHf+20Gwz//TCjYDTjl0=
-		</data>
 		<key>CHANGELOG.md</key>
 		<data>
-		yiRiPbmb/rmBd/B41OCXD6jxjJo=
+		UbU5yorY6cNolv5PYUWItTL2pTQ=
 		</data>
 		<key>FileMD5Hash-LICENSE</key>
 		<data>
@@ -32,13 +24,21 @@
 		<data>
 		XL46xvEjygiBmUxVePDWHw6J6u8=
 		</data>
+		<key>Headers/UXCam-Swift.h</key>
+		<data>
+		DOTGLDW8hrMo4BFMZyC8XOAKWyE=
+		</data>
 		<key>Headers/UXCam-umbrella.h</key>
 		<data>
-		UDiQN381ansijTBrNmyOO43kQdk=
+		Rd5mJNMKQjWgCMMY2wj1yZWU/TQ=
 		</data>
 		<key>Headers/UXCam.h</key>
 		<data>
-		zfrai8RtYjsTgtHvpVvoQeWQsko=
+		CxWkmKt6xyPu0iabyAb7mtOftW8=
+		</data>
+		<key>Headers/UXCamAITextOcclusionSetting.h</key>
+		<data>
+		X91eziSvxTnd7mgoGfjLYvtwGS0=
 		</data>
 		<key>Headers/UXCamBlurSetting.h</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Headers/UXCamOcclusion.h</key>
 		<data>
-		SFH/t0F6Wn3lSaHpcJhR3c4FK/k=
+		Oa0UbpquN/pjTbujuMXJttHoXGo=
 		</data>
 		<key>Headers/UXCamOcclusionParameter.h</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Headers/UXCamOcclusionSetting.h</key>
 		<data>
-		LR85T2SkBsLKvTdvw54UrBsva7s=
+		eUZAsGIiK9EkOSYQdtzTAFtS6UI=
 		</data>
 		<key>Headers/UXCamOverlaySetting.h</key>
 		<data>
@@ -82,19 +82,59 @@
 		</data>
 		<key>Headers/UXOcclusionHeaders.h</key>
 		<data>
-		tDa6ADr9WV+VK7AKAyGFASEWE94=
+		Olc0QRlYTtK/wg62H8YNS/Twwrs=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		3ZrM2jbPQQ+3S084iBjfuhjkQiA=
+		X3B61RUJKRfzSw8x8d9dTwmastI=
 		</data>
 		<key>LICENSE-minizip</key>
 		<data>
 		snTMUv0G24Vigds1kxZ/h2XBSMk=
 		</data>
+		<key>Modules/UXCam.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<data>
+		MyXs2wMhztBSESfe/u2D3+ffnu0=
+		</data>
+		<key>Modules/UXCam.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<data>
+		MxWFBoHx6WJrVg1rHHvzGxsClts=
+		</data>
+		<key>Modules/UXCam.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		aMCmWe6aDs7R6BjLKAwgI88uSgA=
+		</data>
+		<key>Modules/UXCam.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
+		<data>
+		MxWFBoHx6WJrVg1rHHvzGxsClts=
+		</data>
+		<key>Modules/UXCam.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		2SEnZ2cp/T1a1Q2ajITpfAtqHN4=
+		</data>
+		<key>Modules/UXCam.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
+		<data>
+		MyXs2wMhztBSESfe/u2D3+ffnu0=
+		</data>
+		<key>Modules/UXCam.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
+		<data>
+		r3AaoTgthvPoC7e1EW3+AQMCrB8=
+		</data>
+		<key>Modules/UXCam.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		LgKkAG/ZnINnicpP63TuKcJoOYg=
+		</data>
+		<key>Modules/UXCam.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
+		<data>
+		r3AaoTgthvPoC7e1EW3+AQMCrB8=
+		</data>
+		<key>Modules/UXCam.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		FOo0b27QM6yXUxk7jIrEU99gwAU=
+		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		CclbJjkufejI/AOFL9mBrHGZqDE=
+		iJ5JqB8cmObsyS4FzMCv5vKio8c=
 		</data>
 		<key>PLCrashReporter-LICENSE</key>
 		<data>
@@ -123,37 +163,15 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>BSBacktraceLogger-LICENSE.md</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EtgfUHZ9TgmqeHfaB3rZ0bkV11s=
-			</data>
-			<key>hash2</key>
-			<data>
-			WJ7YI+moTFb+uVrFjnzzhGJrnL9P2iqQe8NuED3hutI=
-			</data>
-		</dict>
-		<key>BSBacktraceLogger-README.md</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			1cTsEQkgHf+20Gwz//TCjYDTjl0=
-			</data>
-			<key>hash2</key>
-			<data>
-			l6wHXS+nzXBGoFYODjT11tYT6QLOhglWOkhhyLXKAsI=
-			</data>
-		</dict>
 		<key>CHANGELOG.md</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			yiRiPbmb/rmBd/B41OCXD6jxjJo=
+			UbU5yorY6cNolv5PYUWItTL2pTQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			CqJBvN44L6hyp41uoQkr2/TupHYg54dsS9eE3OCZCGk=
+			mfEqdgFhVAuq2GD8DWaT9OGpjJkHeFBzwzGLzygCrSQ=
 			</data>
 		</dict>
 		<key>FileMD5Hash-LICENSE</key>
@@ -200,26 +218,48 @@
 			9y1/6unKbOQA419SyjI+VnPpRReZVjh/tL4WX0rUlJI=
 			</data>
 		</dict>
+		<key>Headers/UXCam-Swift.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			DOTGLDW8hrMo4BFMZyC8XOAKWyE=
+			</data>
+			<key>hash2</key>
+			<data>
+			rRlYSN4A4IGG2dJm/bKIEA8Ufq/o20ftoWrauJ09WWg=
+			</data>
+		</dict>
 		<key>Headers/UXCam-umbrella.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			UDiQN381ansijTBrNmyOO43kQdk=
+			Rd5mJNMKQjWgCMMY2wj1yZWU/TQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			YSm3h23hSRNFKb48IvahTngYarERrrnb/Ctm3o6i5Ug=
+			K4k5J82W6RPBtvbfAklWO+6KaQ6RaomUzMY3UZ6tuVo=
 			</data>
 		</dict>
 		<key>Headers/UXCam.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zfrai8RtYjsTgtHvpVvoQeWQsko=
+			CxWkmKt6xyPu0iabyAb7mtOftW8=
 			</data>
 			<key>hash2</key>
 			<data>
-			0CiBGmJpXOWPAgooKzh6Wt3Abz6xeKwePfg+Ma8ne7A=
+			QW1LwpByzKYXRHceumDUVWrLmhCmEzu5C3iDaVpl+XQ=
+			</data>
+		</dict>
+		<key>Headers/UXCamAITextOcclusionSetting.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			X91eziSvxTnd7mgoGfjLYvtwGS0=
+			</data>
+			<key>hash2</key>
+			<data>
+			aExRSjaU1OWV1wFlUxO5BkUFQg0gGjqt0WiyKmx7aZE=
 			</data>
 		</dict>
 		<key>Headers/UXCamBlurSetting.h</key>
@@ -259,11 +299,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			SFH/t0F6Wn3lSaHpcJhR3c4FK/k=
+			Oa0UbpquN/pjTbujuMXJttHoXGo=
 			</data>
 			<key>hash2</key>
 			<data>
-			hz3LGpHrSk9ejB+aRLRXfW2ScA4WsXH+vV+84aH5R8o=
+			mahon77xfP9PjDSMgQvItxO2W9n+Z20gQHeMDH25Gyc=
 			</data>
 		</dict>
 		<key>Headers/UXCamOcclusionParameter.h</key>
@@ -292,11 +332,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LR85T2SkBsLKvTdvw54UrBsva7s=
+			eUZAsGIiK9EkOSYQdtzTAFtS6UI=
 			</data>
 			<key>hash2</key>
 			<data>
-			kq7StHnT1jpWHiaTaeEj/2XjTbIKk+j7Z1eDnurgRAo=
+			ZUsjaTFEFgYJfM1omBIvN7/eeBKgyz9nipjY23mjpL0=
 			</data>
 		</dict>
 		<key>Headers/UXCamOverlaySetting.h</key>
@@ -336,11 +376,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tDa6ADr9WV+VK7AKAyGFASEWE94=
+			Olc0QRlYTtK/wg62H8YNS/Twwrs=
 			</data>
 			<key>hash2</key>
 			<data>
-			taXqf17HBZ4rdjmOPFehoz5f5OIK5Ax7KRz2k6/WuGk=
+			hmaMh1sCYYNzi1/mLQAyih3wglz4Bkfl13oe6QRX/4A=
 			</data>
 		</dict>
 		<key>LICENSE-minizip</key>
@@ -354,15 +394,125 @@
 			h2QjBZaHZaQDD9IC/3AGr6ZydNp/m96EUG5RrljswrQ=
 			</data>
 		</dict>
+		<key>Modules/UXCam.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MyXs2wMhztBSESfe/u2D3+ffnu0=
+			</data>
+			<key>hash2</key>
+			<data>
+			IEJRUSBVM2AZBpumLOQPw4szM5xpkCZcZNYlG760k9M=
+			</data>
+		</dict>
+		<key>Modules/UXCam.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MxWFBoHx6WJrVg1rHHvzGxsClts=
+			</data>
+			<key>hash2</key>
+			<data>
+			eevoug2gAKZfoQjAfQS6gpGa1fgNS3ynmofO/Awqc6E=
+			</data>
+		</dict>
+		<key>Modules/UXCam.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			aMCmWe6aDs7R6BjLKAwgI88uSgA=
+			</data>
+			<key>hash2</key>
+			<data>
+			whPCQDSIiZ9sw5TrmdtYTzijohA5veo14oXNCZS8ifQ=
+			</data>
+		</dict>
+		<key>Modules/UXCam.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MxWFBoHx6WJrVg1rHHvzGxsClts=
+			</data>
+			<key>hash2</key>
+			<data>
+			eevoug2gAKZfoQjAfQS6gpGa1fgNS3ynmofO/Awqc6E=
+			</data>
+		</dict>
+		<key>Modules/UXCam.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			2SEnZ2cp/T1a1Q2ajITpfAtqHN4=
+			</data>
+			<key>hash2</key>
+			<data>
+			GoaGWH2KQuVfVjZWfUDlUrF/J0Brd5K9fnSn1fin/R0=
+			</data>
+		</dict>
+		<key>Modules/UXCam.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MyXs2wMhztBSESfe/u2D3+ffnu0=
+			</data>
+			<key>hash2</key>
+			<data>
+			IEJRUSBVM2AZBpumLOQPw4szM5xpkCZcZNYlG760k9M=
+			</data>
+		</dict>
+		<key>Modules/UXCam.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			r3AaoTgthvPoC7e1EW3+AQMCrB8=
+			</data>
+			<key>hash2</key>
+			<data>
+			F1Qf0lmgHzDw7dODKfBqzrt59ZeX3RmHD2ZzW0Ah0cM=
+			</data>
+		</dict>
+		<key>Modules/UXCam.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			LgKkAG/ZnINnicpP63TuKcJoOYg=
+			</data>
+			<key>hash2</key>
+			<data>
+			du6t9vXUN1UD7ZKFGPCorxfAR/zgkQtO3yZdOon0wDQ=
+			</data>
+		</dict>
+		<key>Modules/UXCam.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			r3AaoTgthvPoC7e1EW3+AQMCrB8=
+			</data>
+			<key>hash2</key>
+			<data>
+			F1Qf0lmgHzDw7dODKfBqzrt59ZeX3RmHD2ZzW0Ah0cM=
+			</data>
+		</dict>
+		<key>Modules/UXCam.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			FOo0b27QM6yXUxk7jIrEU99gwAU=
+			</data>
+			<key>hash2</key>
+			<data>
+			hI2+LhSM+Jo+wX2f2is8AcolqxMx67TLaQiVGOza4CY=
+			</data>
+		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CclbJjkufejI/AOFL9mBrHGZqDE=
+			iJ5JqB8cmObsyS4FzMCv5vKio8c=
 			</data>
 			<key>hash2</key>
 			<data>
-			CyxDJtA9CkoR/LEpOGq73PO11z/vZf87O3swPFqAV1c=
+			vjCWUHIoHA6+EtZKqTdOpR1dOK5u39/E60acJGjjydo=
 			</data>
 		</dict>
 		<key>PLCrashReporter-LICENSE</key>

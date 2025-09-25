@@ -19,14 +19,14 @@ import com.uxcam.screenshot.model.UXCamBlur;
 import com.uxcam.screenshot.model.UXCamOverlay;
 import com.uxcam.screenshot.model.UXCamOcclusion;
 import com.uxcam.screenshot.model.UXCamOccludeAllTextFields;
-
+import com.uxcam.screenshot.model.UXCamAITextOcclusion;
 import com.uxcam.datamodel.UXConfig;
 /**
  * This class echoes a string called from JavaScript.
  */
 public class UXCam extends CordovaPlugin {
     private static final String UXCAM_PLUGIN_TYPE = "cordova";
-    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.6.5";
+    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.7.0";
 
     public static final String USER_APP_KEY = "userAppKey";
     public static final String ENABLE_MUTLI_SESSION_RECORD = "enableMultiSessionRecord";
@@ -42,7 +42,7 @@ public class UXCam extends CordovaPlugin {
     public static final String CONFIG = "config";
     public static final String BLUR_RADIUS = "blurRadius";
     public static final String HIDE_GESTURES = "hideGestures";
-
+    public static final String RECOGNITION_LANGUAGES = "recognitionLanguages";
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("startWithKey".equals(action)) {
@@ -282,6 +282,8 @@ public class UXCam extends CordovaPlugin {
                 return (UXCamOcclusion) getOverlay(occlusionMap);
             case 3:
                 return (UXCamOcclusion) getBlur(occlusionMap);
+            case 4:
+                return (UXCamOcclusion) getAITextOcclusion(occlusionMap);   
             default:
                 return null;
         }
@@ -332,6 +334,16 @@ public class UXCam extends CordovaPlugin {
 
 
     }
+
+    private UXCamAITextOcclusion getAITextOcclusion(Map<String, Object> aiMap) {
+        Boolean hideGestures = (Boolean) aiMap.get(HIDE_GESTURES);
+        UXCamAITextOcclusion.Builder builder = new UXCamAITextOcclusion.Builder();
+        if (hideGestures != null) {
+            builder.withoutGesture(hideGestures);
+        }
+        return builder.build();
+    }
+
     private void startWithConfiguration(Map<String,Object> configuration) {
         try {
             HashMap<String, Object> configMap = (HashMap<String, Object>) configuration;

@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UXCam/UXCamOcclusionParameter.h>
-#import <UXCam/UXCamOcclusionScreen.h>
-#import <UXCam/UXCamBlurSetting.h>
+
+@class UXCamOcclusionParameter, UXCamOcclusionScreen;
+@protocol UXCamOcclusionSetting;
+
+typedef NS_ENUM(NSInteger, UXBlurType);
+typedef NS_ENUM(NSInteger, UXOcclusionType);
 
 NS_ASSUME_NONNULL_BEGIN
 

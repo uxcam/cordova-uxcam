@@ -4,6 +4,7 @@
 
 // Configuration Keys
 static NSString* const Uxcam_AppKey = @"userAppKey";
+static NSString* const Uxcam_SchematicRecording = @"enableSchematicRecording";
 static NSString* const Uxcam_MultiSession = @"enableMultiSessionRecord";
 static NSString* const Uxcam_CrashHandling = @"enableCrashHandling";
 static NSString* const Uxcam_ScreenTag = @"enableAutomaticScreenNameTagging";
@@ -19,8 +20,9 @@ static NSString* const Uxcam_BlurName = @"name";
 static NSString* const Uxcam_BlurRadius = @"blurRadius";
 static NSString* const Uxcam_HideGestures = @"hideGestures";
 static NSString* const Uxcam_OverlayColor = @"color";
+static NSString* const Uxcam_RecognitionLanguages = @"recognitionLanguages";
 
-static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.5";
+static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 
 @implementation CDVUXCam
 
@@ -72,6 +74,7 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.5";
 
 - (void)updateConfiguration:(UXCamConfiguration *)configuration fromDict:(NSDictionary *)config
 {
+
     NSNumber *enableMultiSessionRecord = config[Uxcam_MultiSession];
     if (enableMultiSessionRecord && [self isBoolNumber:enableMultiSessionRecord])
     {
@@ -165,6 +168,16 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.6.5";
         {
             UXCamOccludeAllTextFields *occlude = [[UXCamOccludeAllTextFields alloc] init];
             return occlude;
+        }
+
+        case UXOcclusionTypeAITextOcclusion:
+        {
+            UXCamAITextOcclusionSetting *ai = [[UXCamAITextOcclusionSetting alloc] initWithLanguage:json[Uxcam_RecognitionLanguages]];
+            NSNumber *hideGestures = json[Uxcam_HideGestures];
+            if (hideGestures) {
+                ai.hideGestures = hideGestures.boolValue;
+            }
+            return ai;
         }
         default:
             return nil;

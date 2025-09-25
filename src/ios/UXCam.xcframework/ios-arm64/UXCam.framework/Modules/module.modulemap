@@ -4,3 +4,8 @@ framework module UXCam {
     export *
     module * { export * }
 }
+
+module UXCam.Swift {
+  header "UXCam-Swift.h"
+  requires objc
+}

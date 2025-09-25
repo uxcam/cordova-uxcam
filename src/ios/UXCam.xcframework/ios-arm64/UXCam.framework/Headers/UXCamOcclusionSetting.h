@@ -15,7 +15,8 @@ typedef NS_ENUM(NSInteger, UXOcclusionType) {
     UXOcclusionTypeOccludeAllTextFields = 1,
     UXOcclusionTypeOverlay = 2,
     UXOcclusionTypeBlur = 3,
-    UXOcclusionTypeUnknown = 4
+    UXOcclusionTypeUnknown = 4,
+    UXOcclusionTypeAITextOcclusion = 5
 };
 
 

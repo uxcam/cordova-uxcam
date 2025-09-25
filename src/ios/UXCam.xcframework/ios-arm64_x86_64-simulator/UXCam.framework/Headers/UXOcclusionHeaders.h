@@ -13,5 +13,6 @@
 #import <UXCam/UXCamBlurSetting.h>
 #import <UXCam/UXCamOverlaySetting.h>
 #import <UXCam/UXCamOccludeAllTextFields.h>
+#import <UXCam/UXCamAITextOcclusionSetting.h>
 
 #endif /* UXOcclusionHeaders_h */
