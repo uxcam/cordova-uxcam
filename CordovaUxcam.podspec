@@ -15,12 +15,7 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
 
   s.source_files = 'src/ios/*.{h,m}'
-  s.vendored_frameworks = 'src/ios/UXCam.xcframework'
-
-  s.frameworks = 'CoreTelephony', 'AVFoundation', 'CoreGraphics', 'CoreMedia',
-                 'CoreVideo', 'MobileCoreServices', 'QuartzCore', 'SystemConfiguration',
-                 'Security', 'Foundation', 'ExternalAccessory'
-  s.libraries = 'z', 'c++', 'iconv'
 
   s.dependency 'CapacitorCordova'
+  s.dependency 'UXCam', '~> 3.7.5'
 end
