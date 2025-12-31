@@ -8,3 +8,12 @@
 .swiftpm/
 .build/
 Package.resolved
+
+# Build output
+/dist
+
+# Android build artifacts
+**/build/
+*.iml
+.gradle/
+local.properties
