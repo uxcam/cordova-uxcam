@@ -1,0 +1,26 @@
+Pod::Spec.new do |s|
+  s.name             = 'CordovaUxcam'
+  s.version          = '3.7.1'
+  s.summary          = 'Cordova plugin for UXCam - enables the recording of your applications screen'
+  s.description      = <<-DESC
+    UXCam Cordova plugin that enables session recording and analytics for mobile apps.
+    Works with Cordova and Capacitor (CocoaPods and SPM).
+  DESC
+  s.homepage         = 'https://github.com/uxcam/cordova-uxcam'
+  s.license          = { :type => 'Commercial', :file => 'LICENSE' }
+  s.author           = { 'UXCam Inc.' => 'support@uxcam.com' }
+  s.source           = { :git => 'https://github.com/uxcam/cordova-uxcam.git', :tag => s.version.to_s }
+
+  s.ios.deployment_target = '12.0'
+  s.swift_version = '5.0'
+
+  s.source_files = 'src/ios/*.{h,m}'
+  s.vendored_frameworks = 'src/ios/UXCam.xcframework'
+
+  s.frameworks = 'CoreTelephony', 'AVFoundation', 'CoreGraphics', 'CoreMedia',
+                 'CoreVideo', 'MobileCoreServices', 'QuartzCore', 'SystemConfiguration',
+                 'Security', 'Foundation', 'ExternalAccessory'
+  s.libraries = 'z', 'c++', 'iconv'
+
+  s.dependency 'CapacitorCordova'
+end

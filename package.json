@@ -27,6 +27,14 @@
       "ios"
     ]
   },
+  "capacitor": {
+    "ios": {
+      "src": "src/ios"
+    },
+    "android": {
+      "src": "src/android"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uxcam/cordova-uxcam.git"
