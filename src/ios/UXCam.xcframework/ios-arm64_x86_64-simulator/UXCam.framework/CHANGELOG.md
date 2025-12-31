@@ -5,6 +5,10 @@
 
 Version   | Changes
 ---------- | ----------
+3.7.5   | Fixed occlusion issue on RN Fabric views
+3.7.4   | Optimized SDK performance for scrolling behavior
+3.7.3   | Optimise SDK for performance
+3.7.2   | Fixed crash issues happening due to null checks
 3.7.1   | Fixed sensitive view not occluding while transitioning
 3.7.0   | Added ai text occlusion setting, improved video recording logic
 3.6.26  | Fixed crash for null pointer exception while parsing ANR stacktrace

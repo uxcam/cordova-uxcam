@@ -2701,6 +2701,13 @@
       },
       {
         "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "UXCam"
+      },
+      {
+        "kind": "Import",
         "name": "Vision",
         "printedName": "Vision",
         "declKind": "Import",
@@ -3070,42 +3077,42 @@
     {
       "filePath": "\/Volumes\/workspace\/repository\/UXCam\/Sources\/AITextOcclusion\/Providers\/UXModernVisionTextRectsProvider.swift",
       "kind": "IntegerLiteral",
-      "offset": 430,
+      "offset": 443,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Volumes\/workspace\/repository\/UXCam\/Sources\/AITextOcclusion\/Providers\/UXModernVisionTextRectsProvider.swift",
       "kind": "BooleanLiteral",
-      "offset": 784,
+      "offset": 797,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Volumes\/workspace\/repository\/UXCam\/Sources\/AITextOcclusion\/Providers\/UXModernVisionTextRectsProvider.swift",
       "kind": "BooleanLiteral",
-      "offset": 1163,
+      "offset": 1176,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Volumes\/workspace\/repository\/UXCam\/Sources\/AITextOcclusion\/Providers\/UXModernVisionTextRectsProvider.swift",
       "kind": "IntegerLiteral",
-      "offset": 1363,
+      "offset": 1376,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Volumes\/workspace\/repository\/UXCam\/Sources\/AITextOcclusion\/Providers\/UXModernVisionTextRectsProvider.swift",
       "kind": "IntegerLiteral",
-      "offset": 1431,
+      "offset": 1444,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Volumes\/workspace\/repository\/UXCam\/Sources\/AITextOcclusion\/Providers\/UXModernVisionTextRectsProvider.swift",
       "kind": "BooleanLiteral",
-      "offset": 6065,
+      "offset": 5922,
       "length": 5,
       "value": "false"
     }
