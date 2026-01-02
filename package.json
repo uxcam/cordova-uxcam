@@ -7,12 +7,19 @@
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "unpkg": "dist/plugin.js",
   "files": [
     "dist/",
     "src/ios/",
     "src/android/",
-    "www/",
     "CordovaUxcam.podspec",
     "Package.swift"
   ],

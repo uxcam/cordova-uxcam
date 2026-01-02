@@ -7,6 +7,8 @@ declare global {
   }
 }
 
+declare const module: { exports?: any } | undefined;
+
 // Legacy callback-style API wrapper for backward compatibility
 // Two distinct callback types for proper type safety:
 // - VoidCallback: for methods that don't return values
@@ -849,4 +851,12 @@ export default UXCam;
 // Set window.UXCam for backward compatibility with Cordova-style usage
 if (typeof globalScope !== 'undefined') {
   (globalScope as any).UXCam = UXCam;
+}
+
+// Ensure Cordova clobbers receive the UXCam object as the module export.
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = UXCam;
+  module.exports.UXCam = UXCam;
+  module.exports.UXCamCapacitor = UXCamCapacitor;
+  module.exports.default = UXCam;
 }

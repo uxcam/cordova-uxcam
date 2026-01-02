@@ -12,7 +12,7 @@
         <engine name="cordova-android" version=">=7.0.0"/>
     </engines>
 
-    <js-module src="www/UXCam.js" name="UXCam">
+    <js-module src="dist/index.js" name="UXCam">
         <clobbers target="UXCam"/>
     </js-module>
     <platform name="android">
@@ -46,4 +46,3 @@
         </podspec>
     </platform>
 </plugin>
-
