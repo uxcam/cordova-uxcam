@@ -233,7 +233,7 @@ public class UXCamCapacitorPlugin: CAPPlugin {
     @objc func setMultiSessionRecord(_ call: CAPPluginCall) {
         let record = call.getBool("record") ?? true
         DispatchQueue.main.async {
-            UXCam.setAutomaticScreenNameTagging(record)
+            UXCam.setMultiSessionRecord(record)
             call.resolve()
         }
     }
@@ -287,6 +287,7 @@ public class UXCamCapacitorPlugin: CAPPlugin {
 
     @objc func pendingSessionCount(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
+            // Session count is same as pending uploads count
             let count = UXCam.pendingUploads()
             call.resolve(["count": count])
         }
