@@ -23,52 +23,8 @@ private let Uxcam_HideGestures = "hideGestures"
 private let Uxcam_OverlayColor = "color"
 private let Uxcam_RecognitionLanguages = "recognitionLanguages"
 
-@objc(UXCamPlugin)
-public class UXCamPlugin: CAPPlugin, CAPBridgedPlugin {
-    public let identifier = "UXCamPlugin"
-    public let jsName = "UXCam"
-    public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "startWithConfiguration", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "startWithKey", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "applyOcclusion", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "removeOcclusion", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "stopSessionAndUploadData", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "allowShortBreakForAnotherApp", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "startNewSession", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "cancelCurrentSession", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "isRecording", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setMultiSessionRecord", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "getMultiSessionRecord", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "pauseScreenRecording", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "resumeScreenRecording", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "disableCrashHandling", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "pendingUploads", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "deletePendingUploads", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "pendingSessionCount", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "uploadPendingSession", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "occludeSensitiveScreen", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "occludeAllTextFields", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setAutomaticScreenNameTagging", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "tagScreenName", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setUserIdentity", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setUserProperty", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "logEvent", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "logEventWithProperties", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "urlForCurrentUser", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "urlForCurrentSession", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optOutOverall", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optOutOfSchematicRecordings", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optInOverall", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optIntoSchematicRecordings", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optInOverallStatus", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optInSchematicRecordingStatus", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optInStatus", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optIn", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optOut", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "occludeRectsOnNextFrame", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setPushNotificationToken", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "reportBugEvent", returnType: CAPPluginReturnPromise)
-    ]
+@objc(UXCamCapacitorPlugin)
+public class UXCamCapacitorPlugin: CAPPlugin {
 
     public override func load() {
         UXCam.pluginType("capacitor", version: UXCAM_CAPACITOR_PLUGIN_VERSION)
@@ -550,3 +506,64 @@ public class UXCamPlugin: CAPPlugin, CAPBridgedPlugin {
         }
     }
 }
+
+#if SWIFT_PACKAGE
+extension UXCamCapacitorPlugin: CAPBridgedPlugin {
+    public static let identifier = "UXCamCapacitorPlugin"
+    public static let jsName = "UXCam"
+    public static let pluginMethods: [CAPPluginMethod] = [
+        CAPPluginMethod(name: "startWithConfiguration", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "startWithKey", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "applyOcclusion", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "removeOcclusion", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "stopSessionAndUploadData", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "allowShortBreakForAnotherApp", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "startNewSession", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "cancelCurrentSession", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "isRecording", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setMultiSessionRecord", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "getMultiSessionRecord", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "pauseScreenRecording", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "resumeScreenRecording", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "disableCrashHandling", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "pendingUploads", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "deletePendingUploads", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "pendingSessionCount", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "uploadPendingSession", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "occludeSensitiveScreen", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "occludeAllTextFields", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setAutomaticScreenNameTagging", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "tagScreenName", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setUserIdentity", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setUserProperty", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "logEvent", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "logEventWithProperties", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "urlForCurrentUser", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "urlForCurrentSession", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optOutOverall", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optOutOfSchematicRecordings", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optInOverall", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optIntoSchematicRecordings", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optInOverallStatus", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optInSchematicRecordingStatus", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optInStatus", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optIn", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optOut", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "occludeRectsOnNextFrame", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setPushNotificationToken", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "reportBugEvent", returnType: CAPPluginReturnPromise)
+    ]
+
+    public var identifier: String {
+        Self.identifier
+    }
+
+    public var jsName: String {
+        Self.jsName
+    }
+
+    public var pluginMethods: [CAPPluginMethod] {
+        Self.pluginMethods
+    }
+}
+#endif

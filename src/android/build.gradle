@@ -5,14 +5,39 @@ ext {
     androidxEspressoCoreVersion = project.hasProperty('androidxEspressoCoreVersion') ? rootProject.ext.androidxEspressoCoreVersion : '3.5.1'
 }
 
+def javaVersion = project.hasProperty('javaVersion') ? rootProject.ext.javaVersion : JavaVersion.VERSION_1_8
+
 buildscript {
+    def kotlinVersion = null
+
+    if (project.hasProperty('kotlinVersion')) {
+        kotlinVersion = project.kotlinVersion
+    } else if (project.hasProperty('kotlin_version')) {
+        kotlinVersion = project.kotlin_version
+    } else if (rootProject.ext.has('kotlinVersion')) {
+        kotlinVersion = rootProject.ext.kotlinVersion
+    } else if (rootProject.ext.has('kotlin_version')) {
+        kotlinVersion = rootProject.ext.kotlin_version
+    }
+
+    if (!kotlinVersion) {
+        def gradleMajor = gradle.gradleVersion.tokenize('.')[0] as int
+        if (gradleMajor >= 8) {
+            kotlinVersion = '1.9.10'
+        } else if (gradleMajor >= 7) {
+            kotlinVersion = '1.7.10'
+        } else {
+            kotlinVersion = '1.4.32'
+        }
+    }
+
     repositories {
         google()
         mavenCentral()
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.1'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
     }
 }
 
@@ -21,27 +46,18 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace "com.uxcam.capacitor"
-    compileSdk project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 34
+    compileSdkVersion project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 34
     defaultConfig {
-        minSdk project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 22
-        targetSdk project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 34
+        minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 22
+        targetSdkVersion project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    lintOptions {
-        abortOnError false
-    }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility javaVersion
+        targetCompatibility javaVersion
     }
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = javaVersion.toString()
     }
 }
 

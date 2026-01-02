@@ -10,10 +10,10 @@ Pod::Spec.new do |s|
   s.homepage = package['homepage']
   s.author = package['author']
   s.source = { :git => package['repository']['url'], :tag => s.version.to_s }
-  s.source_files = 'src/ios/UXCamPlugin.swift'
+  s.source_files = 'src/ios/UXCamPlugin.swift', 'src/ios/UXCamPlugin.m'
   s.ios.deployment_target = '13.0'
   s.swift_version = '5.0'
 
-  s.dependency 'Capacitor', '>= 6.0.0'
+  s.dependency 'Capacitor', '>= 2.0.0'
   s.dependency 'UXCam', '~> 3.7.5'
 end
