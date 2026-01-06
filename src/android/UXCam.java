@@ -59,9 +59,11 @@ public class UXCam extends CordovaPlugin {
                 if (occlusion != null) {
                     com.uxcam.UXCam.applyOcclusion(occlusion);
                 }
+                callbackContext.success();
             }catch(Exception e){
                 Log.d("UXCam Cordova Android:","applyOcclusion");
                 e.printStackTrace();
+                callbackContext.error(e.getMessage());
             }
         } else if("removeOcclusion".equals(action)){
             try{
@@ -69,65 +71,84 @@ public class UXCam extends CordovaPlugin {
                 if (occlusion != null) {
                     com.uxcam.UXCam.removeOcclusion(occlusion);
                 }
+                callbackContext.success();
             }catch(Exception e){
                 Log.d("UXCam Cordova Android:","removeOcclusion");
                 e.printStackTrace();
-            }            
-        }else if ("startNewSession".equals(action)) {
+                callbackContext.error(e.getMessage());
+            }
+        } else if ("startNewSession".equals(action)) {
             com.uxcam.UXCam.startNewSession();
+            callbackContext.success();
         } else if ("stopSessionAndUploadData".equals(action)) {
             com.uxcam.UXCam.stopSessionAndUploadData();
+            callbackContext.success();
         } else if ("occludeAllTextFields".equals(action)) {
             boolean occludeAllTextField = args.getBoolean(0);
             com.uxcam.UXCam.occludeAllTextFields(occludeAllTextField);
+            callbackContext.success();
         } else if ("tagScreenName".equals(action)) {
             String eventName = args.getString(0);
             com.uxcam.UXCam.tagScreenName(eventName);
+            callbackContext.success();
         } else if ("setUserIdentity".equals(action)) {
             String userIdentity = args.getString(0);
             com.uxcam.UXCam.setUserIdentity(userIdentity);
+            callbackContext.success();
         } else if ("setUserProperty".equals(action)) {
             String key = args.getString(0);
             String value = args.getString(1);
             com.uxcam.UXCam.setUserProperty(key, value);
+            callbackContext.success();
         } else if ("logEvent".equals(action)) {
             String eventName = args.getString(0);
             if (eventName == null || eventName.length() == 0) {
-                throw new IllegalArgumentException("missing event Name");
+                callbackContext.error("missing event Name");
+                return false;
             }
             com.uxcam.UXCam.logEvent(eventName);
+            callbackContext.success();
         } else if ("logEventWithProperties".equals(action)) {
             String eventName = args.getString(0);
             JSONObject params = args.getJSONObject(1);
 
             if (eventName == null || eventName.length() == 0) {
-                throw new IllegalArgumentException("missing event Name");
+                callbackContext.error("missing event Name");
+                return false;
             }
             if (params == null || params.length() == 0) {
                 com.uxcam.UXCam.logEvent(eventName);
             } else {
                 com.uxcam.UXCam.logEvent(eventName, params);
             }
+            callbackContext.success();
         } else if ("isRecording".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.isRecording()));
         } else if ("pauseScreenRecording".equals(action)) {
             com.uxcam.UXCam.pauseScreenRecording();
+            callbackContext.success();
         } else if ("resumeScreenRecording".equals(action)) {
             com.uxcam.UXCam.resumeScreenRecording();
+            callbackContext.success();
         } else if ("optInOverall".equals(action)) {
             com.uxcam.UXCam.optIn();
+            callbackContext.success();
         } else if ("optOutOverall".equals(action)) {
             com.uxcam.UXCam.optOut();
+            callbackContext.success();
         } else if ("optInOverallStatus".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInStatus()));
         } else if ("optOutOfSchematicRecordings".equals(action)) {
             com.uxcam.UXCam.optOutOfVideoRecording();
+            callbackContext.success();
         } else if ("optIntoSchematicRecordings".equals(action)) {
             com.uxcam.UXCam.optIntoVideoRecording();
+            callbackContext.success();
         } else if ("optInSchematicRecordingStatus".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInVideoRecordingStatus()));
         } else if ("cancelCurrentSession".equals(action)) {
             com.uxcam.UXCam.cancelCurrentSession();
+            callbackContext.success();
         } else if ("allowShortBreakForAnotherApp".equals(action)) {
             boolean continueSession = args.getBoolean(0);
             if (continueSession) {
@@ -135,8 +156,10 @@ public class UXCam extends CordovaPlugin {
             } else {
                 com.uxcam.UXCam.resumeShortBreakForAnotherApp();
             }
+            callbackContext.success();
         } else if ("deletePendingUploads".equals(action)) {
             com.uxcam.UXCam.deletePendingUploads();
+            callbackContext.success();
         } else if ("pendingUploads".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.pendingUploads()));
         } else if ("pendingSessionCount".equals(action)) {
