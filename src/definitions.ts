@@ -34,11 +34,6 @@ export interface UXCamPlugin {
   startWithConfiguration(options: { configuration: UXCamConfiguration }): Promise<{ sessionUrl: string }>;
 
   /**
-   * Start UXCam with just an app key
-   */
-  startWithKey(options: { key: string }): Promise<{ sessionUrl: string }>;
-
-  /**
    * Apply an occlusion setting
    */
   applyOcclusion(options: { occlusion: UXCamOcclusionConfig }): Promise<void>;
@@ -74,16 +69,6 @@ export interface UXCamPlugin {
   isRecording(): Promise<{ isRecording: boolean }>;
 
   /**
-   * Set multi-session recording
-   */
-  setMultiSessionRecord(options: { record: boolean }): Promise<void>;
-
-  /**
-   * Get multi-session record status
-   */
-  getMultiSessionRecord(): Promise<{ multiSessionRecord: boolean }>;
-
-  /**
    * Pause screen recording
    */
   pauseScreenRecording(): Promise<void>;
@@ -92,11 +77,6 @@ export interface UXCamPlugin {
    * Resume screen recording
    */
   resumeScreenRecording(): Promise<void>;
-
-  /**
-   * Disable crash handling
-   */
-  disableCrashHandling(options: { disable: boolean }): Promise<void>;
 
   /**
    * Get pending uploads count
@@ -119,19 +99,9 @@ export interface UXCamPlugin {
   uploadPendingSession(): Promise<{ success: boolean }>;
 
   /**
-   * Occlude sensitive screen
-   */
-  occludeSensitiveScreen(options: { occlude: boolean }): Promise<void>;
-
-  /**
    * Occlude all text fields
    */
   occludeAllTextFields(options: { occlude: boolean }): Promise<void>;
-
-  /**
-   * Set automatic screen name tagging
-   */
-  setAutomaticScreenNameTagging(options: { enable: boolean }): Promise<void>;
 
   /**
    * Tag the current screen with a name
@@ -197,34 +167,4 @@ export interface UXCamPlugin {
    * Get opt-in schematic recording status
    */
   optInSchematicRecordingStatus(): Promise<{ status: boolean }>;
-
-  /**
-   * Get opt-in status (deprecated, use optInOverallStatus)
-   */
-  optInStatus(): Promise<{ status: boolean }>;
-
-  /**
-   * Opt in (deprecated, use optInOverall)
-   */
-  optIn(): Promise<void>;
-
-  /**
-   * Opt out (deprecated, use optOutOverall)
-   */
-  optOut(): Promise<void>;
-
-  /**
-   * Occlude rects on next frame
-   */
-  occludeRectsOnNextFrame(options: { rects: number[][] }): Promise<void>;
-
-  /**
-   * Set push notification token
-   */
-  setPushNotificationToken(options: { token: string }): Promise<void>;
-
-  /**
-   * Report a bug event
-   */
-  reportBugEvent(options: { eventName: string; properties?: Record<string, any> }): Promise<void>;
 }

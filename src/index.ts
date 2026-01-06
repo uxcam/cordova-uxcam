@@ -93,10 +93,6 @@ function createCordovaAdapter(exec: CordovaExec): UXCamPlugin {
       const result = await execPromise<string>('startWithConfiguration', [options.configuration]);
       return { sessionUrl: result || '' };
     },
-    async startWithKey(options: { key: string }) {
-      const result = await execPromise<string>('startWithKey', [options.key]);
-      return { sessionUrl: result || '' };
-    },
     async applyOcclusion(options: { occlusion: UXCamOcclusionConfig }) {
       await execPromise<void>('applyOcclusion', [options.occlusion]);
     },
@@ -119,21 +115,11 @@ function createCordovaAdapter(exec: CordovaExec): UXCamPlugin {
       const result = await execPromise<boolean>('isRecording', []);
       return { isRecording: result };
     },
-    async setMultiSessionRecord(options: { record: boolean }) {
-      await execPromise<void>('setMultiSessionRecord', [options.record]);
-    },
-    async getMultiSessionRecord() {
-      const result = await execPromise<boolean>('getMultiSessionRecord', []);
-      return { multiSessionRecord: result };
-    },
     async pauseScreenRecording() {
       await execPromise<void>('pauseScreenRecording', []);
     },
     async resumeScreenRecording() {
       await execPromise<void>('resumeScreenRecording', []);
-    },
-    async disableCrashHandling(options: { disable: boolean }) {
-      await execPromise<void>('disableCrashHandling', [options.disable]);
     },
     async pendingUploads() {
       const result = await execPromise<number>('pendingUploads', []);
@@ -150,14 +136,8 @@ function createCordovaAdapter(exec: CordovaExec): UXCamPlugin {
       const result = await execPromise<boolean>('uploadPendingSession', []);
       return { success: result };
     },
-    async occludeSensitiveScreen(options: { occlude: boolean }) {
-      await execPromise<void>('occludeSensitiveScreen', [options.occlude]);
-    },
     async occludeAllTextFields(options: { occlude: boolean }) {
       await execPromise<void>('occludeAllTextFields', [options.occlude]);
-    },
-    async setAutomaticScreenNameTagging(options: { enable: boolean }) {
-      await execPromise<void>('setAutomaticScreenNameTagging', [options.enable]);
     },
     async tagScreenName(options: { screenName: string }) {
       await execPromise<void>('tagScreenName', [options.screenName]);
@@ -201,25 +181,6 @@ function createCordovaAdapter(exec: CordovaExec): UXCamPlugin {
     async optInSchematicRecordingStatus() {
       const result = await execPromise<boolean>('optInSchematicRecordingStatus', []);
       return { status: result };
-    },
-    async optInStatus() {
-      const result = await execPromise<boolean>('optInStatus', []);
-      return { status: result };
-    },
-    async optIn() {
-      await execPromise<void>('optIn', []);
-    },
-    async optOut() {
-      await execPromise<void>('optOut', []);
-    },
-    async occludeRectsOnNextFrame(options: { rects: number[][] }) {
-      await execPromise<void>('occludeRectsOnNextFrame', [options.rects]);
-    },
-    async setPushNotificationToken(options: { token: string }) {
-      await execPromise<void>('setPushNotificationToken', [options.token]);
-    },
-    async reportBugEvent(options: { eventName: string; properties?: Record<string, any> }) {
-      await execPromise<void>('reportBugEvent', [options.eventName, options.properties]);
     }
   };
 }
@@ -232,10 +193,6 @@ function createWebAdapter(): UXCamPlugin {
   return {
     async startWithConfiguration() {
       warn('startWithConfiguration');
-      return { sessionUrl: '' };
-    },
-    async startWithKey() {
-      warn('startWithKey');
       return { sessionUrl: '' };
     },
     async applyOcclusion() {
@@ -260,21 +217,11 @@ function createWebAdapter(): UXCamPlugin {
       warn('isRecording');
       return { isRecording: false };
     },
-    async setMultiSessionRecord() {
-      warn('setMultiSessionRecord');
-    },
-    async getMultiSessionRecord() {
-      warn('getMultiSessionRecord');
-      return { multiSessionRecord: false };
-    },
     async pauseScreenRecording() {
       warn('pauseScreenRecording');
     },
     async resumeScreenRecording() {
       warn('resumeScreenRecording');
-    },
-    async disableCrashHandling() {
-      warn('disableCrashHandling');
     },
     async pendingUploads() {
       warn('pendingUploads');
@@ -291,14 +238,8 @@ function createWebAdapter(): UXCamPlugin {
       warn('uploadPendingSession');
       return { success: false };
     },
-    async occludeSensitiveScreen() {
-      warn('occludeSensitiveScreen');
-    },
     async occludeAllTextFields() {
       warn('occludeAllTextFields');
-    },
-    async setAutomaticScreenNameTagging() {
-      warn('setAutomaticScreenNameTagging');
     },
     async tagScreenName() {
       warn('tagScreenName');
@@ -342,25 +283,6 @@ function createWebAdapter(): UXCamPlugin {
     async optInSchematicRecordingStatus() {
       warn('optInSchematicRecordingStatus');
       return { status: false };
-    },
-    async optInStatus() {
-      warn('optInStatus');
-      return { status: false };
-    },
-    async optIn() {
-      warn('optIn');
-    },
-    async optOut() {
-      warn('optOut');
-    },
-    async occludeRectsOnNextFrame() {
-      warn('occludeRectsOnNextFrame');
-    },
-    async setPushNotificationToken() {
-      warn('setPushNotificationToken');
-    },
-    async reportBugEvent() {
-      warn('reportBugEvent');
     }
   };
 }
@@ -433,15 +355,6 @@ export const UXCam = {
     errorCallback?: ErrorCallback
   ) {
     const promise = getPlugin().then(plugin => plugin.startWithConfiguration({ configuration }));
-    return handlePromise(promise, successCallback, errorCallback, result => result.sessionUrl);
-  },
-
-  startWithKey: function(
-    key: string,
-    successCallback?: SuccessCallback<string>,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.startWithKey({ key }));
     return handlePromise(promise, successCallback, errorCallback, result => result.sessionUrl);
   },
 
@@ -520,32 +433,6 @@ export const UXCam = {
     return handlePromise(promise, successCallback, errorCallback);
   },
 
-  setMultiSessionRecord: function(
-    record: boolean,
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.setMultiSessionRecord({ record }));
-    return handlePromise(promise, successCallback, errorCallback);
-  },
-
-  getMultiSessionRecord: function(
-    successCallback?: SuccessCallback<boolean>,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.getMultiSessionRecord());
-    return handlePromise(promise, successCallback, errorCallback, result => result.multiSessionRecord);
-  },
-
-  disableCrashHandling: function(
-    disable: boolean,
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.disableCrashHandling({ disable }));
-    return handlePromise(promise, successCallback, errorCallback);
-  },
-
   pendingUploads: function(
     successCallback?: SuccessCallback<number>,
     errorCallback?: ErrorCallback
@@ -578,15 +465,6 @@ export const UXCam = {
     return handlePromise(promise, successCallback, errorCallback, result => result.success);
   },
 
-  occludeSensitiveScreen: function(
-    occlude: boolean,
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.occludeSensitiveScreen({ occlude }));
-    return handlePromise(promise, successCallback, errorCallback);
-  },
-
   occludeAllTextFields: function(
     occlude: boolean,
     successCallback?: VoidCallback,
@@ -603,15 +481,6 @@ export const UXCam = {
     errorCallback?: ErrorCallback
   ) {
     return this.occludeAllTextFields(occlude, successCallback, errorCallback);
-  },
-
-  setAutomaticScreenNameTagging: function(
-    enable: boolean,
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.setAutomaticScreenNameTagging({ enable }));
-    return handlePromise(promise, successCallback, errorCallback);
   },
 
   tagScreenName: function(
@@ -725,73 +594,7 @@ export const UXCam = {
     return handlePromise(promise, successCallback, errorCallback, result => result.status);
   },
 
-  // Deprecated methods - kept for backward compatibility
-  optIn: function(
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    return this.optInOverall(successCallback, errorCallback);
-  },
-
-  optOut: function(
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    return this.optOutOverall(successCallback, errorCallback);
-  },
-
-  optInStatus: function(
-    successCallback?: SuccessCallback<boolean>,
-    errorCallback?: ErrorCallback
-  ) {
-    return this.optInOverallStatus(successCallback, errorCallback);
-  },
-
-  optStatus: function(
-    successCallback?: SuccessCallback<boolean>,
-    errorCallback?: ErrorCallback
-  ) {
-    return this.optInOverallStatus(successCallback, errorCallback);
-  },
-
-  occludeRectsOnNextFrame: function(
-    rects: number[][],
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.occludeRectsOnNextFrame({ rects }));
-    return handlePromise(promise, successCallback, errorCallback);
-  },
-
-  setPushNotificationToken: function(
-    token: string,
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.setPushNotificationToken({ token }));
-    return handlePromise(promise, successCallback, errorCallback);
-  },
-
-  reportBugEvent: function(
-    eventName: string,
-    properties?: Record<string, any>,
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.reportBugEvent({ eventName, properties }));
-    return handlePromise(promise, successCallback, errorCallback);
-  },
-
   // Legacy aliases
-  startWithKeyAndAppVariant: function(
-    key: string,
-    _appVariant: string,
-    successCallback?: SuccessCallback<string>,
-    errorCallback?: ErrorCallback
-  ) {
-    return this.startWithKey(key, successCallback, errorCallback);
-  },
-
   stopApplicationAndUploadData: function(
     successCallback?: VoidCallback,
     errorCallback?: ErrorCallback
@@ -813,14 +616,6 @@ export const UXCam = {
     errorCallback?: ErrorCallback
   ) {
     return this.setUserProperty(key, value, successCallback, errorCallback);
-  },
-
-  occludeSensitiveScreenWithoutGesture: function(
-    occlude: boolean,
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    return this.occludeSensitiveScreen(occlude, successCallback, errorCallback);
   },
 
   optIntoVideoRecording: function(

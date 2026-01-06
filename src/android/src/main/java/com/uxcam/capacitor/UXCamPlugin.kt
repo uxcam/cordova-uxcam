@@ -43,11 +43,6 @@ class UXCamPlugin : Plugin() {
         private const val HIDE_GESTURES = "hideGestures"
     }
 
-    override fun load() {
-        super.load()
-        UXCam.pluginType(UXCAM_PLUGIN_TYPE, UXCAM_CAPACITOR_PLUGIN_VERSION)
-    }
-
     // MARK: - Configuration
 
     @PluginMethod
@@ -98,6 +93,7 @@ class UXCamPlugin : Plugin() {
                 override fun onVerificationSuccess() {
                     val result = JSObject()
                     result.put("sessionUrl", UXCam.urlForCurrentSession() ?: "")
+                    UXCam.pluginType(UXCAM_PLUGIN_TYPE, UXCAM_CAPACITOR_PLUGIN_VERSION)
                     call.resolve(result)
                 }
 
@@ -114,31 +110,6 @@ class UXCamPlugin : Plugin() {
             Log.e(TAG, "Error starting with configuration", e)
             call.reject("Error starting UXCam: ${e.message}")
         }
-    }
-
-    @PluginMethod
-    fun startWithKey(call: PluginCall) {
-        val key = call.getString("key")
-        if (key.isNullOrEmpty()) {
-            call.reject("App key is required")
-            return
-        }
-
-        UXCam.addVerificationListener(object : OnVerificationListener {
-            override fun onVerificationSuccess() {
-                val result = JSObject()
-                result.put("sessionUrl", UXCam.urlForCurrentSession() ?: "")
-                call.resolve(result)
-            }
-
-            override fun onVerificationFailed(errorMessage: String?) {
-                call.reject(errorMessage ?: "Failed to start UXCam session")
-            }
-        })
-
-        activity?.let {
-            UXCam.startApplicationWithKeyForCordova(it, key)
-        } ?: call.reject("Activity not available")
     }
 
     // MARK: - Occlusion
@@ -223,23 +194,6 @@ class UXCamPlugin : Plugin() {
         call.resolve(result)
     }
 
-    // MARK: - Multi-session
-
-    @PluginMethod
-    fun setMultiSessionRecord(call: PluginCall) {
-        // Note: Android SDK doesn't have a direct setMultiSessionRecord method
-        // This is typically set during configuration
-        call.resolve()
-    }
-
-    @PluginMethod
-    fun getMultiSessionRecord(call: PluginCall) {
-        val result = JSObject()
-        // Android SDK may not have this getter - return default
-        result.put("multiSessionRecord", true)
-        call.resolve(result)
-    }
-
     // MARK: - Recording Control
 
     @PluginMethod
@@ -251,12 +205,6 @@ class UXCamPlugin : Plugin() {
     @PluginMethod
     fun resumeScreenRecording(call: PluginCall) {
         UXCam.resumeScreenRecording()
-        call.resolve()
-    }
-
-    @PluginMethod
-    fun disableCrashHandling(call: PluginCall) {
-        // Note: Crash handling is typically set during configuration on Android
         call.resolve()
     }
 
@@ -284,20 +232,13 @@ class UXCamPlugin : Plugin() {
 
     @PluginMethod
     fun uploadPendingSession(call: PluginCall) {
-        // Android SDK may handle this automatically
+        // Android SDK handles uploads automatically
         val result = JSObject()
         result.put("success", true)
         call.resolve(result)
     }
 
     // MARK: - Screen Occlusion
-
-    @PluginMethod
-    fun occludeSensitiveScreen(call: PluginCall) {
-        val occlude = call.getBoolean("occlude", true) ?: true
-        UXCam.occludeSensitiveScreen(occlude)
-        call.resolve()
-    }
 
     @PluginMethod
     fun occludeAllTextFields(call: PluginCall) {
@@ -307,13 +248,6 @@ class UXCamPlugin : Plugin() {
     }
 
     // MARK: - Screen Tagging
-
-    @PluginMethod
-    fun setAutomaticScreenNameTagging(call: PluginCall) {
-        // Note: This is typically set during configuration on Android
-        Log.d(TAG, "setAutomaticScreenNameTagging is configured during initialization on Android")
-        call.resolve()
-    }
 
     @PluginMethod
     fun tagScreenName(call: PluginCall) {
@@ -434,70 +368,6 @@ class UXCamPlugin : Plugin() {
         val result = JSObject()
         result.put("status", UXCam.optInVideoRecordingStatus())
         call.resolve(result)
-    }
-
-    @PluginMethod
-    fun optInStatus(call: PluginCall) {
-        val result = JSObject()
-        result.put("status", UXCam.optInStatus())
-        call.resolve(result)
-    }
-
-    @PluginMethod
-    fun optIn(call: PluginCall) {
-        UXCam.optIn()
-        call.resolve()
-    }
-
-    @PluginMethod
-    fun optOut(call: PluginCall) {
-        UXCam.optOut()
-        call.resolve()
-    }
-
-    // MARK: - Miscellaneous
-
-    @PluginMethod
-    fun occludeRectsOnNextFrame(call: PluginCall) {
-        val rects = call.getArray("rects")
-        if (rects == null) {
-            call.reject("Rects array is required")
-            return
-        }
-        try {
-            val jsonArray = JSONArray(rects.toString())
-            UXCam.occludeRectsOnNextFrame(jsonArray)
-            call.resolve()
-        } catch (e: Exception) {
-            call.reject("Error occluding rects: ${e.message}")
-        }
-    }
-
-    @PluginMethod
-    fun setPushNotificationToken(call: PluginCall) {
-        val token = call.getString("token")
-        if (token.isNullOrEmpty()) {
-            call.reject("Token is required")
-            return
-        }
-        UXCam.setPushNotificationToken(token)
-        call.resolve()
-    }
-
-    @PluginMethod
-    fun reportBugEvent(call: PluginCall) {
-        val eventName = call.getString("eventName")
-        if (eventName.isNullOrEmpty()) {
-            call.reject("Event name is required")
-            return
-        }
-        val properties = call.getObject("properties")
-        if (properties != null) {
-            UXCam.reportBugEvent(eventName, properties)
-        } else {
-            UXCam.reportBugEvent(eventName)
-        }
-        call.resolve()
     }
 
     // MARK: - Helper Methods

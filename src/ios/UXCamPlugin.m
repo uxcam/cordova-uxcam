@@ -3,7 +3,6 @@
 
 CAP_PLUGIN(UXCamCapacitorPlugin, "UXCam",
   CAP_PLUGIN_METHOD(startWithConfiguration, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(startWithKey, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(applyOcclusion, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(removeOcclusion, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(stopSessionAndUploadData, CAPPluginReturnPromise);
@@ -11,18 +10,13 @@ CAP_PLUGIN(UXCamCapacitorPlugin, "UXCam",
   CAP_PLUGIN_METHOD(startNewSession, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(cancelCurrentSession, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(isRecording, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(setMultiSessionRecord, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(getMultiSessionRecord, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(pauseScreenRecording, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(resumeScreenRecording, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(disableCrashHandling, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(pendingUploads, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(deletePendingUploads, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(pendingSessionCount, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(uploadPendingSession, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(occludeSensitiveScreen, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(occludeAllTextFields, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(setAutomaticScreenNameTagging, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(tagScreenName, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(setUserIdentity, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(setUserProperty, CAPPluginReturnPromise);
@@ -36,10 +30,4 @@ CAP_PLUGIN(UXCamCapacitorPlugin, "UXCam",
   CAP_PLUGIN_METHOD(optIntoSchematicRecordings, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(optInOverallStatus, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(optInSchematicRecordingStatus, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(optInStatus, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(optIn, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(optOut, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(occludeRectsOnNextFrame, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(setPushNotificationToken, CAPPluginReturnPromise);
-  CAP_PLUGIN_METHOD(reportBugEvent, CAPPluginReturnPromise);
 )

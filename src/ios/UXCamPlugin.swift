@@ -58,26 +58,6 @@ public class UXCamCapacitorPlugin: CAPPlugin {
         }
     }
 
-    @objc func startWithKey(_ call: CAPPluginCall) {
-        guard let key = call.getString("key"), !key.isEmpty else {
-            call.reject("App key is required")
-            return
-        }
-
-        let configuration = UXCamConfiguration(appKey: key)
-
-        DispatchQueue.main.async {
-            UXCam.start(with: configuration) { started in
-                if started {
-                    let url = UXCam.urlForCurrentSession() ?? ""
-                    call.resolve(["sessionUrl": url])
-                } else {
-                    call.reject("Failed to start UXCam session")
-                }
-            }
-        }
-    }
-
     private func updateConfiguration(_ configuration: UXCamConfiguration, from config: [String: Any]) {
         if let enableMultiSessionRecord = config[Uxcam_MultiSession] as? Bool {
             configuration.enableMultiSessionRecord = enableMultiSessionRecord
@@ -228,23 +208,6 @@ public class UXCamCapacitorPlugin: CAPPlugin {
         }
     }
 
-    // MARK: - Multi-session
-
-    @objc func setMultiSessionRecord(_ call: CAPPluginCall) {
-        let record = call.getBool("record") ?? true
-        DispatchQueue.main.async {
-            UXCam.setMultiSessionRecord(record)
-            call.resolve()
-        }
-    }
-
-    @objc func getMultiSessionRecord(_ call: CAPPluginCall) {
-        DispatchQueue.main.async {
-            let status = UXCam.getMultiSessionRecord()
-            call.resolve(["multiSessionRecord": status])
-        }
-    }
-
     // MARK: - Recording Control
 
     @objc func pauseScreenRecording(_ call: CAPPluginCall) {
@@ -257,14 +220,6 @@ public class UXCamCapacitorPlugin: CAPPlugin {
     @objc func resumeScreenRecording(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
             UXCam.resumeScreenRecording()
-            call.resolve()
-        }
-    }
-
-    @objc func disableCrashHandling(_ call: CAPPluginCall) {
-        let disable = call.getBool("disable") ?? true
-        DispatchQueue.main.async {
-            UXCam.disableCrashHandling(disable)
             call.resolve()
         }
     }
@@ -303,14 +258,6 @@ public class UXCamCapacitorPlugin: CAPPlugin {
 
     // MARK: - Screen Occlusion
 
-    @objc func occludeSensitiveScreen(_ call: CAPPluginCall) {
-        let occlude = call.getBool("occlude") ?? true
-        DispatchQueue.main.async {
-            UXCam.occludeSensitiveScreen(occlude)
-            call.resolve()
-        }
-    }
-
     @objc func occludeAllTextFields(_ call: CAPPluginCall) {
         let occlude = call.getBool("occlude") ?? true
         DispatchQueue.main.async {
@@ -320,14 +267,6 @@ public class UXCamCapacitorPlugin: CAPPlugin {
     }
 
     // MARK: - Screen Tagging
-
-    @objc func setAutomaticScreenNameTagging(_ call: CAPPluginCall) {
-        let enable = call.getBool("enable") ?? true
-        DispatchQueue.main.async {
-            UXCam.setAutomaticScreenNameTagging(enable)
-            call.resolve()
-        }
-    }
 
     @objc func tagScreenName(_ call: CAPPluginCall) {
         guard let screenName = call.getString("screenName"), !screenName.isEmpty else {
@@ -450,62 +389,6 @@ public class UXCamCapacitorPlugin: CAPPlugin {
         }
     }
 
-    @objc func optInStatus(_ call: CAPPluginCall) {
-        DispatchQueue.main.async {
-            let status = UXCam.isRecording()
-            call.resolve(["status": status])
-        }
-    }
-
-    @objc func optIn(_ call: CAPPluginCall) {
-        DispatchQueue.main.async {
-            UXCam.optInOverall()
-            call.resolve()
-        }
-    }
-
-    @objc func optOut(_ call: CAPPluginCall) {
-        DispatchQueue.main.async {
-            UXCam.optOutOverall()
-            call.resolve()
-        }
-    }
-
-    // MARK: - Miscellaneous
-
-    @objc func occludeRectsOnNextFrame(_ call: CAPPluginCall) {
-        guard let rects = call.getArray("rects") as? [[NSNumber]] else {
-            call.reject("Rects array is required")
-            return
-        }
-        DispatchQueue.main.async {
-            UXCam.occludeRects(onNextFrame: rects)
-            call.resolve()
-        }
-    }
-
-    @objc func setPushNotificationToken(_ call: CAPPluginCall) {
-        guard let token = call.getString("token"), !token.isEmpty else {
-            call.reject("Token is required")
-            return
-        }
-        DispatchQueue.main.async {
-            UXCam.setPushNotificationToken(token)
-            call.resolve()
-        }
-    }
-
-    @objc func reportBugEvent(_ call: CAPPluginCall) {
-        guard let eventName = call.getString("eventName"), !eventName.isEmpty else {
-            call.reject("Event name is required")
-            return
-        }
-        let properties = call.getObject("properties")
-        DispatchQueue.main.async {
-            UXCam.reportBugEvent(eventName, properties: properties)
-            call.resolve()
-        }
-    }
 }
 
 #if SWIFT_PACKAGE
@@ -514,7 +397,6 @@ extension UXCamCapacitorPlugin: CAPBridgedPlugin {
     public static let jsName = "UXCam"
     public static let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "startWithConfiguration", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "startWithKey", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "applyOcclusion", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "removeOcclusion", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "stopSessionAndUploadData", returnType: CAPPluginReturnPromise),
@@ -522,18 +404,13 @@ extension UXCamCapacitorPlugin: CAPBridgedPlugin {
         CAPPluginMethod(name: "startNewSession", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "cancelCurrentSession", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "isRecording", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setMultiSessionRecord", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "getMultiSessionRecord", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "pauseScreenRecording", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "resumeScreenRecording", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "disableCrashHandling", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "pendingUploads", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "deletePendingUploads", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "pendingSessionCount", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "uploadPendingSession", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "occludeSensitiveScreen", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "occludeAllTextFields", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setAutomaticScreenNameTagging", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "tagScreenName", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setUserIdentity", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setUserProperty", returnType: CAPPluginReturnPromise),
@@ -546,13 +423,7 @@ extension UXCamCapacitorPlugin: CAPBridgedPlugin {
         CAPPluginMethod(name: "optInOverall", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optIntoSchematicRecordings", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optInOverallStatus", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optInSchematicRecordingStatus", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optInStatus", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optIn", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optOut", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "occludeRectsOnNextFrame", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setPushNotificationToken", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "reportBugEvent", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "optInSchematicRecordingStatus", returnType: CAPPluginReturnPromise)
     ]
 
     public var identifier: String {
