@@ -24,7 +24,7 @@ class UXCamPlugin : Plugin() {
     companion object {
         private const val TAG = "UXCamPlugin"
         private const val UXCAM_PLUGIN_TYPE = "capacitor"
-        private const val UXCAM_CAPACITOR_PLUGIN_VERSION = "3.7.1"
+        private const val UXCAM_CAPACITOR_PLUGIN_VERSION = "3.8.0"
 
         // Configuration Keys
         private const val USER_APP_KEY = "userAppKey"

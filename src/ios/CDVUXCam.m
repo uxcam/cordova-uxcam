@@ -22,7 +22,7 @@ static NSString* const Uxcam_HideGestures = @"hideGestures";
 static NSString* const Uxcam_OverlayColor = @"color";
 static NSString* const Uxcam_RecognitionLanguages = @"recognitionLanguages";
 
-static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.1";
+static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.8.0";
 
 @implementation CDVUXCam
 

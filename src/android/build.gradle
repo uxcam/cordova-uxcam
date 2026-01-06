@@ -64,14 +64,12 @@ android {
 repositories {
     google()
     mavenCentral()
-    mavenLocal()
     maven { url 'https://sdk.uxcam.com/android/' }
 }
 
 // Propagate UXCam maven repository to the root project so dependency resolution works
 rootProject.allprojects {
     repositories {
-        mavenLocal()
         maven { url 'https://sdk.uxcam.com/android/' }
     }
 }
@@ -80,7 +78,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-    implementation 'com.uxcam:uxcam-debug:3.8.8-alpha.1'
+    implementation 'com.uxcam:uxcam:3.8.8'
 
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
