@@ -67,9 +67,11 @@ public class UXCam extends CordovaPlugin {
             }
         } else if("removeOcclusion".equals(action)){
             try{
-                UXCamOcclusion occlusion = getOcclusion(toMap(args.getJSONObject(0)));
-                if (occlusion != null) {
-                    com.uxcam.UXCam.removeOcclusion(occlusion);
+                if (args.length() > 0 && !args.isNull(0)) {
+                    UXCamOcclusion occlusion = getOcclusion(toMap(args.getJSONObject(0)));
+                    if (occlusion != null) {
+                        com.uxcam.UXCam.removeOcclusion(occlusion);
+                    }
                 }
                 callbackContext.success();
             }catch(Exception e){

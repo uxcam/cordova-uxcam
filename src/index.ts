@@ -609,34 +609,25 @@ export const UXCam = {
     return this.allowShortBreakForAnotherApp(false, successCallback, errorCallback);
   },
 
-  setSessionProperty: function(
-    key: string,
-    value: string,
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    return this.setUserProperty(key, value, successCallback, errorCallback);
-  },
-
   optIntoVideoRecording: function(
     successCallback?: VoidCallback,
     errorCallback?: ErrorCallback
   ) {
-    return this.optInOverall(successCallback, errorCallback);
+    return this.optIntoSchematicRecordings(successCallback, errorCallback);
   },
 
   optOutOfVideoRecording: function(
     successCallback?: VoidCallback,
     errorCallback?: ErrorCallback
   ) {
-    return this.optOutOverall(successCallback, errorCallback);
+    return this.optOutOfSchematicRecordings(successCallback, errorCallback);
   },
 
   optInVideoRecordingStatus: function(
     successCallback?: SuccessCallback<boolean>,
     errorCallback?: ErrorCallback
   ) {
-    return this.optInOverallStatus(successCallback, errorCallback);
+    return this.optInSchematicRecordingStatus(successCallback, errorCallback);
   }
 };
 
