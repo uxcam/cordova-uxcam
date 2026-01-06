@@ -67,19 +67,19 @@ class UXCamPlugin : Plugin() {
         try {
             val uxConfigBuilder = UXConfig.Builder(appKey)
 
-            config.optBoolean(ENABLE_MULTI_SESSION_RECORD)?.let {
+            config.optBooleanOrNull(ENABLE_MULTI_SESSION_RECORD)?.let {
                 uxConfigBuilder.enableMultiSessionRecord(it)
             }
-            config.optBoolean(ENABLE_CRASH_HANDLING)?.let {
+            config.optBooleanOrNull(ENABLE_CRASH_HANDLING)?.let {
                 uxConfigBuilder.enableCrashHandling(it)
             }
-            config.optBoolean(ENABLE_AUTOMATIC_SCREEN_NAME_TAGGING)?.let {
+            config.optBooleanOrNull(ENABLE_AUTOMATIC_SCREEN_NAME_TAGGING)?.let {
                 uxConfigBuilder.enableAutomaticScreenNameTagging(it)
             }
-            config.optBoolean(ENABLE_IMPROVED_SCREEN_CAPTURE)?.let {
+            config.optBooleanOrNull(ENABLE_IMPROVED_SCREEN_CAPTURE)?.let {
                 uxConfigBuilder.enableImprovedScreenCapture(it)
             }
-            config.optBoolean(ENABLE_INTEGRATION_LOGGING)?.let {
+            config.optBooleanOrNull(ENABLE_INTEGRATION_LOGGING)?.let {
                 uxConfigBuilder.enableIntegrationLogging(it)
             }
 
@@ -502,7 +502,7 @@ class UXCamPlugin : Plugin() {
 
     // MARK: - Helper Methods
 
-    private fun JSObject.optBoolean(key: String): Boolean? {
+    private fun JSObject.optBooleanOrNull(key: String): Boolean? {
         return if (has(key)) getBoolean(key) else null
     }
 
