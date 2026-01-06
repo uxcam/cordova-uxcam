@@ -56,7 +56,9 @@ public class UXCam extends CordovaPlugin {
         } else if("applyOcclusion".equals(action)){
             try{
                 UXCamOcclusion occlusion = getOcclusion(toMap(args.getJSONObject(0)));
-                com.uxcam.UXCam.applyOcclusion(occlusion);
+                if (occlusion != null) {
+                    com.uxcam.UXCam.applyOcclusion(occlusion);
+                }
             }catch(Exception e){
                 Log.d("UXCam Cordova Android:","applyOcclusion");
                 e.printStackTrace();
@@ -64,7 +66,9 @@ public class UXCam extends CordovaPlugin {
         } else if("removeOcclusion".equals(action)){
             try{
                 UXCamOcclusion occlusion = getOcclusion(toMap(args.getJSONObject(0)));
-            com.uxcam.UXCam.removeOcclusion(occlusion);
+                if (occlusion != null) {
+                    com.uxcam.UXCam.removeOcclusion(occlusion);
+                }
             }catch(Exception e){
                 Log.d("UXCam Cordova Android:","removeOcclusion");
                 e.printStackTrace();
@@ -169,11 +173,11 @@ public class UXCam extends CordovaPlugin {
 
     private List<UXCamOcclusion> convertToOcclusionList(List<Map<String, Object>> occlusionObjects) {
         List<UXCamOcclusion> occlusionList = new ArrayList<UXCamOcclusion>();
-        for (Map<String, Object> occlusionMap :
-                occlusionObjects) {
-                    UXCamOcclusion occlusion = getOcclusion(occlusionMap);
-            if (occlusion != null)
-                occlusionList.add(getOcclusion(occlusionMap));
+        for (Map<String, Object> occlusionMap : occlusionObjects) {
+            UXCamOcclusion occlusion = getOcclusion(occlusionMap);
+            if (occlusion != null) {
+                occlusionList.add(occlusion);
+            }
         }
         return occlusionList;
     }
