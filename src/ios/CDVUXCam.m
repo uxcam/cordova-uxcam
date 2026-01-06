@@ -34,15 +34,41 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.8.0";
 
 - (void)startWithConfiguration:(CDVInvokedUrlCommand*)command
 {
+    NSDictionary *config = command.arguments.count > 0 ? command.arguments[0] : nil;
+    [self startWithConfigurationDictionary:config callbackId:command.callbackId];
+}
+
+- (void)startWithKey:(CDVInvokedUrlCommand*)command
+{
+    NSString *userAppKey = command.arguments.count > 0 ? command.arguments[0] : nil;
+    if (!userAppKey || ![userAppKey isKindOfClass:NSString.class])
+    {
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid app key"];
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:command.callbackId];
+        return;
+    }
+    NSDictionary *config = @{Uxcam_AppKey: userAppKey};
+    [self startWithConfigurationDictionary:config callbackId:command.callbackId];
+}
+
+- (void)startWithConfigurationDictionary:(NSDictionary *)config callbackId:(NSString *)callbackId
+{
     __block CDVPluginResult* pluginResult = nil;
-    NSDictionary *config = command.arguments[0];
-    
+    if (!config || ![config isKindOfClass:NSDictionary.class])
+    {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid app key"];
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:callbackId];
+        return;
+    }
+
     NSString *userAppKey = config[Uxcam_AppKey];
     if (!userAppKey || ![userAppKey isKindOfClass:NSString.class])
     {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid app key"];
         [self.commandDelegate sendPluginResult:pluginResult
-                                    callbackId:command.callbackId];
+                                    callbackId:callbackId];
         return;
     }
     UXCamConfiguration *configuration = [[UXCamConfiguration alloc] initWithAppKey:userAppKey];
@@ -59,7 +85,7 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.8.0";
         }
         
         [self.commandDelegate sendPluginResult:pluginResult
-                                    callbackId:command.callbackId];
+                                    callbackId:callbackId];
     }
     ];
 }

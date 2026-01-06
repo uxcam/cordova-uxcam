@@ -595,6 +595,14 @@ export const UXCam = {
   },
 
   // Legacy aliases
+  startWithKey: function(
+    appKey: string,
+    successCallback?: SuccessCallback<string>,
+    errorCallback?: ErrorCallback
+  ) {
+    return this.startWithConfiguration({ userAppKey: appKey }, successCallback, errorCallback);
+  },
+
   stopApplicationAndUploadData: function(
     successCallback?: VoidCallback,
     errorCallback?: ErrorCallback

@@ -53,6 +53,22 @@ public class UXCam extends CordovaPlugin {
                 Log.d("UXCam Cordova Android:"," startWithConfiguration");
                 e.printStackTrace();
             }
+        } else if ("startWithKey".equals(action)) {
+            try {
+                String appKey = args.getString(0);
+                if (appKey == null || appKey.length() == 0) {
+                    callbackContext.error("invalid app key");
+                    return false;
+                }
+                HashMap<String, Object> configMap = new HashMap<String, Object>();
+                configMap.put(USER_APP_KEY, appKey);
+                addListener(callbackContext);
+                startWithConfiguration(configMap);
+            } catch (Exception e) {
+                Log.d("UXCam Cordova Android:", " startWithKey");
+                e.printStackTrace();
+                callbackContext.error(e.getMessage());
+            }
         } else if("applyOcclusion".equals(action)){
             try{
                 UXCamOcclusion occlusion = getOcclusion(toMap(args.getJSONObject(0)));
@@ -71,6 +87,10 @@ public class UXCam extends CordovaPlugin {
                     UXCamOcclusion occlusion = getOcclusion(toMap(args.getJSONObject(0)));
                     if (occlusion != null) {
                         com.uxcam.UXCam.removeOcclusion(occlusion);
+                    } else {
+                        // Android doesn't support calling this without an occlusion
+                        callbackContext.error("Occlusion setting not found");
+                        return false;
                     }
                 }
                 callbackContext.success();
