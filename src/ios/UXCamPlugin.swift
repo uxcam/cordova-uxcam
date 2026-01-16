@@ -27,7 +27,7 @@ private let Uxcam_RecognitionLanguages = "recognitionLanguages"
 public class UXCamCapacitorPlugin: CAPPlugin {
 
     public override func load() {
-        UXCam.pluginType("capacitor", version: UXCAM_CAPACITOR_PLUGIN_VERSION)
+        UXCam.pluginType("cordova", version: UXCAM_CAPACITOR_PLUGIN_VERSION)
     }
 
     // MARK: - Configuration
