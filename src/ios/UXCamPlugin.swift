@@ -46,14 +46,12 @@ public class UXCamCapacitorPlugin: CAPPlugin {
         let configuration = UXCamConfiguration(appKey: appKey)
         updateConfiguration(configuration, from: config)
 
-        DispatchQueue.main.async {
-            UXCam.start(with: configuration) { started in
-                if started {
-                    let url = UXCam.urlForCurrentSession() ?? ""
-                    call.resolve(["sessionUrl": url])
-                } else {
-                    call.reject("Failed to start UXCam session")
-                }
+        UXCam.start(with: configuration) { started in
+            if started {
+                let url = UXCam.urlForCurrentSession() ?? ""
+                call.resolve(["sessionUrl": url])
+            } else {
+                call.reject("Failed to start UXCam session")
             }
         }
     }
