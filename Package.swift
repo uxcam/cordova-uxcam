@@ -13,7 +13,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", "6.0.0"..<"9.0.0"),
-        .package(url: "https://github.com/uxcam/uxcam-ios-sdk.git", from: "3.7.7")
+        .package(url: "https://github.com/uxcam/uxcam-ios-sdk.git", from: "3.7.9")
     ],
     targets: [
         .target(

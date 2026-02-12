@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'Capacitor', '>= 2.0.0'
   s.static_framework = true # UXCam is a static framework
-  s.dependency 'UXCam', '~> 3.7.7'
+  s.dependency 'UXCam', '~> 3.7.9'
 end
