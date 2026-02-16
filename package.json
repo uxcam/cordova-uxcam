@@ -1,19 +1,50 @@
 {
-  "version": "3.7.0",
+  "version": "3.8.0",
   "name": "cordova-uxcam",
   "cordova_name": "UXCam",
   "description": "Cordova plugin for UXCam - enables the recording of your applications screen",
   "license": "Commercial",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/esm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "unpkg": "dist/plugin.js",
+  "files": [
+    "dist/",
+    "src/ios/",
+    "src/android/",
+    "CordovaUxcam.podspec",
+    "Package.swift"
+  ],
   "keywords": [
     "UXCam",
     "Analytics",
     "Screen capture",
-    "screen recording"
+    "screen recording",
+    "capacitor",
+    "capacitor-plugin",
+    "cordova",
+    "ionic"
   ],
   "platforms": [
     "android",
     "ios"
   ],
+  "scripts": {
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
   "engines": [
     {
       "name": "cordova",
@@ -26,6 +57,26 @@
       "android",
       "ios"
     ]
+  },
+  "capacitor": {
+    "ios": {
+      "src": "src/ios"
+    },
+    "android": {
+      "src": "src/android"
+    }
+  },
+  "peerDependencies": {
+    "@capacitor/core": ">=2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@capacitor/core": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@capacitor/core": "^6.0.0",
+    "typescript": "^5.0.0"
   },
   "repository": {
     "type": "git",

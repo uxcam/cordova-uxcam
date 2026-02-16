@@ -22,7 +22,7 @@ static NSString* const Uxcam_HideGestures = @"hideGestures";
 static NSString* const Uxcam_OverlayColor = @"color";
 static NSString* const Uxcam_RecognitionLanguages = @"recognitionLanguages";
 
-static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
+static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.8.0";
 
 @implementation CDVUXCam
 
@@ -34,15 +34,41 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 
 - (void)startWithConfiguration:(CDVInvokedUrlCommand*)command
 {
+    NSDictionary *config = command.arguments.count > 0 ? command.arguments[0] : nil;
+    [self startWithConfigurationDictionary:config callbackId:command.callbackId];
+}
+
+- (void)startWithKey:(CDVInvokedUrlCommand*)command
+{
+    NSString *userAppKey = command.arguments.count > 0 ? command.arguments[0] : nil;
+    if (!userAppKey || ![userAppKey isKindOfClass:NSString.class])
+    {
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid app key"];
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:command.callbackId];
+        return;
+    }
+    NSDictionary *config = @{Uxcam_AppKey: userAppKey};
+    [self startWithConfigurationDictionary:config callbackId:command.callbackId];
+}
+
+- (void)startWithConfigurationDictionary:(NSDictionary *)config callbackId:(NSString *)callbackId
+{
     __block CDVPluginResult* pluginResult = nil;
-    NSDictionary *config = command.arguments[0];
-    
+    if (!config || ![config isKindOfClass:NSDictionary.class])
+    {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid app key"];
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:callbackId];
+        return;
+    }
+
     NSString *userAppKey = config[Uxcam_AppKey];
     if (!userAppKey || ![userAppKey isKindOfClass:NSString.class])
     {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid app key"];
         [self.commandDelegate sendPluginResult:pluginResult
-                                    callbackId:command.callbackId];
+                                    callbackId:callbackId];
         return;
     }
     UXCamConfiguration *configuration = [[UXCamConfiguration alloc] initWithAppKey:userAppKey];
@@ -59,17 +85,9 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
         }
         
         [self.commandDelegate sendPluginResult:pluginResult
-                                    callbackId:command.callbackId];
+                                    callbackId:callbackId];
     }
     ];
-}
-
-- (void)startWithKey:(CDVInvokedUrlCommand*)command
-{
-    NSString *userAppKey = command.arguments[0];
-    NSDictionary *config = @{Uxcam_AppKey: userAppKey};
-    CDVInvokedUrlCommand *configurationCommand = [[CDVInvokedUrlCommand alloc] initWithArguments: @[config] callbackId: command.callbackId className: command.className methodName: command.methodName];
-    [self startWithConfiguration: configurationCommand];
 }
 
 - (void)updateConfiguration:(UXCamConfiguration *)configuration fromDict:(NSDictionary *)config
@@ -273,24 +291,6 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 }
 
 
-- (void)setMultiSessionRecord:(CDVInvokedUrlCommand*)command
-{
-	BOOL recordMultipleSessions = [command.arguments[0] boolValue];
-
-	[UXCam setAutomaticScreenNameTagging:recordMultipleSessions];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-								callbackId:command.callbackId];
-}
-
-- (void)getMultiSessionRecord:(CDVInvokedUrlCommand*)command
-{
-	BOOL status =  [UXCam getMultiSessionRecord];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
-								callbackId:command.callbackId];
-}
-
 - (void)pauseScreenRecording:(CDVInvokedUrlCommand*)command
 {
 	[UXCam pauseScreenRecording];
@@ -307,15 +307,6 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 								callbackId:command.callbackId];
 }
 
-
-- (void)disableCrashHandling:(CDVInvokedUrlCommand*)command
-{
-	BOOL disable = [command.arguments[0] boolValue];
-	[UXCam disableCrashHandling:disable];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-								callbackId:command.callbackId];
-}
 
 - (void)pendingUploads:(CDVInvokedUrlCommand*)command
 {
@@ -350,31 +341,11 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
     }];
 }
 
-- (void)occludeSensitiveScreen:(CDVInvokedUrlCommand*)command
-{
-	BOOL hideScreen = [command.arguments[0] boolValue];
-
-	[UXCam occludeSensitiveScreen:hideScreen];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-								callbackId:command.callbackId];
-}
-
 - (void)occludeAllTextFields:(CDVInvokedUrlCommand*)command
 {
 	BOOL hideScreen = [command.arguments[0] boolValue];
 
 	[UXCam occludeAllTextFields:hideScreen];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-								callbackId:command.callbackId];
-}
-
-- (void)setAutomaticScreenNameTagging:(CDVInvokedUrlCommand*)command
-{
-	BOOL enable = [command.arguments[0] boolValue];
-
-	[UXCam setAutomaticScreenNameTagging:enable];
 
 	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
 								callbackId:command.callbackId];
@@ -538,82 +509,6 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.7.0";
 
 	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
 								callbackId:command.callbackId];
-}
-
-- (void)optInStatus:(CDVInvokedUrlCommand*)command
-{
-	BOOL status =  [UXCam isRecording];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
-								callbackId:command.callbackId];
-}
-
-- (void)optIn:(CDVInvokedUrlCommand*)command
-{
-	[UXCam optInOverall];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-								callbackId:command.callbackId];
-}
-
-- (void)optOut:(CDVInvokedUrlCommand*)command
-{
-    [UXCam optOutOverall];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-                                callbackId:command.callbackId];
-}
-
-- (void)occludeRectsOnNextFrame:(CDVInvokedUrlCommand*)command
-{
-	NSArray<NSArray<NSNumber*>*>* rectList = command.arguments[0];
-	[UXCam occludeRectsOnNextFrame:rectList];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-								callbackId:command.callbackId];
-}
-
-- (void)setPushNotificationToken:(CDVInvokedUrlCommand*)command
-{
-    CDVPluginResult* pluginResult = nil;
-    NSString* token = command.arguments[0];
-    if (token.length>0)
-    {
-        [UXCam setPushNotificationToken:token];
-
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    }
-    else
-    {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-    }
-
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
-
-- (void)reportBugEvent:(CDVInvokedUrlCommand*)command
-{
-    CDVPluginResult* pluginResult = nil;
-    NSString* eventName = command.arguments[0];
-    NSDictionary* properties = command.arguments[1];
-
-    if (eventName.length>0 && properties && [properties isKindOfClass:NSDictionary.class])
-    {
-        [UXCam reportBugEvent:eventName properties:properties];
-
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    }
-    else if (eventName.length>0){
-        [UXCam reportBugEvent:eventName properties:nil];
-
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    }
-    else
-    {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-    }
-
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end
