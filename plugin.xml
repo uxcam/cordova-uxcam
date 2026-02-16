@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="cordova-uxcam"
-        version="3.7.0">
+        version="3.8.0">
 
     <name>UXCam</name>
     <description>Cordova plugin for UXCam - enables the recording of your applications screen</description>
@@ -12,7 +12,7 @@
         <engine name="cordova-android" version=">=7.0.0"/>
     </engines>
 
-    <js-module src="www/UXCam.js" name="UXCam">
+    <js-module src="dist/index.js" name="UXCam">
         <clobbers target="UXCam"/>
     </js-module>
     <platform name="android">
@@ -35,24 +35,14 @@
         <header-file src="src/ios/CDVUXCam.h"/>
         <source-file src="src/ios/CDVUXCam.m"/>
 
-        <!-- Add in the UXCam framework -->
-        <framework src="src/ios/UXCam.xcframework" custom="true"/>
-
-        <!-- and the system frameworks that UXCam depends on -->
-        <framework src="CoreTelephony.framework"/>
-        <framework src="AVFoundation.framework"/>
-        <framework src="CoreGraphics.framework"/>
-        <framework src="CoreMedia.framework"/>
-        <framework src="CoreVideo.framework"/>
-        <framework src="MobileCoreServices.framework"/>
-        <framework src="QuartzCore.framework"/>
-        <framework src="SystemConfiguration.framework"/>
-        <framework src="Security.framework"/>
-        <framework src="Foundation.framework"/>
-        <framework src="ExternalAccessory.framework"/>
-        <framework src="libz.dylib"/>
-        <framework src="libc++.dylib"/>
-        <framework src="libiconv.dylib"/>
+        <!-- UXCam SDK via CocoaPods -->
+        <podspec>
+            <config>
+                <source url="https://cdn.cocoapods.org/"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="UXCam" spec="~> 3.7.7"/>
+            </pods>
+        </podspec>
     </platform>
 </plugin>
-

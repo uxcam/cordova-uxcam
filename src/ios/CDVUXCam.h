@@ -20,25 +20,19 @@
 
 - (void)isRecording:(CDVInvokedUrlCommand*)command;
 
-- (void)setMultiSessionRecord:(CDVInvokedUrlCommand*)command;
-
-- (void)getMultiSessionRecord:(CDVInvokedUrlCommand*)command;
-
 - (void)pauseScreenRecording:(CDVInvokedUrlCommand*)command;
 
 - (void)resumeScreenRecording:(CDVInvokedUrlCommand*)command;
-
-- (void)disableCrashHandling:(CDVInvokedUrlCommand*)command;
 
 - (void)pendingUploads:(CDVInvokedUrlCommand*)command;
 
 - (void)deletePendingUploads:(CDVInvokedUrlCommand*)command;
 
-- (void)occludeSensitiveScreen:(CDVInvokedUrlCommand*)command;
+- (void)pendingSessionCount:(CDVInvokedUrlCommand*)command;
+
+- (void)uploadPendingSession:(CDVInvokedUrlCommand*)command;
 
 - (void)occludeAllTextFields:(CDVInvokedUrlCommand*)command;
-
-- (void)setAutomaticScreenNameTagging:(CDVInvokedUrlCommand*)command;
 
 - (void)tagScreenName:(CDVInvokedUrlCommand*)command;
 
@@ -65,17 +59,5 @@
 - (void)optInOverallStatus:(CDVInvokedUrlCommand*)command;
 
 - (void)optInSchematicRecordingStatus:(CDVInvokedUrlCommand*)command;
-
-- (void)optInStatus:(CDVInvokedUrlCommand*)command;
-
-- (void)optIn:(CDVInvokedUrlCommand*)command;
-
-- (void)optOut:(CDVInvokedUrlCommand*)command;
-
-- (void)occludeRectsOnNextFrame:(CDVInvokedUrlCommand*)command;
-
-- (void)setPushNotificationToken:(CDVInvokedUrlCommand*)command;
-
-- (void)reportBugEvent:(CDVInvokedUrlCommand*)command;
 
 @end
