@@ -11,6 +11,7 @@ static NSString* const Uxcam_ScreenTag = @"enableAutomaticScreenNameTagging";
 static NSString* const Uxcam_AdvancedGestures = @"enableAdvancedGestureRecognition";
 static NSString* const Uxcam_EnableNetworkLogs = @"enableNetworkLogging";
 static NSString* const Uxcam_EnableIntegrationLogs = @"enableIntegrationLogging";
+static NSString* const Uxcam_EnableJSConsoleLogCapture = @"enableJavaScriptConsoleLogCapture";
 
 static NSString* const Uxcam_Occlusion = @"occlusions";
 static NSString* const Uxcam_OccludeScreens = @"screens";
@@ -124,7 +125,13 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.8.0";
     {
         configuration.enableIntegrationLogging = [enableIntegrationLogging boolValue];
     }
-    
+
+    NSNumber *enableJSConsoleLogCapture = config[Uxcam_EnableJSConsoleLogCapture];
+    if (enableJSConsoleLogCapture && [self isBoolNumber:enableJSConsoleLogCapture])
+    {
+        configuration.enableJavaScriptConsoleLogCapture = [enableJSConsoleLogCapture boolValue];
+    }
+
     NSArray *occlusionList = config[Uxcam_Occlusion];
     if (occlusionList && ![occlusionList isKindOfClass:NSNull.class]) {
         UXCamOcclusion *occlusion = [[UXCamOcclusion alloc] init];
@@ -508,23 +515,6 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.8.0";
 	BOOL status =  [UXCam optInSchematicRecordingStatus];
 
 	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
-								callbackId:command.callbackId];
-}
-
-- (void)setJavaScriptConsoleLogCaptureEnabled:(CDVInvokedUrlCommand*)command
-{
-	BOOL enabled = [command.arguments[0] boolValue];
-	[UXCam setJavaScriptConsoleLogCaptureEnabled:enabled];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
-								callbackId:command.callbackId];
-}
-
-- (void)isJavaScriptConsoleLogCaptureEnabled:(CDVInvokedUrlCommand*)command
-{
-	BOOL enabled = [UXCam isJavaScriptConsoleLogCaptureEnabled];
-
-	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:enabled]
 								callbackId:command.callbackId];
 }
 

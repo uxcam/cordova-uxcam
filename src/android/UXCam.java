@@ -34,6 +34,7 @@ public class UXCam extends CordovaPlugin {
     public static final String ENABLE_AUTOMATIC_SCREEN_NAME_TAGGING = "enableAutomaticScreenNameTagging";
     public static final String ENABLE_IMPROVED_SCREEN_CAPTURE = "enableImprovedScreenCapture";
     public static final String ENABLE_INTEGRATION_LOGGING = "enableIntegrationLogging";
+    public static final String ENABLE_JS_CONSOLE_LOG_CAPTURE = "enableJavaScriptConsoleLogCapture";
     public static final String OCCLUSION = "occlusions";
     public static final String SCREENS = "screens";
     public static final String NAME = "name";
@@ -336,6 +337,7 @@ public class UXCam extends CordovaPlugin {
             Boolean enableAutomaticScreenNameTagging = (Boolean) configMap.get(ENABLE_AUTOMATIC_SCREEN_NAME_TAGGING);
             Boolean enableImprovedScreenCapture = (Boolean) configMap.get(ENABLE_IMPROVED_SCREEN_CAPTURE);
             Boolean enableIntegrationLogging = (Boolean) configMap.get(ENABLE_INTEGRATION_LOGGING);
+            Boolean enableJSConsoleLogCapture = (Boolean) configMap.get(ENABLE_JS_CONSOLE_LOG_CAPTURE);
 
             // // occlusion
             List<UXCamOcclusion> occlusionList = null;
@@ -361,6 +363,8 @@ public class UXCam extends CordovaPlugin {
             }
             if (occlusionList != null)
                 uxConfigBuilder.occlusions(occlusionList);
+            if (enableJSConsoleLogCapture != null)
+                uxConfigBuilder.enableJavaScriptConsoleLogCapture(enableJSConsoleLogCapture);
 
             UXConfig config = uxConfigBuilder.build();
             com.uxcam.UXCam.pluginType(UXCAM_PLUGIN_TYPE, UXCAM_CORDOVA_PLUGIN_VERSION);

@@ -12,6 +12,7 @@ private let Uxcam_ScreenTag = "enableAutomaticScreenNameTagging"
 private let Uxcam_AdvancedGestures = "enableAdvancedGestureRecognition"
 private let Uxcam_EnableNetworkLogs = "enableNetworkLogging"
 private let Uxcam_EnableIntegrationLogs = "enableIntegrationLogging"
+private let Uxcam_EnableJSConsoleLogCapture = "enableJavaScriptConsoleLogCapture"
 
 private let Uxcam_Occlusion = "occlusions"
 private let Uxcam_OccludeScreens = "screens"
@@ -79,6 +80,10 @@ public class UXCamCapacitorPlugin: CAPPlugin {
 
         if let enableIntegrationLogging = config[Uxcam_EnableIntegrationLogs] as? Bool {
             configuration.enableIntegrationLogging = enableIntegrationLogging
+        }
+
+        if let enableJSConsoleLogCapture = config[Uxcam_EnableJSConsoleLogCapture] as? Bool {
+            configuration.enableJavaScriptConsoleLogCapture = enableJSConsoleLogCapture
         }
 
         if let occlusionList = config[Uxcam_Occlusion] as? [[String: Any]] {
@@ -387,23 +392,6 @@ public class UXCamCapacitorPlugin: CAPPlugin {
         }
     }
 
-    // MARK: - JavaScript Console Log Capture
-
-    @objc func setJavaScriptConsoleLogCaptureEnabled(_ call: CAPPluginCall) {
-        let enabled = call.getBool("enabled") ?? true
-        DispatchQueue.main.async {
-            UXCam.setJavaScriptConsoleLogCaptureEnabled(enabled)
-            call.resolve()
-        }
-    }
-
-    @objc func isJavaScriptConsoleLogCaptureEnabled(_ call: CAPPluginCall) {
-        DispatchQueue.main.async {
-            let enabled = UXCam.isJavaScriptConsoleLogCaptureEnabled()
-            call.resolve(["enabled": enabled])
-        }
-    }
-
 }
 
 #if SWIFT_PACKAGE
@@ -438,9 +426,7 @@ extension UXCamCapacitorPlugin: CAPBridgedPlugin {
         CAPPluginMethod(name: "optInOverall", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optIntoSchematicRecordings", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optInOverallStatus", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optInSchematicRecordingStatus", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "setJavaScriptConsoleLogCaptureEnabled", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "isJavaScriptConsoleLogCaptureEnabled", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "optInSchematicRecordingStatus", returnType: CAPPluginReturnPromise)
     ]
 
     public var identifier: String {

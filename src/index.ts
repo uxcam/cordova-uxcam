@@ -182,13 +182,6 @@ function createCordovaAdapter(exec: CordovaExec): UXCamPlugin {
       const result = await execPromise<boolean>('optInSchematicRecordingStatus', []);
       return { status: result };
     },
-    async setJavaScriptConsoleLogCaptureEnabled(options: { enabled: boolean }) {
-      await execPromise<void>('setJavaScriptConsoleLogCaptureEnabled', [options.enabled]);
-    },
-    async isJavaScriptConsoleLogCaptureEnabled() {
-      const result = await execPromise<boolean>('isJavaScriptConsoleLogCaptureEnabled', []);
-      return { enabled: result };
-    }
   };
 }
 
@@ -291,13 +284,6 @@ function createWebAdapter(): UXCamPlugin {
       warn('optInSchematicRecordingStatus');
       return { status: false };
     },
-    async setJavaScriptConsoleLogCaptureEnabled() {
-      warn('setJavaScriptConsoleLogCaptureEnabled');
-    },
-    async isJavaScriptConsoleLogCaptureEnabled() {
-      warn('isJavaScriptConsoleLogCaptureEnabled');
-      return { enabled: true };
-    }
   };
 }
 
@@ -606,23 +592,6 @@ export const UXCam = {
   ) {
     const promise = getPlugin().then(plugin => plugin.optInSchematicRecordingStatus());
     return handlePromise(promise, successCallback, errorCallback, result => result.status);
-  },
-
-  setJavaScriptConsoleLogCaptureEnabled: function(
-    enabled: boolean,
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.setJavaScriptConsoleLogCaptureEnabled({ enabled }));
-    return handlePromise(promise, successCallback, errorCallback);
-  },
-
-  isJavaScriptConsoleLogCaptureEnabled: function(
-    successCallback?: SuccessCallback<boolean>,
-    errorCallback?: ErrorCallback
-  ) {
-    const promise = getPlugin().then(plugin => plugin.isJavaScriptConsoleLogCaptureEnabled());
-    return handlePromise(promise, successCallback, errorCallback, result => result.enabled);
   },
 
   // Legacy aliases

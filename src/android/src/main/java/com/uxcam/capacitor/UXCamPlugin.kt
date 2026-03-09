@@ -34,6 +34,7 @@ class UXCamPlugin : Plugin() {
         private const val ENABLE_IMPROVED_SCREEN_CAPTURE = "enableImprovedScreenCapture"
         private const val ENABLE_INTEGRATION_LOGGING = "enableIntegrationLogging"
         private const val ENABLE_NETWORK_LOGGING = "enableNetworkLogging"
+        private const val ENABLE_JS_CONSOLE_LOG_CAPTURE = "enableJavaScriptConsoleLogCapture"
         private const val OCCLUSION = "occlusions"
         private const val SCREENS = "screens"
         private const val NAME = "name"
@@ -76,6 +77,9 @@ class UXCamPlugin : Plugin() {
             }
             config.optBooleanOrNull(ENABLE_INTEGRATION_LOGGING)?.let {
                 uxConfigBuilder.enableIntegrationLogging(it)
+            }
+            config.optBooleanOrNull(ENABLE_JS_CONSOLE_LOG_CAPTURE)?.let {
+                uxConfigBuilder.enableJavaScriptConsoleLogCapture(it)
             }
 
             // Handle occlusions
@@ -367,22 +371,6 @@ class UXCamPlugin : Plugin() {
     fun optInSchematicRecordingStatus(call: PluginCall) {
         val result = JSObject()
         result.put("status", UXCam.optInVideoRecordingStatus())
-        call.resolve(result)
-    }
-
-    // MARK: - JavaScript Console Log Capture
-
-    @PluginMethod
-    fun setJavaScriptConsoleLogCaptureEnabled(call: PluginCall) {
-        val enabled = call.getBoolean("enabled", true) ?: true
-        UXCam.setJavaScriptConsoleLogCaptureEnabled(enabled)
-        call.resolve()
-    }
-
-    @PluginMethod
-    fun isJavaScriptConsoleLogCaptureEnabled(call: PluginCall) {
-        val result = JSObject()
-        result.put("enabled", UXCam.isJavaScriptConsoleLogCaptureEnabled())
         call.resolve(result)
     }
 

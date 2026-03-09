@@ -6,6 +6,7 @@ export interface UXCamConfiguration {
   enableAdvancedGestureRecognition?: boolean;
   enableNetworkLogging?: boolean;
   enableIntegrationLogging?: boolean;
+  enableJavaScriptConsoleLogCapture?: boolean;
   occlusions?: UXCamOcclusionConfig[];
 }
 
@@ -168,13 +169,4 @@ export interface UXCamPlugin {
    */
   optInSchematicRecordingStatus(): Promise<{ status: boolean }>;
 
-  /**
-   * Enable or disable JavaScript console log capture from WebViews
-   */
-  setJavaScriptConsoleLogCaptureEnabled(options: { enabled: boolean }): Promise<void>;
-
-  /**
-   * Returns whether JavaScript console log capture is currently enabled
-   */
-  isJavaScriptConsoleLogCaptureEnabled(): Promise<{ enabled: boolean }>;
 }
