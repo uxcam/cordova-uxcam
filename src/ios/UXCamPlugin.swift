@@ -387,6 +387,23 @@ public class UXCamCapacitorPlugin: CAPPlugin {
         }
     }
 
+    // MARK: - JavaScript Console Log Capture
+
+    @objc func setJavaScriptConsoleLogCaptureEnabled(_ call: CAPPluginCall) {
+        let enabled = call.getBool("enabled") ?? true
+        DispatchQueue.main.async {
+            UXCam.setJavaScriptConsoleLogCaptureEnabled(enabled)
+            call.resolve()
+        }
+    }
+
+    @objc func isJavaScriptConsoleLogCaptureEnabled(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            let enabled = UXCam.isJavaScriptConsoleLogCaptureEnabled()
+            call.resolve(["enabled": enabled])
+        }
+    }
+
 }
 
 #if SWIFT_PACKAGE
@@ -421,7 +438,9 @@ extension UXCamCapacitorPlugin: CAPBridgedPlugin {
         CAPPluginMethod(name: "optInOverall", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optIntoSchematicRecordings", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optInOverallStatus", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "optInSchematicRecordingStatus", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "optInSchematicRecordingStatus", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setJavaScriptConsoleLogCaptureEnabled", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "isJavaScriptConsoleLogCaptureEnabled", returnType: CAPPluginReturnPromise)
     ]
 
     public var identifier: String {

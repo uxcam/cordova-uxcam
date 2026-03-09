@@ -370,6 +370,22 @@ class UXCamPlugin : Plugin() {
         call.resolve(result)
     }
 
+    // MARK: - JavaScript Console Log Capture
+
+    @PluginMethod
+    fun setJavaScriptConsoleLogCaptureEnabled(call: PluginCall) {
+        val enabled = call.getBoolean("enabled", true) ?: true
+        UXCam.setJavaScriptConsoleLogCaptureEnabled(enabled)
+        call.resolve()
+    }
+
+    @PluginMethod
+    fun isJavaScriptConsoleLogCaptureEnabled(call: PluginCall) {
+        val result = JSObject()
+        result.put("enabled", UXCam.isJavaScriptConsoleLogCaptureEnabled())
+        call.resolve(result)
+    }
+
     // MARK: - Helper Methods
 
     private fun JSObject.optBooleanOrNull(key: String): Boolean? {

@@ -511,4 +511,21 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.8.0";
 								callbackId:command.callbackId];
 }
 
+- (void)setJavaScriptConsoleLogCaptureEnabled:(CDVInvokedUrlCommand*)command
+{
+	BOOL enabled = [command.arguments[0] boolValue];
+	[UXCam setJavaScriptConsoleLogCaptureEnabled:enabled];
+
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+								callbackId:command.callbackId];
+}
+
+- (void)isJavaScriptConsoleLogCaptureEnabled:(CDVInvokedUrlCommand*)command
+{
+	BOOL enabled = [UXCam isJavaScriptConsoleLogCaptureEnabled];
+
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:enabled]
+								callbackId:command.callbackId];
+}
+
 @end
