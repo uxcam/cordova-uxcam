@@ -1,3 +1,4 @@
+import { UXCamOcclusionType } from './definitions';
 import type { UXCamPlugin, UXCamConfiguration, UXCamOcclusionConfig } from './definitions';
 
 // Declare window.UXCam for TypeScript
@@ -652,5 +653,6 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = UXCam;
   module.exports.UXCam = UXCam;
   module.exports.UXCamCapacitor = UXCamCapacitor;
+  module.exports.UXCamOcclusionType = UXCamOcclusionType;
   module.exports.default = UXCam;
 }
