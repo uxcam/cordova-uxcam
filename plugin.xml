@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="cordova-uxcam"
-        version="3.8.1">
+        version="3.8.2">
 
     <name>UXCam</name>
     <description>Cordova plugin for UXCam - enables the recording of your applications screen</description>
@@ -12,6 +12,7 @@
         <engine name="cordova-android" version=">=7.0.0"/>
     </engines>
 
+    <js-module src="dist/definitions.js" name="definitions"/>
     <js-module src="dist/index.js" name="UXCam">
         <clobbers target="UXCam"/>
     </js-module>
@@ -41,7 +42,7 @@
                 <source url="https://cdn.cocoapods.org/"/>
             </config>
             <pods use-frameworks="true">
-                <pod name="UXCam" spec="~> 3.7.10"/>
+                <pod name="UXCam" spec="~> 3.7.11"/>
             </pods>
         </podspec>
     </platform>
