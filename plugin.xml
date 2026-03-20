@@ -12,6 +12,7 @@
         <engine name="cordova-android" version=">=7.0.0"/>
     </engines>
 
+    <js-module src="dist/definitions.js" name="definitions"/>
     <js-module src="dist/index.js" name="UXCam">
         <clobbers target="UXCam"/>
     </js-module>

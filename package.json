@@ -18,6 +18,7 @@
   },
   "unpkg": "dist/plugin.js",
   "files": [
+    "plugin.xml",
     "dist/",
     "src/ios/",
     "src/android/",
