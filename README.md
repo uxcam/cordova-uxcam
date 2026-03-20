@@ -4,6 +4,7 @@
 
 Version | Changes
 --------|--------
+3.8.2   | iOS and Android versions updated to v3.7.11 and v3.8.14 respectively
 3.8.1   | iOS and Android versions updated to v3.7.10 and v3.8.13 respectively
 3.8.0   | Added support for capacitor 6+, iOS and Android versions updated to v3.7.9 and v3.8.12 respectively
 3.7.0   | iOS SDK updated to v3.7.1 and Android SDK updated to v3.7.1
