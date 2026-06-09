@@ -3,7 +3,7 @@
   "name": "cordova-uxcam",
   "cordova_name": "UXCam",
   "description": "Cordova plugin for UXCam - enables the recording of your applications screen",
-  "license": "Commercial",
+  "license": "BSD-3-Clause",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
