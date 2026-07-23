@@ -42,7 +42,7 @@
                 <source url="https://cdn.cocoapods.org/"/>
             </config>
             <pods use-frameworks="true">
-                <pod name="UXCam" spec="~> 3.8.4"/>
+                <pod name="UXCam" spec="~> 3.9.0"/>
             </pods>
         </podspec>
     </platform>
