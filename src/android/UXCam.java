@@ -359,6 +359,8 @@ public class UXCam extends CordovaPlugin {
                 Log.d("config", "integration logging enabled " + enableIntegrationLogging);
                 uxConfigBuilder.enableIntegrationLogging(enableIntegrationLogging);
             }
+            // Off here: the SDK's WebView agent pushes over `window.UXCam`, which this plugin's JS module clobbers.
+            uxConfigBuilder.enableFrameSyncOcclusion(false);
             if (occlusionList != null)
                 uxConfigBuilder.occlusions(occlusionList);
 

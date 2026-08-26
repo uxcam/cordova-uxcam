@@ -77,6 +77,8 @@ class UXCamPlugin : Plugin() {
             config.optBooleanOrNull(ENABLE_INTEGRATION_LOGGING)?.let {
                 uxConfigBuilder.enableIntegrationLogging(it)
             }
+            // Off here: the SDK's WebView agent pushes over `window.UXCam`, which this plugin's JS module clobbers.
+            uxConfigBuilder.enableFrameSyncOcclusion(false)
 
             // Handle occlusions
             val occlusionArray = config.optJSONArray(OCCLUSION)
