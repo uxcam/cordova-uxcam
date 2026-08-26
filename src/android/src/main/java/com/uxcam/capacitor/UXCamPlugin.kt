@@ -24,7 +24,7 @@ class UXCamPlugin : Plugin() {
     companion object {
         private const val TAG = "UXCamPlugin"
         private const val UXCAM_PLUGIN_TYPE = "cordova"
-        private const val UXCAM_CAPACITOR_PLUGIN_VERSION = "3.8.3"
+        private const val UXCAM_CAPACITOR_PLUGIN_VERSION = "3.8.4"
 
         // Configuration Keys
         private const val USER_APP_KEY = "userAppKey"
@@ -77,6 +77,8 @@ class UXCamPlugin : Plugin() {
             config.optBooleanOrNull(ENABLE_INTEGRATION_LOGGING)?.let {
                 uxConfigBuilder.enableIntegrationLogging(it)
             }
+            // Off here: the SDK's WebView agent pushes over `window.UXCam`, which this plugin's JS module clobbers.
+            uxConfigBuilder.enableFrameSyncOcclusion(false)
 
             // Handle occlusions
             val occlusionArray = config.optJSONArray(OCCLUSION)
