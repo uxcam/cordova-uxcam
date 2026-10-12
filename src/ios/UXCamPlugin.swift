@@ -2,7 +2,7 @@ import Foundation
 import Capacitor
 import UXCam
 
-private let UXCAM_CAPACITOR_PLUGIN_VERSION = "3.8.4"
+private let UXCAM_CAPACITOR_PLUGIN_VERSION = "3.8.5"
 
 // Configuration Keys
 private let Uxcam_AppKey = "userAppKey"
