@@ -24,7 +24,7 @@ class UXCamPlugin : Plugin() {
     companion object {
         private const val TAG = "UXCamPlugin"
         private const val UXCAM_PLUGIN_TYPE = "cordova"
-        private const val UXCAM_CAPACITOR_PLUGIN_VERSION = "3.8.4"
+        private const val UXCAM_CAPACITOR_PLUGIN_VERSION = "3.8.5"
 
         // Configuration Keys
         private const val USER_APP_KEY = "userAppKey"
@@ -341,9 +341,15 @@ class UXCamPlugin : Plugin() {
     }
 
     @PluginMethod
-    fun optOutOfSchematicRecordings(call: PluginCall) {
+    fun optOutOfVideoRecordings(call: PluginCall) {
         UXCam.optOutOfVideoRecording()
         call.resolve()
+    }
+
+    @Deprecated("Use optOutOfVideoRecordings instead. Note: Schematic Recording is controlled from dashboard only.", ReplaceWith("optOutOfVideoRecordings(call)"))
+    @PluginMethod
+    fun optOutOfSchematicRecordings(call: PluginCall) {
+        optOutOfVideoRecordings(call)
     }
 
     @PluginMethod
@@ -353,9 +359,15 @@ class UXCamPlugin : Plugin() {
     }
 
     @PluginMethod
-    fun optIntoSchematicRecordings(call: PluginCall) {
+    fun optIntoVideoRecordings(call: PluginCall) {
         UXCam.optIntoVideoRecording()
         call.resolve()
+    }
+
+    @Deprecated("Use optIntoVideoRecordings instead. Note: Schematic Recording is controlled from dashboard only.", ReplaceWith("optIntoVideoRecordings(call)"))
+    @PluginMethod
+    fun optIntoSchematicRecordings(call: PluginCall) {
+        optIntoVideoRecordings(call)
     }
 
     @PluginMethod
@@ -366,10 +378,16 @@ class UXCamPlugin : Plugin() {
     }
 
     @PluginMethod
-    fun optInSchematicRecordingStatus(call: PluginCall) {
+    fun optInVideoRecordingStatus(call: PluginCall) {
         val result = JSObject()
         result.put("status", UXCam.optInVideoRecordingStatus())
         call.resolve(result)
+    }
+
+    @Deprecated("Use optInVideoRecordingStatus instead. Note: Schematic Recording is controlled from dashboard only.", ReplaceWith("optInVideoRecordingStatus(call)"))
+    @PluginMethod
+    fun optInSchematicRecordingStatus(call: PluginCall) {
+        optInVideoRecordingStatus(call)
     }
 
     // MARK: - Helper Methods
