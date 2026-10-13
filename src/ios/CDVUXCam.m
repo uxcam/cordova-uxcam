@@ -471,9 +471,18 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.8.5";
 								callbackId:command.callbackId];
 }
 
+- (void)optOutOfVideoRecordings:(CDVInvokedUrlCommand*)command
+{
+	[UXCam optOutOfVideoRecordings];
+
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+								callbackId:command.callbackId];
+}
+
+// Deprecated: use optOutOfVideoRecordings
 - (void)optOutOfSchematicRecordings:(CDVInvokedUrlCommand*)command
 {
-	[UXCam optOutOfSchematicRecordings];
+	[UXCam optOutOfVideoRecordings];
 
 	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
 								callbackId:command.callbackId];
@@ -487,9 +496,18 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.8.5";
 								callbackId:command.callbackId];
 }
 
+- (void)optIntoVideoRecordings:(CDVInvokedUrlCommand*)command
+{
+	[UXCam optIntoVideoRecordings];
+
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
+								callbackId:command.callbackId];
+}
+
+// Deprecated: use optIntoVideoRecordings
 - (void)optIntoSchematicRecordings:(CDVInvokedUrlCommand*)command
 {
-	[UXCam optIntoSchematicRecordings];
+	[UXCam optIntoVideoRecordings];
 
 	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
 								callbackId:command.callbackId];
@@ -503,9 +521,18 @@ static NSString* const UXCAM_CORDOVA_PLUGIN_VERSION = @"3.8.5";
 								callbackId:command.callbackId];
 }
 
+- (void)optInVideoRecordingStatus:(CDVInvokedUrlCommand*)command
+{
+	BOOL status =  [UXCam optInVideoRecordingStatus];
+
+	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
+								callbackId:command.callbackId];
+}
+
+// Deprecated: use optInVideoRecordingStatus
 - (void)optInSchematicRecordingStatus:(CDVInvokedUrlCommand*)command
 {
-	BOOL status =  [UXCam optInSchematicRecordingStatus];
+	BOOL status =  [UXCam optInVideoRecordingStatus];
 
 	[self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:status]
 								callbackId:command.callbackId];

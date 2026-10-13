@@ -166,11 +166,17 @@ function createCordovaAdapter(exec: CordovaExec): UXCamPlugin {
     async optOutOverall() {
       await execPromise<void>('optOutOverall', []);
     },
+    async optOutOfVideoRecordings() {
+      await execPromise<void>('optOutOfVideoRecordings', []);
+    },
     async optOutOfSchematicRecordings() {
       await execPromise<void>('optOutOfSchematicRecordings', []);
     },
     async optInOverall() {
       await execPromise<void>('optInOverall', []);
+    },
+    async optIntoVideoRecordings() {
+      await execPromise<void>('optIntoVideoRecordings', []);
     },
     async optIntoSchematicRecordings() {
       await execPromise<void>('optIntoSchematicRecordings', []);
@@ -179,8 +185,12 @@ function createCordovaAdapter(exec: CordovaExec): UXCamPlugin {
       const result = await execPromise<boolean>('optInOverallStatus', []);
       return { status: result };
     },
+    async optInVideoRecordingStatus() {
+      const result = await execPromise<boolean>('optInVideoRecordingStatus', []);
+      return { status: result };
+    },
     async optInSchematicRecordingStatus() {
-      const result = await execPromise<boolean>('optInSchematicRecordingStatus', []);
+      const result = await execPromise<boolean>('optInVideoRecordingStatus', []);
       return { status: result };
     }
   };
@@ -268,17 +278,27 @@ function createWebAdapter(): UXCamPlugin {
     async optOutOverall() {
       warn('optOutOverall');
     },
+    async optOutOfVideoRecordings() {
+      warn('optOutOfVideoRecordings');
+    },
     async optOutOfSchematicRecordings() {
       warn('optOutOfSchematicRecordings');
     },
     async optInOverall() {
       warn('optInOverall');
     },
+    async optIntoVideoRecordings() {
+      warn('optIntoVideoRecordings');
+    },
     async optIntoSchematicRecordings() {
       warn('optIntoSchematicRecordings');
     },
     async optInOverallStatus() {
       warn('optInOverallStatus');
+      return { status: false };
+    },
+    async optInVideoRecordingStatus() {
+      warn('optInVideoRecordingStatus');
       return { status: false };
     },
     async optInSchematicRecordingStatus() {
@@ -340,6 +360,17 @@ function handlePromise<T, R = T>(
     return;
   }
   return promise;
+}
+
+const deprecationWarned = new Set<string>();
+
+function warnDeprecated(method: string, replacement: string) {
+  if (deprecationWarned.has(method)) return;
+  deprecationWarned.add(method);
+  console.warn(
+    `[UXCam] ${method} is deprecated and will be removed in a future release. ` +
+    `Use ${replacement} instead. Note: Schematic Recording is controlled from dashboard only.`
+  );
 }
 
 // Export types
@@ -555,12 +586,23 @@ export const UXCam = {
     return handlePromise(promise, successCallback, errorCallback);
   },
 
+  optOutOfVideoRecordings: function(
+    successCallback?: VoidCallback,
+    errorCallback?: ErrorCallback
+  ) {
+    const promise = getPlugin().then(plugin => plugin.optOutOfVideoRecordings());
+    return handlePromise(promise, successCallback, errorCallback);
+  },
+
+  /**
+   * @deprecated Use optOutOfVideoRecordings instead. Note: Schematic Recording is controlled from dashboard only.
+   */
   optOutOfSchematicRecordings: function(
     successCallback?: VoidCallback,
     errorCallback?: ErrorCallback
   ) {
-    const promise = getPlugin().then(plugin => plugin.optOutOfSchematicRecordings());
-    return handlePromise(promise, successCallback, errorCallback);
+    warnDeprecated('optOutOfSchematicRecordings', 'optOutOfVideoRecordings');
+    return this.optOutOfVideoRecordings(successCallback, errorCallback);
   },
 
   optInOverall: function(
@@ -571,12 +613,23 @@ export const UXCam = {
     return handlePromise(promise, successCallback, errorCallback);
   },
 
+  optIntoVideoRecordings: function(
+    successCallback?: VoidCallback,
+    errorCallback?: ErrorCallback
+  ) {
+    const promise = getPlugin().then(plugin => plugin.optIntoVideoRecordings());
+    return handlePromise(promise, successCallback, errorCallback);
+  },
+
+  /**
+   * @deprecated Use optIntoVideoRecordings instead. Note: Schematic Recording is controlled from dashboard only.
+   */
   optIntoSchematicRecordings: function(
     successCallback?: VoidCallback,
     errorCallback?: ErrorCallback
   ) {
-    const promise = getPlugin().then(plugin => plugin.optIntoSchematicRecordings());
-    return handlePromise(promise, successCallback, errorCallback);
+    warnDeprecated('optIntoSchematicRecordings', 'optIntoVideoRecordings');
+    return this.optIntoVideoRecordings(successCallback, errorCallback);
   },
 
   optInOverallStatus: function(
@@ -587,12 +640,23 @@ export const UXCam = {
     return handlePromise(promise, successCallback, errorCallback, result => result.status);
   },
 
+  optInVideoRecordingStatus: function(
+    successCallback?: SuccessCallback<boolean>,
+    errorCallback?: ErrorCallback
+  ) {
+    const promise = getPlugin().then(plugin => plugin.optInVideoRecordingStatus());
+    return handlePromise(promise, successCallback, errorCallback, result => result.status);
+  },
+
+  /**
+   * @deprecated Use optInVideoRecordingStatus instead. Note: Schematic Recording is controlled from dashboard only.
+   */
   optInSchematicRecordingStatus: function(
     successCallback?: SuccessCallback<boolean>,
     errorCallback?: ErrorCallback
   ) {
-    const promise = getPlugin().then(plugin => plugin.optInSchematicRecordingStatus());
-    return handlePromise(promise, successCallback, errorCallback, result => result.status);
+    warnDeprecated('optInSchematicRecordingStatus', 'optInVideoRecordingStatus');
+    return this.optInVideoRecordingStatus(successCallback, errorCallback);
   },
 
   // Legacy aliases
@@ -622,21 +686,14 @@ export const UXCam = {
     successCallback?: VoidCallback,
     errorCallback?: ErrorCallback
   ) {
-    return this.optIntoSchematicRecordings(successCallback, errorCallback);
+    return this.optIntoVideoRecordings(successCallback, errorCallback);
   },
 
   optOutOfVideoRecording: function(
     successCallback?: VoidCallback,
     errorCallback?: ErrorCallback
   ) {
-    return this.optOutOfSchematicRecordings(successCallback, errorCallback);
-  },
-
-  optInVideoRecordingStatus: function(
-    successCallback?: SuccessCallback<boolean>,
-    errorCallback?: ErrorCallback
-  ) {
-    return this.optInSchematicRecordingStatus(successCallback, errorCallback);
+    return this.optOutOfVideoRecordings(successCallback, errorCallback);
   }
 };
 

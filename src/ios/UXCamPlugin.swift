@@ -352,11 +352,16 @@ public class UXCamCapacitorPlugin: CAPPlugin {
         }
     }
 
-    @objc func optOutOfSchematicRecordings(_ call: CAPPluginCall) {
+    @objc func optOutOfVideoRecordings(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
-            UXCam.optOutOfSchematicRecordings()
+            UXCam.optOutOfVideoRecordings()
             call.resolve()
         }
+    }
+
+    @available(*, deprecated, message: "Use optOutOfVideoRecordings instead. Note: Schematic Recording is controlled from dashboard only.")
+    @objc func optOutOfSchematicRecordings(_ call: CAPPluginCall) {
+        optOutOfVideoRecordings(call)
     }
 
     @objc func optInOverall(_ call: CAPPluginCall) {
@@ -366,11 +371,16 @@ public class UXCamCapacitorPlugin: CAPPlugin {
         }
     }
 
-    @objc func optIntoSchematicRecordings(_ call: CAPPluginCall) {
+    @objc func optIntoVideoRecordings(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
-            UXCam.optIntoSchematicRecordings()
+            UXCam.optIntoVideoRecordings()
             call.resolve()
         }
+    }
+
+    @available(*, deprecated, message: "Use optIntoVideoRecordings instead. Note: Schematic Recording is controlled from dashboard only.")
+    @objc func optIntoSchematicRecordings(_ call: CAPPluginCall) {
+        optIntoVideoRecordings(call)
     }
 
     @objc func optInOverallStatus(_ call: CAPPluginCall) {
@@ -380,11 +390,16 @@ public class UXCamCapacitorPlugin: CAPPlugin {
         }
     }
 
-    @objc func optInSchematicRecordingStatus(_ call: CAPPluginCall) {
+    @objc func optInVideoRecordingStatus(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
-            let status = UXCam.optInSchematicRecordingStatus()
+            let status = UXCam.optInVideoRecordingStatus()
             call.resolve(["status": status])
         }
+    }
+
+    @available(*, deprecated, message: "Use optInVideoRecordingStatus instead. Note: Schematic Recording is controlled from dashboard only.")
+    @objc func optInSchematicRecordingStatus(_ call: CAPPluginCall) {
+        optInVideoRecordingStatus(call)
     }
 
 }
@@ -417,10 +432,13 @@ extension UXCamCapacitorPlugin: CAPBridgedPlugin {
         CAPPluginMethod(name: "urlForCurrentUser", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "urlForCurrentSession", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optOutOverall", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optOutOfVideoRecordings", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optOutOfSchematicRecordings", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optInOverall", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optIntoVideoRecordings", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optIntoSchematicRecordings", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optInOverallStatus", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "optInVideoRecordingStatus", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "optInSchematicRecordingStatus", returnType: CAPPluginReturnPromise)
     ]
 

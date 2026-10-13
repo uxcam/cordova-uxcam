@@ -160,13 +160,13 @@ public class UXCam extends CordovaPlugin {
             callbackContext.success();
         } else if ("optInOverallStatus".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInStatus()));
-        } else if ("optOutOfSchematicRecordings".equals(action)) {
+        } else if ("optOutOfVideoRecordings".equals(action) || "optOutOfSchematicRecordings".equals(action)) {
             com.uxcam.UXCam.optOutOfVideoRecording();
             callbackContext.success();
-        } else if ("optIntoSchematicRecordings".equals(action)) {
+        } else if ("optIntoVideoRecordings".equals(action) || "optIntoSchematicRecordings".equals(action)) {
             com.uxcam.UXCam.optIntoVideoRecording();
             callbackContext.success();
-        } else if ("optInSchematicRecordingStatus".equals(action)) {
+        } else if ("optInVideoRecordingStatus".equals(action) || "optInSchematicRecordingStatus".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInVideoRecordingStatus()));
         } else if ("cancelCurrentSession".equals(action)) {
             com.uxcam.UXCam.cancelCurrentSession();
