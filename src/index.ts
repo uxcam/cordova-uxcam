@@ -681,20 +681,6 @@ export const UXCam = {
   ) {
     return this.allowShortBreakForAnotherApp(false, successCallback, errorCallback);
   },
-
-  optIntoVideoRecording: function(
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    return this.optIntoVideoRecordings(successCallback, errorCallback);
-  },
-
-  optOutOfVideoRecording: function(
-    successCallback?: VoidCallback,
-    errorCallback?: ErrorCallback
-  ) {
-    return this.optOutOfVideoRecordings(successCallback, errorCallback);
-  }
 };
 
 // Default export
