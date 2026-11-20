@@ -2,6 +2,9 @@
 
 Version | Changes
 --------|--------
+3.8.5   | updated iOS SDK to v3.11.1 and Android SDK to v3.11.2. Added optIntoVideoRecordings, optOutOfVideoRecordings, optInVideoRecordingStatus. optIntoSchematicRecordings, optOutOfSchematicRecordings, optInSchematicRecordingStatus are deprecated and should be replaced with the new video recording APIs (Schematic Recording is controlled from dashboard only).
+3.8.4   | updated iOS SDK to v3.10.2 and Android SDK to v3.10.9
+3.8.3   | updated iOS SDK to v3.9.0 and Android SDK to v3.10.7
 3.8.2   | iOS and Android versions updated to v3.7.11 and v3.8.14 respectively
 3.8.1   | iOS and Android versions updated to v3.7.10 and v3.8.13 respectively
 3.8.0   | Added support for capacitor 6+, iOS and Android versions updated to v3.7.9 and v3.8.12 respectively
