@@ -26,7 +26,7 @@ import com.uxcam.datamodel.UXConfig;
  */
 public class UXCam extends CordovaPlugin {
     private static final String UXCAM_PLUGIN_TYPE = "cordova";
-    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.8.2";
+    private static final String UXCAM_CORDOVA_PLUGIN_VERSION = "3.8.5";
 
     public static final String USER_APP_KEY = "userAppKey";
     public static final String ENABLE_MUTLI_SESSION_RECORD = "enableMultiSessionRecord";
@@ -160,13 +160,13 @@ public class UXCam extends CordovaPlugin {
             callbackContext.success();
         } else if ("optInOverallStatus".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInStatus()));
-        } else if ("optOutOfSchematicRecordings".equals(action)) {
+        } else if ("optOutOfVideoRecordings".equals(action) || "optOutOfSchematicRecordings".equals(action)) {
             com.uxcam.UXCam.optOutOfVideoRecording();
             callbackContext.success();
-        } else if ("optIntoSchematicRecordings".equals(action)) {
+        } else if ("optIntoVideoRecordings".equals(action) || "optIntoSchematicRecordings".equals(action)) {
             com.uxcam.UXCam.optIntoVideoRecording();
             callbackContext.success();
-        } else if ("optInSchematicRecordingStatus".equals(action)) {
+        } else if ("optInVideoRecordingStatus".equals(action) || "optInSchematicRecordingStatus".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, com.uxcam.UXCam.optInVideoRecordingStatus()));
         } else if ("cancelCurrentSession".equals(action)) {
             com.uxcam.UXCam.cancelCurrentSession();
@@ -359,6 +359,8 @@ public class UXCam extends CordovaPlugin {
                 Log.d("config", "integration logging enabled " + enableIntegrationLogging);
                 uxConfigBuilder.enableIntegrationLogging(enableIntegrationLogging);
             }
+            // Off here: the SDK's WebView agent pushes over `window.UXCam`, which this plugin's JS module clobbers.
+            uxConfigBuilder.enableFrameSyncOcclusion(false);
             if (occlusionList != null)
                 uxConfigBuilder.occlusions(occlusionList);
 

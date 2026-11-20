@@ -50,14 +50,20 @@
 
 - (void)optOutOverall:(CDVInvokedUrlCommand*)command;
 
-- (void)optOutOfSchematicRecordings:(CDVInvokedUrlCommand*)command;
+- (void)optOutOfVideoRecordings:(CDVInvokedUrlCommand*)command;
+
+- (void)optOutOfSchematicRecordings:(CDVInvokedUrlCommand*)command __attribute__((deprecated("Use optOutOfVideoRecordings instead. Note: Schematic Recording is controlled from dashboard only.")));
 
 - (void)optInOverall:(CDVInvokedUrlCommand*)command;
 
-- (void)optIntoSchematicRecordings:(CDVInvokedUrlCommand*)command;
+- (void)optIntoVideoRecordings:(CDVInvokedUrlCommand*)command;
+
+- (void)optIntoSchematicRecordings:(CDVInvokedUrlCommand*)command __attribute__((deprecated("Use optIntoVideoRecordings instead. Note: Schematic Recording is controlled from dashboard only.")));
 
 - (void)optInOverallStatus:(CDVInvokedUrlCommand*)command;
 
-- (void)optInSchematicRecordingStatus:(CDVInvokedUrlCommand*)command;
+- (void)optInVideoRecordingStatus:(CDVInvokedUrlCommand*)command;
+
+- (void)optInSchematicRecordingStatus:(CDVInvokedUrlCommand*)command __attribute__((deprecated("Use optInVideoRecordingStatus instead. Note: Schematic Recording is controlled from dashboard only.")));
 
 @end

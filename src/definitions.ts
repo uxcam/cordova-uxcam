@@ -144,7 +144,13 @@ export interface UXCamPlugin {
   optOutOverall(): Promise<void>;
 
   /**
+   * Opt out of video recordings
+   */
+  optOutOfVideoRecordings(): Promise<void>;
+
+  /**
    * Opt out of schematic recordings
+   * @deprecated Use optOutOfVideoRecordings instead. Note: Schematic Recording is controlled from dashboard only.
    */
   optOutOfSchematicRecordings(): Promise<void>;
 
@@ -154,7 +160,13 @@ export interface UXCamPlugin {
   optInOverall(): Promise<void>;
 
   /**
+   * Opt into video recordings
+   */
+  optIntoVideoRecordings(): Promise<void>;
+
+  /**
    * Opt into schematic recordings
+   * @deprecated Use optIntoVideoRecordings instead. Note: Schematic Recording is controlled from dashboard only.
    */
   optIntoSchematicRecordings(): Promise<void>;
 
@@ -164,7 +176,13 @@ export interface UXCamPlugin {
   optInOverallStatus(): Promise<{ status: boolean }>;
 
   /**
+   * Get opt-in video recording status
+   */
+  optInVideoRecordingStatus(): Promise<{ status: boolean }>;
+
+  /**
    * Get opt-in schematic recording status
+   * @deprecated Use optInVideoRecordingStatus instead. Note: Schematic Recording is controlled from dashboard only.
    */
   optInSchematicRecordingStatus(): Promise<{ status: boolean }>;
 }

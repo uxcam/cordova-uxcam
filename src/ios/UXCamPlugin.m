@@ -25,9 +25,12 @@ CAP_PLUGIN(UXCamCapacitorPlugin, "UXCam",
   CAP_PLUGIN_METHOD(urlForCurrentUser, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(urlForCurrentSession, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(optOutOverall, CAPPluginReturnPromise);
+  CAP_PLUGIN_METHOD(optOutOfVideoRecordings, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(optOutOfSchematicRecordings, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(optInOverall, CAPPluginReturnPromise);
+  CAP_PLUGIN_METHOD(optIntoVideoRecordings, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(optIntoSchematicRecordings, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(optInOverallStatus, CAPPluginReturnPromise);
+  CAP_PLUGIN_METHOD(optInVideoRecordingStatus, CAPPluginReturnPromise);
   CAP_PLUGIN_METHOD(optInSchematicRecordingStatus, CAPPluginReturnPromise);
 )
